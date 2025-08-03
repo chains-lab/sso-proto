@@ -1,0 +1,34 @@
+syntax = "proto3";
+package sso;
+
+option go_package = "github.com/chains-lab/proto-storage/gen/go/svc/sso;sso";
+
+import "google/protobuf/empty.proto";
+import "sso_structs.proto";
+
+
+service AdminService {
+  rpc GetUserByAdmin (GetUserByAdminRequest) returns (User);
+
+  rpc CreateUserByAdmin (CreateUserByAdminRequest) returns (User);
+
+  rpc GetUserSessionsByAdmin (GetUserSessionsByAdminRequest) returns (SessionsList);
+  rpc DeleteUserSessionsByAdmin (DeleteUserSessionsByAdminRequest) returns (google.protobuf.Empty);
+}
+
+message CreateUserByAdminRequest{
+  string email = 1;
+  string role = 2;
+}
+
+message GetUserByAdminRequest {
+  string user_id = 1;
+}
+
+message GetUserSessionsByAdminRequest {
+  string user_id = 1;
+}
+
+message DeleteUserSessionsByAdminRequest {
+  string user_id = 1;
+}

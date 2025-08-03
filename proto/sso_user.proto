@@ -1,0 +1,41 @@
+syntax = "proto3";
+package sso;
+
+option go_package = "github.com/chains-lab/proto-storage/gen/go/svc/sso;sso";
+
+import "google/protobuf/empty.proto";
+import "sso_structs.proto";
+
+
+service UserService {
+  rpc GetOwnUser (google.protobuf.Empty) returns (User);
+
+  //Google OAuth operations
+  rpc GoogleLogin (google.protobuf.Empty) returns (GoogleLoginResponse);
+  rpc GoogleCallback (GoogleCallbackRequest) returns (TokensPair);
+
+  rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc RefreshToken (RefreshTokenRequest) returns (TokensPair);
+
+  rpc GetOwnUserSession (google.protobuf.Empty) returns (Session);
+  rpc GetOwnUserSessions (google.protobuf.Empty) returns (SessionsList);
+  rpc DeleteOwnUserSession (DeleteOwnUserSessionRequest) returns (SessionsList);
+  rpc DeleteOwnUserSessions (google.protobuf.Empty) returns (google.protobuf.Empty);
+}
+
+message RefreshTokenRequest {
+  string agent = 1;
+  string refresh_token = 2;
+}
+
+message DeleteOwnUserSessionRequest {
+  string session_id = 1;
+}
+
+message GoogleLoginResponse {
+  string url = 1;
+}
+
+message GoogleCallbackRequest {
+  string code = 1;
+}
