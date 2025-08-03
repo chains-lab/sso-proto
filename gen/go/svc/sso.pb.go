@@ -206,6 +206,50 @@ func (x *GoogleCallbackRequest) GetCode() string {
 	return ""
 }
 
+type GetOwnUserSessionsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Pagination    *PaginationRequest     `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetOwnUserSessionsRequest) Reset() {
+	*x = GetOwnUserSessionsRequest{}
+	mi := &file_sso_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetOwnUserSessionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetOwnUserSessionsRequest) ProtoMessage() {}
+
+func (x *GetOwnUserSessionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_sso_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetOwnUserSessionsRequest.ProtoReflect.Descriptor instead.
+func (*GetOwnUserSessionsRequest) Descriptor() ([]byte, []int) {
+	return file_sso_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *GetOwnUserSessionsRequest) GetPagination() *PaginationRequest {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
 type CreateUserByAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
@@ -216,7 +260,7 @@ type CreateUserByAdminRequest struct {
 
 func (x *CreateUserByAdminRequest) Reset() {
 	*x = CreateUserByAdminRequest{}
-	mi := &file_sso_proto_msgTypes[4]
+	mi := &file_sso_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -228,7 +272,7 @@ func (x *CreateUserByAdminRequest) String() string {
 func (*CreateUserByAdminRequest) ProtoMessage() {}
 
 func (x *CreateUserByAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[4]
+	mi := &file_sso_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -241,7 +285,7 @@ func (x *CreateUserByAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateUserByAdminRequest.ProtoReflect.Descriptor instead.
 func (*CreateUserByAdminRequest) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{4}
+	return file_sso_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CreateUserByAdminRequest) GetEmail() string {
@@ -267,7 +311,7 @@ type GetUserByAdminRequest struct {
 
 func (x *GetUserByAdminRequest) Reset() {
 	*x = GetUserByAdminRequest{}
-	mi := &file_sso_proto_msgTypes[5]
+	mi := &file_sso_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -279,7 +323,7 @@ func (x *GetUserByAdminRequest) String() string {
 func (*GetUserByAdminRequest) ProtoMessage() {}
 
 func (x *GetUserByAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[5]
+	mi := &file_sso_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -292,7 +336,7 @@ func (x *GetUserByAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserByAdminRequest.ProtoReflect.Descriptor instead.
 func (*GetUserByAdminRequest) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{5}
+	return file_sso_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *GetUserByAdminRequest) GetUserId() string {
@@ -305,13 +349,14 @@ func (x *GetUserByAdminRequest) GetUserId() string {
 type GetUserSessionsByAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Pagination    *PaginationRequest     `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *GetUserSessionsByAdminRequest) Reset() {
 	*x = GetUserSessionsByAdminRequest{}
-	mi := &file_sso_proto_msgTypes[6]
+	mi := &file_sso_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -323,7 +368,7 @@ func (x *GetUserSessionsByAdminRequest) String() string {
 func (*GetUserSessionsByAdminRequest) ProtoMessage() {}
 
 func (x *GetUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[6]
+	mi := &file_sso_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -336,7 +381,7 @@ func (x *GetUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserSessionsByAdminRequest.ProtoReflect.Descriptor instead.
 func (*GetUserSessionsByAdminRequest) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{6}
+	return file_sso_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetUserSessionsByAdminRequest) GetUserId() string {
@@ -344,6 +389,13 @@ func (x *GetUserSessionsByAdminRequest) GetUserId() string {
 		return x.UserId
 	}
 	return ""
+}
+
+func (x *GetUserSessionsByAdminRequest) GetPagination() *PaginationRequest {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
 }
 
 type DeleteUserSessionsByAdminRequest struct {
@@ -355,7 +407,7 @@ type DeleteUserSessionsByAdminRequest struct {
 
 func (x *DeleteUserSessionsByAdminRequest) Reset() {
 	*x = DeleteUserSessionsByAdminRequest{}
-	mi := &file_sso_proto_msgTypes[7]
+	mi := &file_sso_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -367,7 +419,7 @@ func (x *DeleteUserSessionsByAdminRequest) String() string {
 func (*DeleteUserSessionsByAdminRequest) ProtoMessage() {}
 
 func (x *DeleteUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[7]
+	mi := &file_sso_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -380,7 +432,7 @@ func (x *DeleteUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteUserSessionsByAdminRequest.ProtoReflect.Descriptor instead.
 func (*DeleteUserSessionsByAdminRequest) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{7}
+	return file_sso_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteUserSessionsByAdminRequest) GetUserId() string {
@@ -400,7 +452,7 @@ type TokensPair struct {
 
 func (x *TokensPair) Reset() {
 	*x = TokensPair{}
-	mi := &file_sso_proto_msgTypes[8]
+	mi := &file_sso_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -412,7 +464,7 @@ func (x *TokensPair) String() string {
 func (*TokensPair) ProtoMessage() {}
 
 func (x *TokensPair) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[8]
+	mi := &file_sso_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -425,7 +477,7 @@ func (x *TokensPair) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokensPair.ProtoReflect.Descriptor instead.
 func (*TokensPair) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{8}
+	return file_sso_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TokensPair) GetAccessToken() string {
@@ -457,7 +509,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_sso_proto_msgTypes[9]
+	mi := &file_sso_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -469,7 +521,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[9]
+	mi := &file_sso_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -482,7 +534,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{9}
+	return file_sso_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *User) GetId() string {
@@ -548,7 +600,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_sso_proto_msgTypes[10]
+	mi := &file_sso_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -560,7 +612,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[10]
+	mi := &file_sso_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -573,7 +625,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{10}
+	return file_sso_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Session) GetId() string {
@@ -628,7 +680,7 @@ type SessionsList struct {
 
 func (x *SessionsList) Reset() {
 	*x = SessionsList{}
-	mi := &file_sso_proto_msgTypes[11]
+	mi := &file_sso_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -640,7 +692,7 @@ func (x *SessionsList) String() string {
 func (*SessionsList) ProtoMessage() {}
 
 func (x *SessionsList) ProtoReflect() protoreflect.Message {
-	mi := &file_sso_proto_msgTypes[11]
+	mi := &file_sso_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -653,7 +705,7 @@ func (x *SessionsList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionsList.ProtoReflect.Descriptor instead.
 func (*SessionsList) Descriptor() ([]byte, []int) {
-	return file_sso_proto_rawDescGZIP(), []int{11}
+	return file_sso_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *SessionsList) GetSessions() []*Session {
@@ -684,14 +736,21 @@ const file_sso_proto_rawDesc = "" +
 	"\x13GoogleLoginResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"+\n" +
 	"\x15GoogleCallbackRequest\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\"D\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"S\n" +
+	"\x19GetOwnUserSessionsRequest\x126\n" +
+	"\n" +
+	"pagination\x18\x01 \x01(\v2\x16.sso.PaginationRequestR\n" +
+	"pagination\"D\n" +
 	"\x18CreateUserByAdminRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
 	"\x04role\x18\x02 \x01(\tR\x04role\"0\n" +
 	"\x15GetUserByAdminRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\"8\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\"p\n" +
 	"\x1dGetUserSessionsByAdminRequest\x12\x17\n" +
-	"\auser_id\x18\x01 \x01(\tR\x06userId\";\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x126\n" +
+	"\n" +
+	"pagination\x18\x02 \x01(\v2\x16.sso.PaginationRequestR\n" +
+	"pagination\";\n" +
 	" DeleteUserSessionsByAdminRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\"T\n" +
 	"\n" +
@@ -720,7 +779,7 @@ const file_sso_proto_rawDesc = "" +
 	"\bsessions\x18\x01 \x03(\v2\f.sso.SessionR\bsessions\x127\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x17.sso.PaginationResponseR\n" +
-	"pagination2\xe3\x06\n" +
+	"pagination2\xf0\x06\n" +
 	"\x04Auth\x12/\n" +
 	"\n" +
 	"GetOwnUser\x12\x16.google.protobuf.Empty\x1a\t.sso.User\x12?\n" +
@@ -728,9 +787,9 @@ const file_sso_proto_rawDesc = "" +
 	"\x0eGoogleCallback\x12\x1a.sso.GoogleCallbackRequest\x1a\x0f.sso.TokensPair\x128\n" +
 	"\x06Logout\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\x129\n" +
 	"\fRefreshToken\x12\x18.sso.RefreshTokenRequest\x1a\x0f.sso.TokensPair\x129\n" +
-	"\x11GetOwnUserSession\x12\x16.google.protobuf.Empty\x1a\f.sso.Session\x12?\n" +
-	"\x12GetOwnUserSessions\x12\x16.google.protobuf.Empty\x1a\x11.sso.SessionsList\x12K\n" +
-	"\x14DeleteOwnUserSession\x12 .sso.DeleteOwnUserSessionRequest\x1a\x11.sso.SessionsList\x12G\n" +
+	"\x11GetOwnUserSession\x12\x16.google.protobuf.Empty\x1a\f.sso.Session\x12G\n" +
+	"\x12GetOwnUserSessions\x12\x1e.sso.GetOwnUserSessionsRequest\x1a\x11.sso.SessionsList\x12P\n" +
+	"\x14DeleteOwnUserSession\x12 .sso.DeleteOwnUserSessionRequest\x1a\x16.google.protobuf.Empty\x12G\n" +
 	"\x15DeleteOwnUserSessions\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\x127\n" +
 	"\x0eGetUserByAdmin\x12\x1a.sso.GetUserByAdminRequest\x1a\t.sso.User\x12=\n" +
 	"\x11CreateUserByAdmin\x12\x1d.sso.CreateUserByAdminRequest\x1a\t.sso.User\x12O\n" +
@@ -749,57 +808,61 @@ func file_sso_proto_rawDescGZIP() []byte {
 	return file_sso_proto_rawDescData
 }
 
-var file_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_sso_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_sso_proto_goTypes = []any{
 	(*RefreshTokenRequest)(nil),              // 0: sso.RefreshTokenRequest
 	(*DeleteOwnUserSessionRequest)(nil),      // 1: sso.DeleteOwnUserSessionRequest
 	(*GoogleLoginResponse)(nil),              // 2: sso.GoogleLoginResponse
 	(*GoogleCallbackRequest)(nil),            // 3: sso.GoogleCallbackRequest
-	(*CreateUserByAdminRequest)(nil),         // 4: sso.CreateUserByAdminRequest
-	(*GetUserByAdminRequest)(nil),            // 5: sso.GetUserByAdminRequest
-	(*GetUserSessionsByAdminRequest)(nil),    // 6: sso.GetUserSessionsByAdminRequest
-	(*DeleteUserSessionsByAdminRequest)(nil), // 7: sso.DeleteUserSessionsByAdminRequest
-	(*TokensPair)(nil),                       // 8: sso.TokensPair
-	(*User)(nil),                             // 9: sso.User
-	(*Session)(nil),                          // 10: sso.Session
-	(*SessionsList)(nil),                     // 11: sso.SessionsList
-	(*PaginationResponse)(nil),               // 12: sso.PaginationResponse
-	(*emptypb.Empty)(nil),                    // 13: google.protobuf.Empty
+	(*GetOwnUserSessionsRequest)(nil),        // 4: sso.GetOwnUserSessionsRequest
+	(*CreateUserByAdminRequest)(nil),         // 5: sso.CreateUserByAdminRequest
+	(*GetUserByAdminRequest)(nil),            // 6: sso.GetUserByAdminRequest
+	(*GetUserSessionsByAdminRequest)(nil),    // 7: sso.GetUserSessionsByAdminRequest
+	(*DeleteUserSessionsByAdminRequest)(nil), // 8: sso.DeleteUserSessionsByAdminRequest
+	(*TokensPair)(nil),                       // 9: sso.TokensPair
+	(*User)(nil),                             // 10: sso.User
+	(*Session)(nil),                          // 11: sso.Session
+	(*SessionsList)(nil),                     // 12: sso.SessionsList
+	(*PaginationRequest)(nil),                // 13: sso.PaginationRequest
+	(*PaginationResponse)(nil),               // 14: sso.PaginationResponse
+	(*emptypb.Empty)(nil),                    // 15: google.protobuf.Empty
 }
 var file_sso_proto_depIdxs = []int32{
-	10, // 0: sso.SessionsList.sessions:type_name -> sso.Session
-	12, // 1: sso.SessionsList.pagination:type_name -> sso.PaginationResponse
-	13, // 2: sso.Auth.GetOwnUser:input_type -> google.protobuf.Empty
-	13, // 3: sso.Auth.GoogleLogin:input_type -> google.protobuf.Empty
-	3,  // 4: sso.Auth.GoogleCallback:input_type -> sso.GoogleCallbackRequest
-	13, // 5: sso.Auth.Logout:input_type -> google.protobuf.Empty
-	0,  // 6: sso.Auth.RefreshToken:input_type -> sso.RefreshTokenRequest
-	13, // 7: sso.Auth.GetOwnUserSession:input_type -> google.protobuf.Empty
-	13, // 8: sso.Auth.GetOwnUserSessions:input_type -> google.protobuf.Empty
-	1,  // 9: sso.Auth.DeleteOwnUserSession:input_type -> sso.DeleteOwnUserSessionRequest
-	13, // 10: sso.Auth.DeleteOwnUserSessions:input_type -> google.protobuf.Empty
-	5,  // 11: sso.Auth.GetUserByAdmin:input_type -> sso.GetUserByAdminRequest
-	4,  // 12: sso.Auth.CreateUserByAdmin:input_type -> sso.CreateUserByAdminRequest
-	6,  // 13: sso.Auth.GetUserSessionsByAdmin:input_type -> sso.GetUserSessionsByAdminRequest
-	7,  // 14: sso.Auth.DeleteUserSessionsByAdmin:input_type -> sso.DeleteUserSessionsByAdminRequest
-	9,  // 15: sso.Auth.GetOwnUser:output_type -> sso.User
-	2,  // 16: sso.Auth.GoogleLogin:output_type -> sso.GoogleLoginResponse
-	8,  // 17: sso.Auth.GoogleCallback:output_type -> sso.TokensPair
-	13, // 18: sso.Auth.Logout:output_type -> google.protobuf.Empty
-	8,  // 19: sso.Auth.RefreshToken:output_type -> sso.TokensPair
-	10, // 20: sso.Auth.GetOwnUserSession:output_type -> sso.Session
-	11, // 21: sso.Auth.GetOwnUserSessions:output_type -> sso.SessionsList
-	11, // 22: sso.Auth.DeleteOwnUserSession:output_type -> sso.SessionsList
-	13, // 23: sso.Auth.DeleteOwnUserSessions:output_type -> google.protobuf.Empty
-	9,  // 24: sso.Auth.GetUserByAdmin:output_type -> sso.User
-	9,  // 25: sso.Auth.CreateUserByAdmin:output_type -> sso.User
-	11, // 26: sso.Auth.GetUserSessionsByAdmin:output_type -> sso.SessionsList
-	13, // 27: sso.Auth.DeleteUserSessionsByAdmin:output_type -> google.protobuf.Empty
-	15, // [15:28] is the sub-list for method output_type
-	2,  // [2:15] is the sub-list for method input_type
-	2,  // [2:2] is the sub-list for extension type_name
-	2,  // [2:2] is the sub-list for extension extendee
-	0,  // [0:2] is the sub-list for field type_name
+	13, // 0: sso.GetOwnUserSessionsRequest.pagination:type_name -> sso.PaginationRequest
+	13, // 1: sso.GetUserSessionsByAdminRequest.pagination:type_name -> sso.PaginationRequest
+	11, // 2: sso.SessionsList.sessions:type_name -> sso.Session
+	14, // 3: sso.SessionsList.pagination:type_name -> sso.PaginationResponse
+	15, // 4: sso.Auth.GetOwnUser:input_type -> google.protobuf.Empty
+	15, // 5: sso.Auth.GoogleLogin:input_type -> google.protobuf.Empty
+	3,  // 6: sso.Auth.GoogleCallback:input_type -> sso.GoogleCallbackRequest
+	15, // 7: sso.Auth.Logout:input_type -> google.protobuf.Empty
+	0,  // 8: sso.Auth.RefreshToken:input_type -> sso.RefreshTokenRequest
+	15, // 9: sso.Auth.GetOwnUserSession:input_type -> google.protobuf.Empty
+	4,  // 10: sso.Auth.GetOwnUserSessions:input_type -> sso.GetOwnUserSessionsRequest
+	1,  // 11: sso.Auth.DeleteOwnUserSession:input_type -> sso.DeleteOwnUserSessionRequest
+	15, // 12: sso.Auth.DeleteOwnUserSessions:input_type -> google.protobuf.Empty
+	6,  // 13: sso.Auth.GetUserByAdmin:input_type -> sso.GetUserByAdminRequest
+	5,  // 14: sso.Auth.CreateUserByAdmin:input_type -> sso.CreateUserByAdminRequest
+	7,  // 15: sso.Auth.GetUserSessionsByAdmin:input_type -> sso.GetUserSessionsByAdminRequest
+	8,  // 16: sso.Auth.DeleteUserSessionsByAdmin:input_type -> sso.DeleteUserSessionsByAdminRequest
+	10, // 17: sso.Auth.GetOwnUser:output_type -> sso.User
+	2,  // 18: sso.Auth.GoogleLogin:output_type -> sso.GoogleLoginResponse
+	9,  // 19: sso.Auth.GoogleCallback:output_type -> sso.TokensPair
+	15, // 20: sso.Auth.Logout:output_type -> google.protobuf.Empty
+	9,  // 21: sso.Auth.RefreshToken:output_type -> sso.TokensPair
+	11, // 22: sso.Auth.GetOwnUserSession:output_type -> sso.Session
+	12, // 23: sso.Auth.GetOwnUserSessions:output_type -> sso.SessionsList
+	15, // 24: sso.Auth.DeleteOwnUserSession:output_type -> google.protobuf.Empty
+	15, // 25: sso.Auth.DeleteOwnUserSessions:output_type -> google.protobuf.Empty
+	10, // 26: sso.Auth.GetUserByAdmin:output_type -> sso.User
+	10, // 27: sso.Auth.CreateUserByAdmin:output_type -> sso.User
+	12, // 28: sso.Auth.GetUserSessionsByAdmin:output_type -> sso.SessionsList
+	15, // 29: sso.Auth.DeleteUserSessionsByAdmin:output_type -> google.protobuf.Empty
+	17, // [17:30] is the sub-list for method output_type
+	4,  // [4:17] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_sso_proto_init() }
@@ -814,7 +877,7 @@ func file_sso_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_sso_proto_rawDesc), len(file_sso_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   12,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -17,8 +17,8 @@ service Auth {
   rpc RefreshToken (RefreshTokenRequest) returns (TokensPair);
 
   rpc GetOwnUserSession (google.protobuf.Empty) returns (Session);
-  rpc GetOwnUserSessions (google.protobuf.Empty) returns (SessionsList);
-  rpc DeleteOwnUserSession (DeleteOwnUserSessionRequest) returns (SessionsList);
+  rpc GetOwnUserSessions (GetOwnUserSessionsRequest) returns (SessionsList);
+  rpc DeleteOwnUserSession (DeleteOwnUserSessionRequest) returns (google.protobuf.Empty);
   rpc DeleteOwnUserSessions (google.protobuf.Empty) returns (google.protobuf.Empty);
 
   // Admin panel
@@ -48,6 +48,10 @@ message GoogleCallbackRequest {
   string code = 1;
 }
 
+message GetOwnUserSessionsRequest {
+  PaginationRequest pagination = 1;
+}
+
 message CreateUserByAdminRequest{
   string email = 1;
   string role = 2;
@@ -59,6 +63,7 @@ message GetUserByAdminRequest {
 
 message GetUserSessionsByAdminRequest {
   string user_id = 1;
+  PaginationRequest pagination = 2;
 }
 
 message DeleteUserSessionsByAdminRequest {

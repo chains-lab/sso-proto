@@ -46,8 +46,8 @@ type AuthClient interface {
 	Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*TokensPair, error)
 	GetOwnUserSession(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Session, error)
-	GetOwnUserSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SessionsList, error)
-	DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*SessionsList, error)
+	GetOwnUserSessions(ctx context.Context, in *GetOwnUserSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error)
+	DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteOwnUserSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	// Admin panel
 	GetUserByAdmin(ctx context.Context, in *GetUserByAdminRequest, opts ...grpc.CallOption) (*User, error)
@@ -124,7 +124,7 @@ func (c *authClient) GetOwnUserSession(ctx context.Context, in *emptypb.Empty, o
 	return out, nil
 }
 
-func (c *authClient) GetOwnUserSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SessionsList, error) {
+func (c *authClient) GetOwnUserSessions(ctx context.Context, in *GetOwnUserSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SessionsList)
 	err := c.cc.Invoke(ctx, Auth_GetOwnUserSessions_FullMethodName, in, out, cOpts...)
@@ -134,9 +134,9 @@ func (c *authClient) GetOwnUserSessions(ctx context.Context, in *emptypb.Empty, 
 	return out, nil
 }
 
-func (c *authClient) DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*SessionsList, error) {
+func (c *authClient) DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SessionsList)
+	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, Auth_DeleteOwnUserSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -205,8 +205,8 @@ type AuthServer interface {
 	Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*TokensPair, error)
 	GetOwnUserSession(context.Context, *emptypb.Empty) (*Session, error)
-	GetOwnUserSessions(context.Context, *emptypb.Empty) (*SessionsList, error)
-	DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*SessionsList, error)
+	GetOwnUserSessions(context.Context, *GetOwnUserSessionsRequest) (*SessionsList, error)
+	DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*emptypb.Empty, error)
 	DeleteOwnUserSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	// Admin panel
 	GetUserByAdmin(context.Context, *GetUserByAdminRequest) (*User, error)
@@ -241,10 +241,10 @@ func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshTokenReques
 func (UnimplementedAuthServer) GetOwnUserSession(context.Context, *emptypb.Empty) (*Session, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserSession not implemented")
 }
-func (UnimplementedAuthServer) GetOwnUserSessions(context.Context, *emptypb.Empty) (*SessionsList, error) {
+func (UnimplementedAuthServer) GetOwnUserSessions(context.Context, *GetOwnUserSessionsRequest) (*SessionsList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserSessions not implemented")
 }
-func (UnimplementedAuthServer) DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*SessionsList, error) {
+func (UnimplementedAuthServer) DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnUserSession not implemented")
 }
 func (UnimplementedAuthServer) DeleteOwnUserSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
@@ -392,7 +392,7 @@ func _Auth_GetOwnUserSession_Handler(srv interface{}, ctx context.Context, dec f
 }
 
 func _Auth_GetOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(GetOwnUserSessionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -404,7 +404,7 @@ func _Auth_GetOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec 
 		FullMethod: Auth_GetOwnUserSessions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServer).GetOwnUserSessions(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).GetOwnUserSessions(ctx, req.(*GetOwnUserSessionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
