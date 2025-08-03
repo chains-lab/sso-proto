@@ -20,25 +20,25 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AuthService_GetOwnUser_FullMethodName                = "/sso.AuthService/GetOwnUser"
-	AuthService_GoogleLogin_FullMethodName               = "/sso.AuthService/GoogleLogin"
-	AuthService_GoogleCallback_FullMethodName            = "/sso.AuthService/GoogleCallback"
-	AuthService_Logout_FullMethodName                    = "/sso.AuthService/Logout"
-	AuthService_RefreshToken_FullMethodName              = "/sso.AuthService/RefreshToken"
-	AuthService_GetOwnUserSession_FullMethodName         = "/sso.AuthService/GetOwnUserSession"
-	AuthService_GetOwnUserSessions_FullMethodName        = "/sso.AuthService/GetOwnUserSessions"
-	AuthService_DeleteOwnUserSession_FullMethodName      = "/sso.AuthService/DeleteOwnUserSession"
-	AuthService_DeleteOwnUserSessions_FullMethodName     = "/sso.AuthService/DeleteOwnUserSessions"
-	AuthService_GetUserByAdmin_FullMethodName            = "/sso.AuthService/GetUserByAdmin"
-	AuthService_CreateUserByAdmin_FullMethodName         = "/sso.AuthService/CreateUserByAdmin"
-	AuthService_GetUserSessionsByAdmin_FullMethodName    = "/sso.AuthService/GetUserSessionsByAdmin"
-	AuthService_DeleteUserSessionsByAdmin_FullMethodName = "/sso.AuthService/DeleteUserSessionsByAdmin"
+	Auth_GetOwnUser_FullMethodName                = "/sso.Auth/GetOwnUser"
+	Auth_GoogleLogin_FullMethodName               = "/sso.Auth/GoogleLogin"
+	Auth_GoogleCallback_FullMethodName            = "/sso.Auth/GoogleCallback"
+	Auth_Logout_FullMethodName                    = "/sso.Auth/Logout"
+	Auth_RefreshToken_FullMethodName              = "/sso.Auth/RefreshToken"
+	Auth_GetOwnUserSession_FullMethodName         = "/sso.Auth/GetOwnUserSession"
+	Auth_GetOwnUserSessions_FullMethodName        = "/sso.Auth/GetOwnUserSessions"
+	Auth_DeleteOwnUserSession_FullMethodName      = "/sso.Auth/DeleteOwnUserSession"
+	Auth_DeleteOwnUserSessions_FullMethodName     = "/sso.Auth/DeleteOwnUserSessions"
+	Auth_GetUserByAdmin_FullMethodName            = "/sso.Auth/GetUserByAdmin"
+	Auth_CreateUserByAdmin_FullMethodName         = "/sso.Auth/CreateUserByAdmin"
+	Auth_GetUserSessionsByAdmin_FullMethodName    = "/sso.Auth/GetUserSessionsByAdmin"
+	Auth_DeleteUserSessionsByAdmin_FullMethodName = "/sso.Auth/DeleteUserSessionsByAdmin"
 )
 
-// AuthServiceClient is the client API for AuthService service.
+// AuthClient is the client API for Auth service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AuthServiceClient interface {
+type AuthClient interface {
 	GetOwnUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*User, error)
 	// Google OAuth operations
 	GoogleLogin(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
@@ -56,148 +56,148 @@ type AuthServiceClient interface {
 	DeleteUserSessionsByAdmin(ctx context.Context, in *DeleteUserSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
-type authServiceClient struct {
+type authClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAuthServiceClient(cc grpc.ClientConnInterface) AuthServiceClient {
-	return &authServiceClient{cc}
+func NewAuthClient(cc grpc.ClientConnInterface) AuthClient {
+	return &authClient{cc}
 }
 
-func (c *authServiceClient) GetOwnUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*User, error) {
+func (c *authClient) GetOwnUser(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(User)
-	err := c.cc.Invoke(ctx, AuthService_GetOwnUser_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_GetOwnUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) GoogleLogin(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleLoginResponse, error) {
+func (c *authClient) GoogleLogin(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleLoginResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GoogleLoginResponse)
-	err := c.cc.Invoke(ctx, AuthService_GoogleLogin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_GoogleLogin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) GoogleCallback(ctx context.Context, in *GoogleCallbackRequest, opts ...grpc.CallOption) (*TokensPair, error) {
+func (c *authClient) GoogleCallback(ctx context.Context, in *GoogleCallbackRequest, opts ...grpc.CallOption) (*TokensPair, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TokensPair)
-	err := c.cc.Invoke(ctx, AuthService_GoogleCallback_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_GoogleCallback_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *authClient) Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, AuthService_Logout_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_Logout_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*TokensPair, error) {
+func (c *authClient) RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*TokensPair, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TokensPair)
-	err := c.cc.Invoke(ctx, AuthService_RefreshToken_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_RefreshToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) GetOwnUserSession(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Session, error) {
+func (c *authClient) GetOwnUserSession(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*Session, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Session)
-	err := c.cc.Invoke(ctx, AuthService_GetOwnUserSession_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_GetOwnUserSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) GetOwnUserSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SessionsList, error) {
+func (c *authClient) GetOwnUserSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*SessionsList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SessionsList)
-	err := c.cc.Invoke(ctx, AuthService_GetOwnUserSessions_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_GetOwnUserSessions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*SessionsList, error) {
+func (c *authClient) DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*SessionsList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SessionsList)
-	err := c.cc.Invoke(ctx, AuthService_DeleteOwnUserSession_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_DeleteOwnUserSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) DeleteOwnUserSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *authClient) DeleteOwnUserSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, AuthService_DeleteOwnUserSessions_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_DeleteOwnUserSessions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) GetUserByAdmin(ctx context.Context, in *GetUserByAdminRequest, opts ...grpc.CallOption) (*User, error) {
+func (c *authClient) GetUserByAdmin(ctx context.Context, in *GetUserByAdminRequest, opts ...grpc.CallOption) (*User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(User)
-	err := c.cc.Invoke(ctx, AuthService_GetUserByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_GetUserByAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) CreateUserByAdmin(ctx context.Context, in *CreateUserByAdminRequest, opts ...grpc.CallOption) (*User, error) {
+func (c *authClient) CreateUserByAdmin(ctx context.Context, in *CreateUserByAdminRequest, opts ...grpc.CallOption) (*User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(User)
-	err := c.cc.Invoke(ctx, AuthService_CreateUserByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_CreateUserByAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) GetUserSessionsByAdmin(ctx context.Context, in *GetUserSessionsByAdminRequest, opts ...grpc.CallOption) (*SessionsList, error) {
+func (c *authClient) GetUserSessionsByAdmin(ctx context.Context, in *GetUserSessionsByAdminRequest, opts ...grpc.CallOption) (*SessionsList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SessionsList)
-	err := c.cc.Invoke(ctx, AuthService_GetUserSessionsByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_GetUserSessionsByAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *authServiceClient) DeleteUserSessionsByAdmin(ctx context.Context, in *DeleteUserSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *authClient) DeleteUserSessionsByAdmin(ctx context.Context, in *DeleteUserSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, AuthService_DeleteUserSessionsByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Auth_DeleteUserSessionsByAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AuthServiceServer is the server API for AuthService service.
-// All implementations must embed UnimplementedAuthServiceServer
+// AuthServer is the server API for Auth service.
+// All implementations must embed UnimplementedAuthServer
 // for forward compatibility.
-type AuthServiceServer interface {
+type AuthServer interface {
 	GetOwnUser(context.Context, *emptypb.Empty) (*User, error)
 	// Google OAuth operations
 	GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error)
@@ -213,368 +213,368 @@ type AuthServiceServer interface {
 	CreateUserByAdmin(context.Context, *CreateUserByAdminRequest) (*User, error)
 	GetUserSessionsByAdmin(context.Context, *GetUserSessionsByAdminRequest) (*SessionsList, error)
 	DeleteUserSessionsByAdmin(context.Context, *DeleteUserSessionsByAdminRequest) (*emptypb.Empty, error)
-	mustEmbedUnimplementedAuthServiceServer()
+	mustEmbedUnimplementedAuthServer()
 }
 
-// UnimplementedAuthServiceServer must be embedded to have
+// UnimplementedAuthServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedAuthServiceServer struct{}
+type UnimplementedAuthServer struct{}
 
-func (UnimplementedAuthServiceServer) GetOwnUser(context.Context, *emptypb.Empty) (*User, error) {
+func (UnimplementedAuthServer) GetOwnUser(context.Context, *emptypb.Empty) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUser not implemented")
 }
-func (UnimplementedAuthServiceServer) GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error) {
+func (UnimplementedAuthServer) GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleLogin not implemented")
 }
-func (UnimplementedAuthServiceServer) GoogleCallback(context.Context, *GoogleCallbackRequest) (*TokensPair, error) {
+func (UnimplementedAuthServer) GoogleCallback(context.Context, *GoogleCallbackRequest) (*TokensPair, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleCallback not implemented")
 }
-func (UnimplementedAuthServiceServer) Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedAuthServer) Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
-func (UnimplementedAuthServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*TokensPair, error) {
+func (UnimplementedAuthServer) RefreshToken(context.Context, *RefreshTokenRequest) (*TokensPair, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
-func (UnimplementedAuthServiceServer) GetOwnUserSession(context.Context, *emptypb.Empty) (*Session, error) {
+func (UnimplementedAuthServer) GetOwnUserSession(context.Context, *emptypb.Empty) (*Session, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserSession not implemented")
 }
-func (UnimplementedAuthServiceServer) GetOwnUserSessions(context.Context, *emptypb.Empty) (*SessionsList, error) {
+func (UnimplementedAuthServer) GetOwnUserSessions(context.Context, *emptypb.Empty) (*SessionsList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserSessions not implemented")
 }
-func (UnimplementedAuthServiceServer) DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*SessionsList, error) {
+func (UnimplementedAuthServer) DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*SessionsList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnUserSession not implemented")
 }
-func (UnimplementedAuthServiceServer) DeleteOwnUserSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedAuthServer) DeleteOwnUserSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnUserSessions not implemented")
 }
-func (UnimplementedAuthServiceServer) GetUserByAdmin(context.Context, *GetUserByAdminRequest) (*User, error) {
+func (UnimplementedAuthServer) GetUserByAdmin(context.Context, *GetUserByAdminRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserByAdmin not implemented")
 }
-func (UnimplementedAuthServiceServer) CreateUserByAdmin(context.Context, *CreateUserByAdminRequest) (*User, error) {
+func (UnimplementedAuthServer) CreateUserByAdmin(context.Context, *CreateUserByAdminRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUserByAdmin not implemented")
 }
-func (UnimplementedAuthServiceServer) GetUserSessionsByAdmin(context.Context, *GetUserSessionsByAdminRequest) (*SessionsList, error) {
+func (UnimplementedAuthServer) GetUserSessionsByAdmin(context.Context, *GetUserSessionsByAdminRequest) (*SessionsList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserSessionsByAdmin not implemented")
 }
-func (UnimplementedAuthServiceServer) DeleteUserSessionsByAdmin(context.Context, *DeleteUserSessionsByAdminRequest) (*emptypb.Empty, error) {
+func (UnimplementedAuthServer) DeleteUserSessionsByAdmin(context.Context, *DeleteUserSessionsByAdminRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserSessionsByAdmin not implemented")
 }
-func (UnimplementedAuthServiceServer) mustEmbedUnimplementedAuthServiceServer() {}
-func (UnimplementedAuthServiceServer) testEmbeddedByValue()                     {}
+func (UnimplementedAuthServer) mustEmbedUnimplementedAuthServer() {}
+func (UnimplementedAuthServer) testEmbeddedByValue()              {}
 
-// UnsafeAuthServiceServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AuthServiceServer will
+// UnsafeAuthServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AuthServer will
 // result in compilation errors.
-type UnsafeAuthServiceServer interface {
-	mustEmbedUnimplementedAuthServiceServer()
+type UnsafeAuthServer interface {
+	mustEmbedUnimplementedAuthServer()
 }
 
-func RegisterAuthServiceServer(s grpc.ServiceRegistrar, srv AuthServiceServer) {
-	// If the following call pancis, it indicates UnimplementedAuthServiceServer was
+func RegisterAuthServer(s grpc.ServiceRegistrar, srv AuthServer) {
+	// If the following call pancis, it indicates UnimplementedAuthServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&AuthService_ServiceDesc, srv)
+	s.RegisterService(&Auth_ServiceDesc, srv)
 }
 
-func _AuthService_GetOwnUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_GetOwnUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetOwnUser(ctx, in)
+		return srv.(AuthServer).GetOwnUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetOwnUser_FullMethodName,
+		FullMethod: Auth_GetOwnUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetOwnUser(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).GetOwnUser(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GoogleLogin(ctx, in)
+		return srv.(AuthServer).GoogleLogin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GoogleLogin_FullMethodName,
+		FullMethod: Auth_GoogleLogin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GoogleLogin(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).GoogleLogin(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GoogleCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_GoogleCallback_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GoogleCallbackRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GoogleCallback(ctx, in)
+		return srv.(AuthServer).GoogleCallback(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GoogleCallback_FullMethodName,
+		FullMethod: Auth_GoogleCallback_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GoogleCallback(ctx, req.(*GoogleCallbackRequest))
+		return srv.(AuthServer).GoogleCallback(ctx, req.(*GoogleCallbackRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).Logout(ctx, in)
+		return srv.(AuthServer).Logout(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_Logout_FullMethodName,
+		FullMethod: Auth_Logout_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).Logout(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).Logout(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_RefreshToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(RefreshTokenRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).RefreshToken(ctx, in)
+		return srv.(AuthServer).RefreshToken(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_RefreshToken_FullMethodName,
+		FullMethod: Auth_RefreshToken_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).RefreshToken(ctx, req.(*RefreshTokenRequest))
+		return srv.(AuthServer).RefreshToken(ctx, req.(*RefreshTokenRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GetOwnUserSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_GetOwnUserSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetOwnUserSession(ctx, in)
+		return srv.(AuthServer).GetOwnUserSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetOwnUserSession_FullMethodName,
+		FullMethod: Auth_GetOwnUserSession_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetOwnUserSession(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).GetOwnUserSession(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GetOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_GetOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetOwnUserSessions(ctx, in)
+		return srv.(AuthServer).GetOwnUserSessions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetOwnUserSessions_FullMethodName,
+		FullMethod: Auth_GetOwnUserSessions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetOwnUserSessions(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).GetOwnUserSessions(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_DeleteOwnUserSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_DeleteOwnUserSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteOwnUserSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).DeleteOwnUserSession(ctx, in)
+		return srv.(AuthServer).DeleteOwnUserSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_DeleteOwnUserSession_FullMethodName,
+		FullMethod: Auth_DeleteOwnUserSession_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).DeleteOwnUserSession(ctx, req.(*DeleteOwnUserSessionRequest))
+		return srv.(AuthServer).DeleteOwnUserSession(ctx, req.(*DeleteOwnUserSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_DeleteOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_DeleteOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).DeleteOwnUserSessions(ctx, in)
+		return srv.(AuthServer).DeleteOwnUserSessions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_DeleteOwnUserSessions_FullMethodName,
+		FullMethod: Auth_DeleteOwnUserSessions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).DeleteOwnUserSessions(ctx, req.(*emptypb.Empty))
+		return srv.(AuthServer).DeleteOwnUserSessions(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GetUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_GetUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserByAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetUserByAdmin(ctx, in)
+		return srv.(AuthServer).GetUserByAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetUserByAdmin_FullMethodName,
+		FullMethod: Auth_GetUserByAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetUserByAdmin(ctx, req.(*GetUserByAdminRequest))
+		return srv.(AuthServer).GetUserByAdmin(ctx, req.(*GetUserByAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_CreateUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_CreateUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(CreateUserByAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).CreateUserByAdmin(ctx, in)
+		return srv.(AuthServer).CreateUserByAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_CreateUserByAdmin_FullMethodName,
+		FullMethod: Auth_CreateUserByAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).CreateUserByAdmin(ctx, req.(*CreateUserByAdminRequest))
+		return srv.(AuthServer).CreateUserByAdmin(ctx, req.(*CreateUserByAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_GetUserSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_GetUserSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetUserSessionsByAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).GetUserSessionsByAdmin(ctx, in)
+		return srv.(AuthServer).GetUserSessionsByAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_GetUserSessionsByAdmin_FullMethodName,
+		FullMethod: Auth_GetUserSessionsByAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).GetUserSessionsByAdmin(ctx, req.(*GetUserSessionsByAdminRequest))
+		return srv.(AuthServer).GetUserSessionsByAdmin(ctx, req.(*GetUserSessionsByAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _AuthService_DeleteUserSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Auth_DeleteUserSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(DeleteUserSessionsByAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AuthServiceServer).DeleteUserSessionsByAdmin(ctx, in)
+		return srv.(AuthServer).DeleteUserSessionsByAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AuthService_DeleteUserSessionsByAdmin_FullMethodName,
+		FullMethod: Auth_DeleteUserSessionsByAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AuthServiceServer).DeleteUserSessionsByAdmin(ctx, req.(*DeleteUserSessionsByAdminRequest))
+		return srv.(AuthServer).DeleteUserSessionsByAdmin(ctx, req.(*DeleteUserSessionsByAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// AuthService_ServiceDesc is the grpc.ServiceDesc for AuthService service.
+// Auth_ServiceDesc is the grpc.ServiceDesc for Auth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var AuthService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "sso.AuthService",
-	HandlerType: (*AuthServiceServer)(nil),
+var Auth_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "sso.Auth",
+	HandlerType: (*AuthServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetOwnUser",
-			Handler:    _AuthService_GetOwnUser_Handler,
+			Handler:    _Auth_GetOwnUser_Handler,
 		},
 		{
 			MethodName: "GoogleLogin",
-			Handler:    _AuthService_GoogleLogin_Handler,
+			Handler:    _Auth_GoogleLogin_Handler,
 		},
 		{
 			MethodName: "GoogleCallback",
-			Handler:    _AuthService_GoogleCallback_Handler,
+			Handler:    _Auth_GoogleCallback_Handler,
 		},
 		{
 			MethodName: "Logout",
-			Handler:    _AuthService_Logout_Handler,
+			Handler:    _Auth_Logout_Handler,
 		},
 		{
 			MethodName: "RefreshToken",
-			Handler:    _AuthService_RefreshToken_Handler,
+			Handler:    _Auth_RefreshToken_Handler,
 		},
 		{
 			MethodName: "GetOwnUserSession",
-			Handler:    _AuthService_GetOwnUserSession_Handler,
+			Handler:    _Auth_GetOwnUserSession_Handler,
 		},
 		{
 			MethodName: "GetOwnUserSessions",
-			Handler:    _AuthService_GetOwnUserSessions_Handler,
+			Handler:    _Auth_GetOwnUserSessions_Handler,
 		},
 		{
 			MethodName: "DeleteOwnUserSession",
-			Handler:    _AuthService_DeleteOwnUserSession_Handler,
+			Handler:    _Auth_DeleteOwnUserSession_Handler,
 		},
 		{
 			MethodName: "DeleteOwnUserSessions",
-			Handler:    _AuthService_DeleteOwnUserSessions_Handler,
+			Handler:    _Auth_DeleteOwnUserSessions_Handler,
 		},
 		{
 			MethodName: "GetUserByAdmin",
-			Handler:    _AuthService_GetUserByAdmin_Handler,
+			Handler:    _Auth_GetUserByAdmin_Handler,
 		},
 		{
 			MethodName: "CreateUserByAdmin",
-			Handler:    _AuthService_CreateUserByAdmin_Handler,
+			Handler:    _Auth_CreateUserByAdmin_Handler,
 		},
 		{
 			MethodName: "GetUserSessionsByAdmin",
-			Handler:    _AuthService_GetUserSessionsByAdmin_Handler,
+			Handler:    _Auth_GetUserSessionsByAdmin_Handler,
 		},
 		{
 			MethodName: "DeleteUserSessionsByAdmin",
-			Handler:    _AuthService_DeleteUserSessionsByAdmin_Handler,
+			Handler:    _Auth_DeleteUserSessionsByAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

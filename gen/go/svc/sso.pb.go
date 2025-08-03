@@ -621,6 +621,7 @@ func (x *Session) GetLastUsed() string {
 type SessionsList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Sessions      []*Session             `protobuf:"bytes,1,rep,name=sessions,proto3" json:"sessions,omitempty"`
+	Pagination    *PaginationResponse    `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -662,11 +663,18 @@ func (x *SessionsList) GetSessions() []*Session {
 	return nil
 }
 
+func (x *SessionsList) GetPagination() *PaginationResponse {
+	if x != nil {
+		return x.Pagination
+	}
+	return nil
+}
+
 var File_sso_proto protoreflect.FileDescriptor
 
 const file_sso_proto_rawDesc = "" +
 	"\n" +
-	"\tsso.proto\x12\x03sso\x1a\x1bgoogle/protobuf/empty.proto\"P\n" +
+	"\tsso.proto\x12\x03sso\x1a\x1bgoogle/protobuf/empty.proto\x1a\fcommon.proto\"P\n" +
 	"\x13RefreshTokenRequest\x12\x14\n" +
 	"\x05agent\x18\x01 \x01(\tR\x05agent\x12#\n" +
 	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"<\n" +
@@ -707,10 +715,13 @@ const file_sso_proto_rawDesc = "" +
 	"\x02ip\x18\x04 \x01(\tR\x02ip\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x05 \x01(\tR\tcreatedAt\x12\x1b\n" +
-	"\tlast_used\x18\x06 \x01(\tR\blastUsed\"8\n" +
+	"\tlast_used\x18\x06 \x01(\tR\blastUsed\"q\n" +
 	"\fSessionsList\x12(\n" +
-	"\bsessions\x18\x01 \x03(\v2\f.sso.SessionR\bsessions2\xea\x06\n" +
-	"\vAuthService\x12/\n" +
+	"\bsessions\x18\x01 \x03(\v2\f.sso.SessionR\bsessions\x127\n" +
+	"\n" +
+	"pagination\x18\x02 \x01(\v2\x17.sso.PaginationResponseR\n" +
+	"pagination2\xe3\x06\n" +
+	"\x04Auth\x12/\n" +
 	"\n" +
 	"GetOwnUser\x12\x16.google.protobuf.Empty\x1a\t.sso.User\x12?\n" +
 	"\vGoogleLogin\x12\x16.google.protobuf.Empty\x1a\x18.sso.GoogleLoginResponse\x12=\n" +
@@ -752,41 +763,43 @@ var file_sso_proto_goTypes = []any{
 	(*User)(nil),                             // 9: sso.User
 	(*Session)(nil),                          // 10: sso.Session
 	(*SessionsList)(nil),                     // 11: sso.SessionsList
-	(*emptypb.Empty)(nil),                    // 12: google.protobuf.Empty
+	(*PaginationResponse)(nil),               // 12: sso.PaginationResponse
+	(*emptypb.Empty)(nil),                    // 13: google.protobuf.Empty
 }
 var file_sso_proto_depIdxs = []int32{
 	10, // 0: sso.SessionsList.sessions:type_name -> sso.Session
-	12, // 1: sso.AuthService.GetOwnUser:input_type -> google.protobuf.Empty
-	12, // 2: sso.AuthService.GoogleLogin:input_type -> google.protobuf.Empty
-	3,  // 3: sso.AuthService.GoogleCallback:input_type -> sso.GoogleCallbackRequest
-	12, // 4: sso.AuthService.Logout:input_type -> google.protobuf.Empty
-	0,  // 5: sso.AuthService.RefreshToken:input_type -> sso.RefreshTokenRequest
-	12, // 6: sso.AuthService.GetOwnUserSession:input_type -> google.protobuf.Empty
-	12, // 7: sso.AuthService.GetOwnUserSessions:input_type -> google.protobuf.Empty
-	1,  // 8: sso.AuthService.DeleteOwnUserSession:input_type -> sso.DeleteOwnUserSessionRequest
-	12, // 9: sso.AuthService.DeleteOwnUserSessions:input_type -> google.protobuf.Empty
-	5,  // 10: sso.AuthService.GetUserByAdmin:input_type -> sso.GetUserByAdminRequest
-	4,  // 11: sso.AuthService.CreateUserByAdmin:input_type -> sso.CreateUserByAdminRequest
-	6,  // 12: sso.AuthService.GetUserSessionsByAdmin:input_type -> sso.GetUserSessionsByAdminRequest
-	7,  // 13: sso.AuthService.DeleteUserSessionsByAdmin:input_type -> sso.DeleteUserSessionsByAdminRequest
-	9,  // 14: sso.AuthService.GetOwnUser:output_type -> sso.User
-	2,  // 15: sso.AuthService.GoogleLogin:output_type -> sso.GoogleLoginResponse
-	8,  // 16: sso.AuthService.GoogleCallback:output_type -> sso.TokensPair
-	12, // 17: sso.AuthService.Logout:output_type -> google.protobuf.Empty
-	8,  // 18: sso.AuthService.RefreshToken:output_type -> sso.TokensPair
-	10, // 19: sso.AuthService.GetOwnUserSession:output_type -> sso.Session
-	11, // 20: sso.AuthService.GetOwnUserSessions:output_type -> sso.SessionsList
-	11, // 21: sso.AuthService.DeleteOwnUserSession:output_type -> sso.SessionsList
-	12, // 22: sso.AuthService.DeleteOwnUserSessions:output_type -> google.protobuf.Empty
-	9,  // 23: sso.AuthService.GetUserByAdmin:output_type -> sso.User
-	9,  // 24: sso.AuthService.CreateUserByAdmin:output_type -> sso.User
-	11, // 25: sso.AuthService.GetUserSessionsByAdmin:output_type -> sso.SessionsList
-	12, // 26: sso.AuthService.DeleteUserSessionsByAdmin:output_type -> google.protobuf.Empty
-	14, // [14:27] is the sub-list for method output_type
-	1,  // [1:14] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	12, // 1: sso.SessionsList.pagination:type_name -> sso.PaginationResponse
+	13, // 2: sso.Auth.GetOwnUser:input_type -> google.protobuf.Empty
+	13, // 3: sso.Auth.GoogleLogin:input_type -> google.protobuf.Empty
+	3,  // 4: sso.Auth.GoogleCallback:input_type -> sso.GoogleCallbackRequest
+	13, // 5: sso.Auth.Logout:input_type -> google.protobuf.Empty
+	0,  // 6: sso.Auth.RefreshToken:input_type -> sso.RefreshTokenRequest
+	13, // 7: sso.Auth.GetOwnUserSession:input_type -> google.protobuf.Empty
+	13, // 8: sso.Auth.GetOwnUserSessions:input_type -> google.protobuf.Empty
+	1,  // 9: sso.Auth.DeleteOwnUserSession:input_type -> sso.DeleteOwnUserSessionRequest
+	13, // 10: sso.Auth.DeleteOwnUserSessions:input_type -> google.protobuf.Empty
+	5,  // 11: sso.Auth.GetUserByAdmin:input_type -> sso.GetUserByAdminRequest
+	4,  // 12: sso.Auth.CreateUserByAdmin:input_type -> sso.CreateUserByAdminRequest
+	6,  // 13: sso.Auth.GetUserSessionsByAdmin:input_type -> sso.GetUserSessionsByAdminRequest
+	7,  // 14: sso.Auth.DeleteUserSessionsByAdmin:input_type -> sso.DeleteUserSessionsByAdminRequest
+	9,  // 15: sso.Auth.GetOwnUser:output_type -> sso.User
+	2,  // 16: sso.Auth.GoogleLogin:output_type -> sso.GoogleLoginResponse
+	8,  // 17: sso.Auth.GoogleCallback:output_type -> sso.TokensPair
+	13, // 18: sso.Auth.Logout:output_type -> google.protobuf.Empty
+	8,  // 19: sso.Auth.RefreshToken:output_type -> sso.TokensPair
+	10, // 20: sso.Auth.GetOwnUserSession:output_type -> sso.Session
+	11, // 21: sso.Auth.GetOwnUserSessions:output_type -> sso.SessionsList
+	11, // 22: sso.Auth.DeleteOwnUserSession:output_type -> sso.SessionsList
+	13, // 23: sso.Auth.DeleteOwnUserSessions:output_type -> google.protobuf.Empty
+	9,  // 24: sso.Auth.GetUserByAdmin:output_type -> sso.User
+	9,  // 25: sso.Auth.CreateUserByAdmin:output_type -> sso.User
+	11, // 26: sso.Auth.GetUserSessionsByAdmin:output_type -> sso.SessionsList
+	13, // 27: sso.Auth.DeleteUserSessionsByAdmin:output_type -> google.protobuf.Empty
+	15, // [15:28] is the sub-list for method output_type
+	2,  // [2:15] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_sso_proto_init() }
@@ -794,6 +807,7 @@ func file_sso_proto_init() {
 	if File_sso_proto != nil {
 		return
 	}
+	file_common_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

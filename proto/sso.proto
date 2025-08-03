@@ -4,8 +4,9 @@ package sso;
 option go_package = "github.com/chains-lab/sso-proto/gen/go/svc;svc";
 
 import "google/protobuf/empty.proto";
+import "common.proto";
 
-service AuthService {
+service Auth {
   rpc GetOwnUser (google.protobuf.Empty) returns (User);
 
   //Google OAuth operations
@@ -92,4 +93,5 @@ message Session {
 
 message SessionsList {
   repeated Session sessions = 1;
+  PaginationResponse pagination = 2;
 }
