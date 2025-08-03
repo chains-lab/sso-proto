@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: sso_user.proto
 
-package sso
+package svc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -231,7 +231,7 @@ const file_sso_user_proto_rawDesc = "" +
 	"\x11GetOwnUserSession\x12\x16.google.protobuf.Empty\x1a\f.sso.Session\x12?\n" +
 	"\x12GetOwnUserSessions\x12\x16.google.protobuf.Empty\x1a\x11.sso.SessionsList\x12K\n" +
 	"\x14DeleteOwnUserSession\x12 .sso.DeleteOwnUserSessionRequest\x1a\x11.sso.SessionsList\x12G\n" +
-	"\x15DeleteOwnUserSessions\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.EmptyB8Z6github.com/chains-lab/proto-storage/gen/go/svc/sso;ssob\x06proto3"
+	"\x15DeleteOwnUserSessions\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.EmptyB4Z2github.com/chains-lab/proto-storage/gen/go/svc;svcb\x06proto3"
 
 var (
 	file_sso_user_proto_rawDescOnce sync.Once

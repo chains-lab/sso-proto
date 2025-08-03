@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: sso_user.proto
 
-package sso
+package svc
 
 import (
 	context "context"

@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: sso_structs.proto
 
-package sso
+package svc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -321,7 +321,7 @@ const file_sso_structs_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\tR\tcreatedAt\x12\x1b\n" +
 	"\tlast_used\x18\x06 \x01(\tR\blastUsed\"8\n" +
 	"\fSessionsList\x12(\n" +
-	"\bsessions\x18\x01 \x03(\v2\f.sso.SessionR\bsessionsB8Z6github.com/chains-lab/proto-storage/gen/go/svc/sso;ssob\x06proto3"
+	"\bsessions\x18\x01 \x03(\v2\f.sso.SessionR\bsessionsB4Z2github.com/chains-lab/proto-storage/gen/go/svc;svcb\x06proto3"
 
 var (
 	file_sso_structs_proto_rawDescOnce sync.Once

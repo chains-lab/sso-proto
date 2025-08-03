@@ -4,7 +4,7 @@
 // 	protoc        v3.21.12
 // source: sso_admin.proto
 
-package sso
+package svc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -224,7 +224,7 @@ const file_sso_admin_proto_rawDesc = "" +
 	"\x0eGetUserByAdmin\x12\x1a.sso.GetUserByAdminRequest\x1a\t.sso.User\x12=\n" +
 	"\x11CreateUserByAdmin\x12\x1d.sso.CreateUserByAdminRequest\x1a\t.sso.User\x12O\n" +
 	"\x16GetUserSessionsByAdmin\x12\".sso.GetUserSessionsByAdminRequest\x1a\x11.sso.SessionsList\x12Z\n" +
-	"\x19DeleteUserSessionsByAdmin\x12%.sso.DeleteUserSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyB8Z6github.com/chains-lab/proto-storage/gen/go/svc/sso;ssob\x06proto3"
+	"\x19DeleteUserSessionsByAdmin\x12%.sso.DeleteUserSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyB4Z2github.com/chains-lab/proto-storage/gen/go/svc;svcb\x06proto3"
 
 var (
 	file_sso_admin_proto_rawDescOnce sync.Once

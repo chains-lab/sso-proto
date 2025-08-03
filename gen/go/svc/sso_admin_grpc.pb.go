@@ -4,7 +4,7 @@
 // - protoc             v3.21.12
 // source: sso_admin.proto
 
-package sso
+package svc
 
 import (
 	context "context"

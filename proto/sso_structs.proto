@@ -1,7 +1,7 @@
 syntax = "proto3";
 package sso;
 
-option go_package = "github.com/chains-lab/proto-storage/gen/go/svc/sso;sso";
+option go_package = "github.com/chains-lab/proto-storage/gen/go/svc;svc";
 
 message TokensPair {
   string access_token = 1;
