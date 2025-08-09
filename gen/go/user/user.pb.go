@@ -7,8 +7,8 @@
 package user
 
 import (
-	pagination "github.com/chains-lab/cities-dir-proto/gen/go/common/pagination"
-	userdata "github.com/chains-lab/cities-dir-proto/gen/go/common/userdata"
+	pagination "github.com/chains-lab/sso-proto/gen/go/common/pagination"
+	userdata "github.com/chains-lab/sso-proto/gen/go/common/userdata"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"

@@ -1,7 +1,7 @@
 syntax = "proto3";
 package userdata;
 
-option go_package = "github.com/chains-lab/cities-dir-proto/gen/go/common/userdata;userdata";
+option go_package = "github.com/chains-lab/sso-proto/gen/go/common/userdata;userdata";
 
 message UserData {
   string id = 1;

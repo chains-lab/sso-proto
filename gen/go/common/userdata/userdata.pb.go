@@ -98,7 +98,7 @@ const file_common_userdata_userdata_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04role\x18\x02 \x01(\tR\x04role\x12\x18\n" +
 	"\asession\x18\x03 \x01(\tR\asession\x12\x1a\n" +
-	"\bverified\x18\x04 \x01(\bR\bverifiedBHZFgithub.com/chains-lab/cities-dir-proto/gen/go/common/userdata;userdatab\x06proto3"
+	"\bverified\x18\x04 \x01(\bR\bverifiedBAZ?github.com/chains-lab/sso-proto/gen/go/common/userdata;userdatab\x06proto3"
 
 var (
 	file_common_userdata_userdata_proto_rawDescOnce sync.Once

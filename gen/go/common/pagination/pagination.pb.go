@@ -145,7 +145,7 @@ const file_common_pagination_pagination_proto_rawDesc = "" +
 	"\bResponse\x12\x12\n" +
 	"\x04page\x18\x01 \x01(\x04R\x04page\x12\x12\n" +
 	"\x04size\x18\x02 \x01(\x04R\x04size\x12\x14\n" +
-	"\x05total\x18\x03 \x01(\x04R\x05totalBLZJgithub.com/chains-lab/cities-dir-proto/gen/go/common/pagination;paginationb\x06proto3"
+	"\x05total\x18\x03 \x01(\x04R\x05totalBEZCgithub.com/chains-lab/sso-proto/gen/go/common/pagination;paginationb\x06proto3"
 
 var (
 	file_common_pagination_pagination_proto_rawDescOnce sync.Once
