@@ -1,29 +1,22 @@
 syntax = "proto3";
-package sso;
+package session;
 
-option go_package = "github.com/chains-lab/sso-proto/gen/go/svc;svc";
+option go_package = "github.com/chains-lab/sso-proto/gen/go/session;session";
 
 import "google/protobuf/empty.proto";
-import "common.proto";
+import "common/userdata/userdata.proto";;
+import "common/pagination/pagination.proto";
 
-service Auth {
-  rpc GetOwnUser (google.protobuf.Empty) returns (User);
-
-  //Google OAuth operations
-  rpc GoogleLogin (google.protobuf.Empty) returns (GoogleLoginResponse);
+service SessionService {
   rpc GoogleCallback (GoogleCallbackRequest) returns (TokensPair);
 
   rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
   rpc RefreshToken (RefreshTokenRequest) returns (TokensPair);
 
-  rpc GetOwnUserSession (google.protobuf.Empty) returns (Session);
+  rpc GetOwnUserSession (GetOwnUserSessionRequest) returns (Session);
   rpc GetOwnUserSessions (GetOwnUserSessionsRequest) returns (SessionsList);
   rpc DeleteOwnUserSession (DeleteOwnUserSessionRequest) returns (google.protobuf.Empty);
-  rpc DeleteOwnUserSessions (google.protobuf.Empty) returns (google.protobuf.Empty);
-
-  // Admin panel
-  rpc GetUserByAdmin (GetUserByAdminRequest) returns (User);
-  rpc CreateUserByAdmin (CreateUserByAdminRequest) returns (User);
+  rpc DeleteOwnUserSessions (DeleteOwnUserSessionsRequest) returns (google.protobuf.Empty);
 
   rpc GetUserSessionsByAdmin (GetUserSessionsByAdminRequest) returns (SessionsList);
   rpc DeleteUserSessionsByAdmin (DeleteUserSessionsByAdminRequest) returns (google.protobuf.Empty);
@@ -32,16 +25,14 @@ service Auth {
 // REQUESTS
 
 message RefreshTokenRequest {
-  string agent = 1;
-  string refresh_token = 2;
+  userdata.UserData initiator = 1;
+  string agent = 2;
+  string refresh_token = 3;
 }
 
 message DeleteOwnUserSessionRequest {
-  string session_id = 1;
-}
-
-message GoogleLoginResponse {
-  string url = 1;
+  userdata.UserData initiator = 1;
+  string session_id = 2;
 }
 
 message GoogleCallbackRequest {
@@ -49,25 +40,27 @@ message GoogleCallbackRequest {
 }
 
 message GetOwnUserSessionsRequest {
-  PaginationRequest pagination = 1;
+  userdata.UserData initiator = 1;
+  pagination.Request pagination = 2;
 }
 
-message CreateUserByAdminRequest{
-  string email = 1;
-  string role = 2;
+message GetOwnUserSessionRequest {
+  userdata.UserData initiator = 1;
 }
 
-message GetUserByAdminRequest {
-  string user_id = 1;
+message DeleteOwnUserSessionsRequest {
+  userdata.UserData initiator = 1;
 }
 
 message GetUserSessionsByAdminRequest {
-  string user_id = 1;
-  PaginationRequest pagination = 2;
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+  pagination.Request pagination = 3;
 }
 
 message DeleteUserSessionsByAdminRequest {
-  string user_id = 1;
+  userdata.UserData initiator = 1;
+  string user_id = 2;
 }
 
 // RESPONSES
@@ -75,16 +68,6 @@ message DeleteUserSessionsByAdminRequest {
 message TokensPair {
   string access_token = 1;
   string refresh_token = 2;
-}
-
-message User {
-  string id = 1;
-  string email = 2;
-  string role = 3;
-  bool   verified = 4;
-  bool   suspended = 5;
-  string created_at = 6;
-  string updated_at = 7;
 }
 
 message Session {
@@ -98,5 +81,5 @@ message Session {
 
 message SessionsList {
   repeated Session sessions = 1;
-  PaginationResponse pagination = 2;
+  pagination.Response pagination = 2;
 }

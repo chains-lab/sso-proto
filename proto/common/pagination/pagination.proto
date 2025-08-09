@@ -1,0 +1,15 @@
+syntax = "proto3";
+package pagination;
+
+option go_package = "github.com/chains-lab/cities-dir-proto/gen/go/common/pagination;pagination";
+
+message Request {
+  uint64 page = 1;
+  uint64 size = 2;
+}
+
+message Response {
+  uint64 page = 1;
+  uint64 size = 2;
+  uint64 total = 3;
+}
