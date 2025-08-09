@@ -188,6 +188,126 @@ func (x *GetUserByAdminRequest) GetUserId() string {
 	return ""
 }
 
+type UpdateUserVerifiedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Verified      bool                   `protobuf:"varint,3,opt,name=verified,proto3" json:"verified,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateUserVerifiedRequest) Reset() {
+	*x = UpdateUserVerifiedRequest{}
+	mi := &file_user_user_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateUserVerifiedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateUserVerifiedRequest) ProtoMessage() {}
+
+func (x *UpdateUserVerifiedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_user_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateUserVerifiedRequest.ProtoReflect.Descriptor instead.
+func (*UpdateUserVerifiedRequest) Descriptor() ([]byte, []int) {
+	return file_user_user_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *UpdateUserVerifiedRequest) GetInitiator() *userdata.UserData {
+	if x != nil {
+		return x.Initiator
+	}
+	return nil
+}
+
+func (x *UpdateUserVerifiedRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UpdateUserVerifiedRequest) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
+}
+
+type UpdateUserSuspendedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Suspended     bool                   `protobuf:"varint,3,opt,name=suspended,proto3" json:"suspended,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateUserSuspendedRequest) Reset() {
+	*x = UpdateUserSuspendedRequest{}
+	mi := &file_user_user_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateUserSuspendedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateUserSuspendedRequest) ProtoMessage() {}
+
+func (x *UpdateUserSuspendedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_user_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateUserSuspendedRequest.ProtoReflect.Descriptor instead.
+func (*UpdateUserSuspendedRequest) Descriptor() ([]byte, []int) {
+	return file_user_user_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *UpdateUserSuspendedRequest) GetInitiator() *userdata.UserData {
+	if x != nil {
+		return x.Initiator
+	}
+	return nil
+}
+
+func (x *UpdateUserSuspendedRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UpdateUserSuspendedRequest) GetSuspended() bool {
+	if x != nil {
+		return x.Suspended
+	}
+	return false
+}
+
 type GoogleLoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
@@ -197,7 +317,7 @@ type GoogleLoginResponse struct {
 
 func (x *GoogleLoginResponse) Reset() {
 	*x = GoogleLoginResponse{}
-	mi := &file_user_user_proto_msgTypes[3]
+	mi := &file_user_user_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -209,7 +329,7 @@ func (x *GoogleLoginResponse) String() string {
 func (*GoogleLoginResponse) ProtoMessage() {}
 
 func (x *GoogleLoginResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[3]
+	mi := &file_user_user_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -222,7 +342,7 @@ func (x *GoogleLoginResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleLoginResponse.ProtoReflect.Descriptor instead.
 func (*GoogleLoginResponse) Descriptor() ([]byte, []int) {
-	return file_user_user_proto_rawDescGZIP(), []int{3}
+	return file_user_user_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GoogleLoginResponse) GetUrl() string {
@@ -247,7 +367,7 @@ type User struct {
 
 func (x *User) Reset() {
 	*x = User{}
-	mi := &file_user_user_proto_msgTypes[4]
+	mi := &file_user_user_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -259,7 +379,7 @@ func (x *User) String() string {
 func (*User) ProtoMessage() {}
 
 func (x *User) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[4]
+	mi := &file_user_user_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -272,7 +392,7 @@ func (x *User) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use User.ProtoReflect.Descriptor instead.
 func (*User) Descriptor() ([]byte, []int) {
-	return file_user_user_proto_rawDescGZIP(), []int{4}
+	return file_user_user_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *User) GetId() string {
@@ -334,7 +454,7 @@ type UserList struct {
 
 func (x *UserList) Reset() {
 	*x = UserList{}
-	mi := &file_user_user_proto_msgTypes[5]
+	mi := &file_user_user_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -346,7 +466,7 @@ func (x *UserList) String() string {
 func (*UserList) ProtoMessage() {}
 
 func (x *UserList) ProtoReflect() protoreflect.Message {
-	mi := &file_user_user_proto_msgTypes[5]
+	mi := &file_user_user_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -359,7 +479,7 @@ func (x *UserList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserList.ProtoReflect.Descriptor instead.
 func (*UserList) Descriptor() ([]byte, []int) {
-	return file_user_user_proto_rawDescGZIP(), []int{5}
+	return file_user_user_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UserList) GetUsers() []*User {
@@ -390,7 +510,15 @@ const file_user_user_proto_rawDesc = "" +
 	"\bverified\x18\x04 \x01(\bR\bverified\"b\n" +
 	"\x15GetUserByAdminRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId\"'\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\x82\x01\n" +
+	"\x19UpdateUserVerifiedRequest\x120\n" +
+	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bverified\x18\x03 \x01(\bR\bverified\"\x85\x01\n" +
+	"\x1aUpdateUserSuspendedRequest\x120\n" +
+	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1c\n" +
+	"\tsuspended\x18\x03 \x01(\bR\tsuspended\"'\n" +
 	"\x13GoogleLoginResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"\xb8\x01\n" +
 	"\x04User\x12\x0e\n" +
@@ -408,10 +536,14 @@ const file_user_user_proto_rawDesc = "" +
 	".user.UserR\x05users\x124\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x14.pagination.ResponseR\n" +
-	"pagination2\x86\x02\n" +
+	"pagination2\x8e\x03\n" +
 	"\vUserService\x12@\n" +
 	"\vGoogleLogin\x12\x16.google.protobuf.Empty\x1a\x19.user.GoogleLoginResponse\x12?\n" +
 	"\x11CreateUserByAdmin\x12\x1e.user.CreateUserByAdminRequest\x1a\n" +
+	".user.User\x12A\n" +
+	"\x12UpdateUserVerified\x12\x1f.user.UpdateUserVerifiedRequest\x1a\n" +
+	".user.User\x12C\n" +
+	"\x13UpdateUserSuspended\x12 .user.UpdateUserSuspendedRequest\x1a\n" +
 	".user.User\x129\n" +
 	"\x0eGetOwnUserData\x12\x1b.user.GetOwnUserDataRequest\x1a\n" +
 	".user.User\x129\n" +
@@ -430,37 +562,45 @@ func file_user_user_proto_rawDescGZIP() []byte {
 	return file_user_user_proto_rawDescData
 }
 
-var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_user_user_proto_goTypes = []any{
-	(*GetOwnUserDataRequest)(nil),    // 0: user.GetOwnUserDataRequest
-	(*CreateUserByAdminRequest)(nil), // 1: user.CreateUserByAdminRequest
-	(*GetUserByAdminRequest)(nil),    // 2: user.GetUserByAdminRequest
-	(*GoogleLoginResponse)(nil),      // 3: user.GoogleLoginResponse
-	(*User)(nil),                     // 4: user.User
-	(*UserList)(nil),                 // 5: user.UserList
-	(*userdata.UserData)(nil),        // 6: userdata.UserData
-	(*pagination.Response)(nil),      // 7: pagination.Response
-	(*emptypb.Empty)(nil),            // 8: google.protobuf.Empty
+	(*GetOwnUserDataRequest)(nil),      // 0: user.GetOwnUserDataRequest
+	(*CreateUserByAdminRequest)(nil),   // 1: user.CreateUserByAdminRequest
+	(*GetUserByAdminRequest)(nil),      // 2: user.GetUserByAdminRequest
+	(*UpdateUserVerifiedRequest)(nil),  // 3: user.UpdateUserVerifiedRequest
+	(*UpdateUserSuspendedRequest)(nil), // 4: user.UpdateUserSuspendedRequest
+	(*GoogleLoginResponse)(nil),        // 5: user.GoogleLoginResponse
+	(*User)(nil),                       // 6: user.User
+	(*UserList)(nil),                   // 7: user.UserList
+	(*userdata.UserData)(nil),          // 8: userdata.UserData
+	(*pagination.Response)(nil),        // 9: pagination.Response
+	(*emptypb.Empty)(nil),              // 10: google.protobuf.Empty
 }
 var file_user_user_proto_depIdxs = []int32{
-	6, // 0: user.GetOwnUserDataRequest.initiator:type_name -> userdata.UserData
-	6, // 1: user.CreateUserByAdminRequest.initiator:type_name -> userdata.UserData
-	6, // 2: user.GetUserByAdminRequest.initiator:type_name -> userdata.UserData
-	4, // 3: user.UserList.users:type_name -> user.User
-	7, // 4: user.UserList.pagination:type_name -> pagination.Response
-	8, // 5: user.UserService.GoogleLogin:input_type -> google.protobuf.Empty
-	1, // 6: user.UserService.CreateUserByAdmin:input_type -> user.CreateUserByAdminRequest
-	0, // 7: user.UserService.GetOwnUserData:input_type -> user.GetOwnUserDataRequest
-	2, // 8: user.UserService.GetUserByAdmin:input_type -> user.GetUserByAdminRequest
-	3, // 9: user.UserService.GoogleLogin:output_type -> user.GoogleLoginResponse
-	4, // 10: user.UserService.CreateUserByAdmin:output_type -> user.User
-	4, // 11: user.UserService.GetOwnUserData:output_type -> user.User
-	4, // 12: user.UserService.GetUserByAdmin:output_type -> user.User
-	9, // [9:13] is the sub-list for method output_type
-	5, // [5:9] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	8,  // 0: user.GetOwnUserDataRequest.initiator:type_name -> userdata.UserData
+	8,  // 1: user.CreateUserByAdminRequest.initiator:type_name -> userdata.UserData
+	8,  // 2: user.GetUserByAdminRequest.initiator:type_name -> userdata.UserData
+	8,  // 3: user.UpdateUserVerifiedRequest.initiator:type_name -> userdata.UserData
+	8,  // 4: user.UpdateUserSuspendedRequest.initiator:type_name -> userdata.UserData
+	6,  // 5: user.UserList.users:type_name -> user.User
+	9,  // 6: user.UserList.pagination:type_name -> pagination.Response
+	10, // 7: user.UserService.GoogleLogin:input_type -> google.protobuf.Empty
+	1,  // 8: user.UserService.CreateUserByAdmin:input_type -> user.CreateUserByAdminRequest
+	3,  // 9: user.UserService.UpdateUserVerified:input_type -> user.UpdateUserVerifiedRequest
+	4,  // 10: user.UserService.UpdateUserSuspended:input_type -> user.UpdateUserSuspendedRequest
+	0,  // 11: user.UserService.GetOwnUserData:input_type -> user.GetOwnUserDataRequest
+	2,  // 12: user.UserService.GetUserByAdmin:input_type -> user.GetUserByAdminRequest
+	5,  // 13: user.UserService.GoogleLogin:output_type -> user.GoogleLoginResponse
+	6,  // 14: user.UserService.CreateUserByAdmin:output_type -> user.User
+	6,  // 15: user.UserService.UpdateUserVerified:output_type -> user.User
+	6,  // 16: user.UserService.UpdateUserSuspended:output_type -> user.User
+	6,  // 17: user.UserService.GetOwnUserData:output_type -> user.User
+	6,  // 18: user.UserService.GetUserByAdmin:output_type -> user.User
+	13, // [13:19] is the sub-list for method output_type
+	7,  // [7:13] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_user_user_proto_init() }
@@ -474,7 +614,7 @@ func file_user_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_user_proto_rawDesc), len(file_user_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

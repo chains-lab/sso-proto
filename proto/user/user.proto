@@ -12,6 +12,9 @@ service UserService {
 
   rpc CreateUserByAdmin (CreateUserByAdminRequest) returns (User);
 
+  rpc UpdateUserVerified(UpdateUserVerifiedRequest) returns (User);
+  rpc UpdateUserSuspended(UpdateUserSuspendedRequest) returns (User);
+
   rpc GetOwnUserData (GetOwnUserDataRequest) returns (User);
   rpc GetUserByAdmin (GetUserByAdminRequest) returns (User);
 }
@@ -32,6 +35,18 @@ message CreateUserByAdminRequest{
 message GetUserByAdminRequest {
   userdata.UserData initiator = 1;
   string user_id = 2;
+}
+
+message UpdateUserVerifiedRequest {
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+  bool verified = 3;
+}
+
+message UpdateUserSuspendedRequest {
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+  bool suspended = 3;
 }
 
 // RESPONSES
