@@ -715,7 +715,7 @@ const file_session_session_proto_rawDesc = "" +
 	"\bsessions\x18\x01 \x03(\v2\x10.session.SessionR\bsessions\x124\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x14.pagination.ResponseR\n" +
-	"pagination2\xaa\x05\n" +
+	"pagination2\xa6\x05\n" +
 	"\x0eSessionService\x12E\n" +
 	"\x0eGoogleCallback\x12\x1e.session.GoogleCallbackRequest\x1a\x13.session.TokensPair\x128\n" +
 	"\x06Logout\x12\x16.session.LogoutRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
@@ -723,8 +723,8 @@ const file_session_session_proto_rawDesc = "" +
 	"\rGetOwnSession\x12\x1d.session.GetOwnSessionRequest\x1a\x10.session.Session\x12G\n" +
 	"\x0eGetOwnSessions\x12\x1e.session.GetOwnSessionsRequest\x1a\x15.session.SessionsList\x12L\n" +
 	"\x10DeleteOwnSession\x12 .session.DeleteOwnSessionRequest\x1a\x16.google.protobuf.Empty\x12N\n" +
-	"\x11DeleteOwnSessions\x12!.session.DeleteOwnSessionsRequest\x1a\x16.google.protobuf.Empty\x12S\n" +
-	"\x16GetUserSessionsByAdmin\x12\".session.GetSessionsByAdminRequest\x1a\x15.session.SessionsList\x12V\n" +
+	"\x11DeleteOwnSessions\x12!.session.DeleteOwnSessionsRequest\x1a\x16.google.protobuf.Empty\x12O\n" +
+	"\x12GetSessionsByAdmin\x12\".session.GetSessionsByAdminRequest\x1a\x15.session.SessionsList\x12V\n" +
 	"\x15DeleteSessionsByAdmin\x12%.session.DeleteSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyB8Z6github.com/chains-lab/sso-proto/gen/go/session;sessionb\x06proto3"
 
 var (
@@ -778,7 +778,7 @@ var file_session_session_proto_depIdxs = []int32{
 	4,  // 16: session.SessionService.GetOwnSessions:input_type -> session.GetOwnSessionsRequest
 	1,  // 17: session.SessionService.DeleteOwnSession:input_type -> session.DeleteOwnSessionRequest
 	6,  // 18: session.SessionService.DeleteOwnSessions:input_type -> session.DeleteOwnSessionsRequest
-	7,  // 19: session.SessionService.GetUserSessionsByAdmin:input_type -> session.GetSessionsByAdminRequest
+	7,  // 19: session.SessionService.GetSessionsByAdmin:input_type -> session.GetSessionsByAdminRequest
 	8,  // 20: session.SessionService.DeleteSessionsByAdmin:input_type -> session.DeleteSessionsByAdminRequest
 	9,  // 21: session.SessionService.GoogleCallback:output_type -> session.TokensPair
 	15, // 22: session.SessionService.Logout:output_type -> google.protobuf.Empty
@@ -787,7 +787,7 @@ var file_session_session_proto_depIdxs = []int32{
 	11, // 25: session.SessionService.GetOwnSessions:output_type -> session.SessionsList
 	15, // 26: session.SessionService.DeleteOwnSession:output_type -> google.protobuf.Empty
 	15, // 27: session.SessionService.DeleteOwnSessions:output_type -> google.protobuf.Empty
-	11, // 28: session.SessionService.GetUserSessionsByAdmin:output_type -> session.SessionsList
+	11, // 28: session.SessionService.GetSessionsByAdmin:output_type -> session.SessionsList
 	15, // 29: session.SessionService.DeleteSessionsByAdmin:output_type -> google.protobuf.Empty
 	21, // [21:30] is the sub-list for method output_type
 	12, // [12:21] is the sub-list for method input_type
