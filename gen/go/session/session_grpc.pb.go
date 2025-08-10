@@ -20,15 +20,15 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SessionService_GoogleCallback_FullMethodName            = "/session.SessionService/GoogleCallback"
-	SessionService_Logout_FullMethodName                    = "/session.SessionService/Logout"
-	SessionService_RefreshToken_FullMethodName              = "/session.SessionService/RefreshToken"
-	SessionService_GetOwnUserSession_FullMethodName         = "/session.SessionService/GetOwnUserSession"
-	SessionService_GetOwnUserSessions_FullMethodName        = "/session.SessionService/GetOwnUserSessions"
-	SessionService_DeleteOwnUserSession_FullMethodName      = "/session.SessionService/DeleteOwnUserSession"
-	SessionService_DeleteOwnUserSessions_FullMethodName     = "/session.SessionService/DeleteOwnUserSessions"
-	SessionService_GetUserSessionsByAdmin_FullMethodName    = "/session.SessionService/GetUserSessionsByAdmin"
-	SessionService_DeleteUserSessionsByAdmin_FullMethodName = "/session.SessionService/DeleteUserSessionsByAdmin"
+	SessionService_GoogleCallback_FullMethodName         = "/session.SessionService/GoogleCallback"
+	SessionService_Logout_FullMethodName                 = "/session.SessionService/Logout"
+	SessionService_RefreshToken_FullMethodName           = "/session.SessionService/RefreshToken"
+	SessionService_GetOwnSession_FullMethodName          = "/session.SessionService/GetOwnSession"
+	SessionService_GetOwnSessions_FullMethodName         = "/session.SessionService/GetOwnSessions"
+	SessionService_DeleteOwnSession_FullMethodName       = "/session.SessionService/DeleteOwnSession"
+	SessionService_DeleteOwnSessions_FullMethodName      = "/session.SessionService/DeleteOwnSessions"
+	SessionService_GetUserSessionsByAdmin_FullMethodName = "/session.SessionService/GetUserSessionsByAdmin"
+	SessionService_DeleteSessionsByAdmin_FullMethodName  = "/session.SessionService/DeleteSessionsByAdmin"
 )
 
 // SessionServiceClient is the client API for SessionService service.
@@ -36,14 +36,14 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SessionServiceClient interface {
 	GoogleCallback(ctx context.Context, in *GoogleCallbackRequest, opts ...grpc.CallOption) (*TokensPair, error)
-	Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	RefreshToken(ctx context.Context, in *RefreshTokenRequest, opts ...grpc.CallOption) (*TokensPair, error)
-	GetOwnUserSession(ctx context.Context, in *GetOwnUserSessionRequest, opts ...grpc.CallOption) (*Session, error)
-	GetOwnUserSessions(ctx context.Context, in *GetOwnUserSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error)
-	DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	DeleteOwnUserSessions(ctx context.Context, in *DeleteOwnUserSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	GetUserSessionsByAdmin(ctx context.Context, in *GetUserSessionsByAdminRequest, opts ...grpc.CallOption) (*SessionsList, error)
-	DeleteUserSessionsByAdmin(ctx context.Context, in *DeleteUserSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetOwnSession(ctx context.Context, in *GetOwnSessionRequest, opts ...grpc.CallOption) (*Session, error)
+	GetOwnSessions(ctx context.Context, in *GetOwnSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error)
+	DeleteOwnSession(ctx context.Context, in *DeleteOwnSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	DeleteOwnSessions(ctx context.Context, in *DeleteOwnSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetUserSessionsByAdmin(ctx context.Context, in *GetSessionsByAdminRequest, opts ...grpc.CallOption) (*SessionsList, error)
+	DeleteSessionsByAdmin(ctx context.Context, in *DeleteSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type sessionServiceClient struct {
@@ -64,7 +64,7 @@ func (c *sessionServiceClient) GoogleCallback(ctx context.Context, in *GoogleCal
 	return out, nil
 }
 
-func (c *sessionServiceClient) Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *sessionServiceClient) Logout(ctx context.Context, in *LogoutRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, SessionService_Logout_FullMethodName, in, out, cOpts...)
@@ -84,47 +84,47 @@ func (c *sessionServiceClient) RefreshToken(ctx context.Context, in *RefreshToke
 	return out, nil
 }
 
-func (c *sessionServiceClient) GetOwnUserSession(ctx context.Context, in *GetOwnUserSessionRequest, opts ...grpc.CallOption) (*Session, error) {
+func (c *sessionServiceClient) GetOwnSession(ctx context.Context, in *GetOwnSessionRequest, opts ...grpc.CallOption) (*Session, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Session)
-	err := c.cc.Invoke(ctx, SessionService_GetOwnUserSession_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionService_GetOwnSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionServiceClient) GetOwnUserSessions(ctx context.Context, in *GetOwnUserSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error) {
+func (c *sessionServiceClient) GetOwnSessions(ctx context.Context, in *GetOwnSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SessionsList)
-	err := c.cc.Invoke(ctx, SessionService_GetOwnUserSessions_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionService_GetOwnSessions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionServiceClient) DeleteOwnUserSession(ctx context.Context, in *DeleteOwnUserSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *sessionServiceClient) DeleteOwnSession(ctx context.Context, in *DeleteOwnSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, SessionService_DeleteOwnUserSession_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionService_DeleteOwnSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionServiceClient) DeleteOwnUserSessions(ctx context.Context, in *DeleteOwnUserSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *sessionServiceClient) DeleteOwnSessions(ctx context.Context, in *DeleteOwnSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, SessionService_DeleteOwnUserSessions_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionService_DeleteOwnSessions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionServiceClient) GetUserSessionsByAdmin(ctx context.Context, in *GetUserSessionsByAdminRequest, opts ...grpc.CallOption) (*SessionsList, error) {
+func (c *sessionServiceClient) GetUserSessionsByAdmin(ctx context.Context, in *GetSessionsByAdminRequest, opts ...grpc.CallOption) (*SessionsList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(SessionsList)
 	err := c.cc.Invoke(ctx, SessionService_GetUserSessionsByAdmin_FullMethodName, in, out, cOpts...)
@@ -134,10 +134,10 @@ func (c *sessionServiceClient) GetUserSessionsByAdmin(ctx context.Context, in *G
 	return out, nil
 }
 
-func (c *sessionServiceClient) DeleteUserSessionsByAdmin(ctx context.Context, in *DeleteUserSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *sessionServiceClient) DeleteSessionsByAdmin(ctx context.Context, in *DeleteSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, SessionService_DeleteUserSessionsByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionService_DeleteSessionsByAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -149,14 +149,14 @@ func (c *sessionServiceClient) DeleteUserSessionsByAdmin(ctx context.Context, in
 // for forward compatibility.
 type SessionServiceServer interface {
 	GoogleCallback(context.Context, *GoogleCallbackRequest) (*TokensPair, error)
-	Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error)
 	RefreshToken(context.Context, *RefreshTokenRequest) (*TokensPair, error)
-	GetOwnUserSession(context.Context, *GetOwnUserSessionRequest) (*Session, error)
-	GetOwnUserSessions(context.Context, *GetOwnUserSessionsRequest) (*SessionsList, error)
-	DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*emptypb.Empty, error)
-	DeleteOwnUserSessions(context.Context, *DeleteOwnUserSessionsRequest) (*emptypb.Empty, error)
-	GetUserSessionsByAdmin(context.Context, *GetUserSessionsByAdminRequest) (*SessionsList, error)
-	DeleteUserSessionsByAdmin(context.Context, *DeleteUserSessionsByAdminRequest) (*emptypb.Empty, error)
+	GetOwnSession(context.Context, *GetOwnSessionRequest) (*Session, error)
+	GetOwnSessions(context.Context, *GetOwnSessionsRequest) (*SessionsList, error)
+	DeleteOwnSession(context.Context, *DeleteOwnSessionRequest) (*emptypb.Empty, error)
+	DeleteOwnSessions(context.Context, *DeleteOwnSessionsRequest) (*emptypb.Empty, error)
+	GetUserSessionsByAdmin(context.Context, *GetSessionsByAdminRequest) (*SessionsList, error)
+	DeleteSessionsByAdmin(context.Context, *DeleteSessionsByAdminRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedSessionServiceServer()
 }
 
@@ -170,29 +170,29 @@ type UnimplementedSessionServiceServer struct{}
 func (UnimplementedSessionServiceServer) GoogleCallback(context.Context, *GoogleCallbackRequest) (*TokensPair, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleCallback not implemented")
 }
-func (UnimplementedSessionServiceServer) Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
+func (UnimplementedSessionServiceServer) Logout(context.Context, *LogoutRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Logout not implemented")
 }
 func (UnimplementedSessionServiceServer) RefreshToken(context.Context, *RefreshTokenRequest) (*TokensPair, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method RefreshToken not implemented")
 }
-func (UnimplementedSessionServiceServer) GetOwnUserSession(context.Context, *GetOwnUserSessionRequest) (*Session, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserSession not implemented")
+func (UnimplementedSessionServiceServer) GetOwnSession(context.Context, *GetOwnSessionRequest) (*Session, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOwnSession not implemented")
 }
-func (UnimplementedSessionServiceServer) GetOwnUserSessions(context.Context, *GetOwnUserSessionsRequest) (*SessionsList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserSessions not implemented")
+func (UnimplementedSessionServiceServer) GetOwnSessions(context.Context, *GetOwnSessionsRequest) (*SessionsList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOwnSessions not implemented")
 }
-func (UnimplementedSessionServiceServer) DeleteOwnUserSession(context.Context, *DeleteOwnUserSessionRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnUserSession not implemented")
+func (UnimplementedSessionServiceServer) DeleteOwnSession(context.Context, *DeleteOwnSessionRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnSession not implemented")
 }
-func (UnimplementedSessionServiceServer) DeleteOwnUserSessions(context.Context, *DeleteOwnUserSessionsRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnUserSessions not implemented")
+func (UnimplementedSessionServiceServer) DeleteOwnSessions(context.Context, *DeleteOwnSessionsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnSessions not implemented")
 }
-func (UnimplementedSessionServiceServer) GetUserSessionsByAdmin(context.Context, *GetUserSessionsByAdminRequest) (*SessionsList, error) {
+func (UnimplementedSessionServiceServer) GetUserSessionsByAdmin(context.Context, *GetSessionsByAdminRequest) (*SessionsList, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUserSessionsByAdmin not implemented")
 }
-func (UnimplementedSessionServiceServer) DeleteUserSessionsByAdmin(context.Context, *DeleteUserSessionsByAdminRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteUserSessionsByAdmin not implemented")
+func (UnimplementedSessionServiceServer) DeleteSessionsByAdmin(context.Context, *DeleteSessionsByAdminRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSessionsByAdmin not implemented")
 }
 func (UnimplementedSessionServiceServer) mustEmbedUnimplementedSessionServiceServer() {}
 func (UnimplementedSessionServiceServer) testEmbeddedByValue()                        {}
@@ -234,7 +234,7 @@ func _SessionService_GoogleCallback_Handler(srv interface{}, ctx context.Context
 }
 
 func _SessionService_Logout_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(emptypb.Empty)
+	in := new(LogoutRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -246,7 +246,7 @@ func _SessionService_Logout_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: SessionService_Logout_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).Logout(ctx, req.(*emptypb.Empty))
+		return srv.(SessionServiceServer).Logout(ctx, req.(*LogoutRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -269,80 +269,80 @@ func _SessionService_RefreshToken_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionService_GetOwnUserSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOwnUserSessionRequest)
+func _SessionService_GetOwnSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOwnSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionServiceServer).GetOwnUserSession(ctx, in)
+		return srv.(SessionServiceServer).GetOwnSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionService_GetOwnUserSession_FullMethodName,
+		FullMethod: SessionService_GetOwnSession_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).GetOwnUserSession(ctx, req.(*GetOwnUserSessionRequest))
+		return srv.(SessionServiceServer).GetOwnSession(ctx, req.(*GetOwnSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionService_GetOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOwnUserSessionsRequest)
+func _SessionService_GetOwnSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOwnSessionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionServiceServer).GetOwnUserSessions(ctx, in)
+		return srv.(SessionServiceServer).GetOwnSessions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionService_GetOwnUserSessions_FullMethodName,
+		FullMethod: SessionService_GetOwnSessions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).GetOwnUserSessions(ctx, req.(*GetOwnUserSessionsRequest))
+		return srv.(SessionServiceServer).GetOwnSessions(ctx, req.(*GetOwnSessionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionService_DeleteOwnUserSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteOwnUserSessionRequest)
+func _SessionService_DeleteOwnSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOwnSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionServiceServer).DeleteOwnUserSession(ctx, in)
+		return srv.(SessionServiceServer).DeleteOwnSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionService_DeleteOwnUserSession_FullMethodName,
+		FullMethod: SessionService_DeleteOwnSession_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).DeleteOwnUserSession(ctx, req.(*DeleteOwnUserSessionRequest))
+		return srv.(SessionServiceServer).DeleteOwnSession(ctx, req.(*DeleteOwnSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionService_DeleteOwnUserSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteOwnUserSessionsRequest)
+func _SessionService_DeleteOwnSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteOwnSessionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionServiceServer).DeleteOwnUserSessions(ctx, in)
+		return srv.(SessionServiceServer).DeleteOwnSessions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionService_DeleteOwnUserSessions_FullMethodName,
+		FullMethod: SessionService_DeleteOwnSessions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).DeleteOwnUserSessions(ctx, req.(*DeleteOwnUserSessionsRequest))
+		return srv.(SessionServiceServer).DeleteOwnSessions(ctx, req.(*DeleteOwnSessionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _SessionService_GetUserSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserSessionsByAdminRequest)
+	in := new(GetSessionsByAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -354,25 +354,25 @@ func _SessionService_GetUserSessionsByAdmin_Handler(srv interface{}, ctx context
 		FullMethod: SessionService_GetUserSessionsByAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).GetUserSessionsByAdmin(ctx, req.(*GetUserSessionsByAdminRequest))
+		return srv.(SessionServiceServer).GetUserSessionsByAdmin(ctx, req.(*GetSessionsByAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionService_DeleteUserSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteUserSessionsByAdminRequest)
+func _SessionService_DeleteSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSessionsByAdminRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionServiceServer).DeleteUserSessionsByAdmin(ctx, in)
+		return srv.(SessionServiceServer).DeleteSessionsByAdmin(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionService_DeleteUserSessionsByAdmin_FullMethodName,
+		FullMethod: SessionService_DeleteSessionsByAdmin_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionServiceServer).DeleteUserSessionsByAdmin(ctx, req.(*DeleteUserSessionsByAdminRequest))
+		return srv.(SessionServiceServer).DeleteSessionsByAdmin(ctx, req.(*DeleteSessionsByAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -397,28 +397,28 @@ var SessionService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _SessionService_RefreshToken_Handler,
 		},
 		{
-			MethodName: "GetOwnUserSession",
-			Handler:    _SessionService_GetOwnUserSession_Handler,
+			MethodName: "GetOwnSession",
+			Handler:    _SessionService_GetOwnSession_Handler,
 		},
 		{
-			MethodName: "GetOwnUserSessions",
-			Handler:    _SessionService_GetOwnUserSessions_Handler,
+			MethodName: "GetOwnSessions",
+			Handler:    _SessionService_GetOwnSessions_Handler,
 		},
 		{
-			MethodName: "DeleteOwnUserSession",
-			Handler:    _SessionService_DeleteOwnUserSession_Handler,
+			MethodName: "DeleteOwnSession",
+			Handler:    _SessionService_DeleteOwnSession_Handler,
 		},
 		{
-			MethodName: "DeleteOwnUserSessions",
-			Handler:    _SessionService_DeleteOwnUserSessions_Handler,
+			MethodName: "DeleteOwnSessions",
+			Handler:    _SessionService_DeleteOwnSessions_Handler,
 		},
 		{
 			MethodName: "GetUserSessionsByAdmin",
 			Handler:    _SessionService_GetUserSessionsByAdmin_Handler,
 		},
 		{
-			MethodName: "DeleteUserSessionsByAdmin",
-			Handler:    _SessionService_DeleteUserSessionsByAdmin_Handler,
+			MethodName: "DeleteSessionsByAdmin",
+			Handler:    _SessionService_DeleteSessionsByAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

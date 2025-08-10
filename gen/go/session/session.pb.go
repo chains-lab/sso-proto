@@ -84,7 +84,7 @@ func (x *RefreshTokenRequest) GetRefreshToken() string {
 	return ""
 }
 
-type DeleteOwnUserSessionRequest struct {
+type DeleteOwnSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
 	SessionId     string                 `protobuf:"bytes,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
@@ -92,20 +92,20 @@ type DeleteOwnUserSessionRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteOwnUserSessionRequest) Reset() {
-	*x = DeleteOwnUserSessionRequest{}
+func (x *DeleteOwnSessionRequest) Reset() {
+	*x = DeleteOwnSessionRequest{}
 	mi := &file_session_session_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteOwnUserSessionRequest) String() string {
+func (x *DeleteOwnSessionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteOwnUserSessionRequest) ProtoMessage() {}
+func (*DeleteOwnSessionRequest) ProtoMessage() {}
 
-func (x *DeleteOwnUserSessionRequest) ProtoReflect() protoreflect.Message {
+func (x *DeleteOwnSessionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_session_session_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -117,19 +117,19 @@ func (x *DeleteOwnUserSessionRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteOwnUserSessionRequest.ProtoReflect.Descriptor instead.
-func (*DeleteOwnUserSessionRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use DeleteOwnSessionRequest.ProtoReflect.Descriptor instead.
+func (*DeleteOwnSessionRequest) Descriptor() ([]byte, []int) {
 	return file_session_session_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *DeleteOwnUserSessionRequest) GetInitiator() *userdata.UserData {
+func (x *DeleteOwnSessionRequest) GetInitiator() *userdata.UserData {
 	if x != nil {
 		return x.Initiator
 	}
 	return nil
 }
 
-func (x *DeleteOwnUserSessionRequest) GetSessionId() string {
+func (x *DeleteOwnSessionRequest) GetSessionId() string {
 	if x != nil {
 		return x.SessionId
 	}
@@ -180,7 +180,51 @@ func (x *GoogleCallbackRequest) GetCode() string {
 	return ""
 }
 
-type GetOwnUserSessionsRequest struct {
+type LogoutRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LogoutRequest) Reset() {
+	*x = LogoutRequest{}
+	mi := &file_session_session_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LogoutRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LogoutRequest) ProtoMessage() {}
+
+func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_session_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
+func (*LogoutRequest) Descriptor() ([]byte, []int) {
+	return file_session_session_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *LogoutRequest) GetInitiator() *userdata.UserData {
+	if x != nil {
+		return x.Initiator
+	}
+	return nil
+}
+
+type GetOwnSessionsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
 	Pagination    *pagination.Request    `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
@@ -188,21 +232,21 @@ type GetOwnUserSessionsRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetOwnUserSessionsRequest) Reset() {
-	*x = GetOwnUserSessionsRequest{}
-	mi := &file_session_session_proto_msgTypes[3]
+func (x *GetOwnSessionsRequest) Reset() {
+	*x = GetOwnSessionsRequest{}
+	mi := &file_session_session_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetOwnUserSessionsRequest) String() string {
+func (x *GetOwnSessionsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetOwnUserSessionsRequest) ProtoMessage() {}
+func (*GetOwnSessionsRequest) ProtoMessage() {}
 
-func (x *GetOwnUserSessionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[3]
+func (x *GetOwnSessionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_session_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -213,90 +257,46 @@ func (x *GetOwnUserSessionsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetOwnUserSessionsRequest.ProtoReflect.Descriptor instead.
-func (*GetOwnUserSessionsRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{3}
+// Deprecated: Use GetOwnSessionsRequest.ProtoReflect.Descriptor instead.
+func (*GetOwnSessionsRequest) Descriptor() ([]byte, []int) {
+	return file_session_session_proto_rawDescGZIP(), []int{4}
 }
 
-func (x *GetOwnUserSessionsRequest) GetInitiator() *userdata.UserData {
+func (x *GetOwnSessionsRequest) GetInitiator() *userdata.UserData {
 	if x != nil {
 		return x.Initiator
 	}
 	return nil
 }
 
-func (x *GetOwnUserSessionsRequest) GetPagination() *pagination.Request {
+func (x *GetOwnSessionsRequest) GetPagination() *pagination.Request {
 	if x != nil {
 		return x.Pagination
 	}
 	return nil
 }
 
-type GetOwnUserSessionRequest struct {
+type GetOwnSessionRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetOwnUserSessionRequest) Reset() {
-	*x = GetOwnUserSessionRequest{}
-	mi := &file_session_session_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetOwnUserSessionRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetOwnUserSessionRequest) ProtoMessage() {}
-
-func (x *GetOwnUserSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetOwnUserSessionRequest.ProtoReflect.Descriptor instead.
-func (*GetOwnUserSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetOwnUserSessionRequest) GetInitiator() *userdata.UserData {
-	if x != nil {
-		return x.Initiator
-	}
-	return nil
-}
-
-type DeleteOwnUserSessionsRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DeleteOwnUserSessionsRequest) Reset() {
-	*x = DeleteOwnUserSessionsRequest{}
+func (x *GetOwnSessionRequest) Reset() {
+	*x = GetOwnSessionRequest{}
 	mi := &file_session_session_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteOwnUserSessionsRequest) String() string {
+func (x *GetOwnSessionRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteOwnUserSessionsRequest) ProtoMessage() {}
+func (*GetOwnSessionRequest) ProtoMessage() {}
 
-func (x *DeleteOwnUserSessionsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetOwnSessionRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_session_session_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -308,19 +308,63 @@ func (x *DeleteOwnUserSessionsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteOwnUserSessionsRequest.ProtoReflect.Descriptor instead.
-func (*DeleteOwnUserSessionsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetOwnSessionRequest.ProtoReflect.Descriptor instead.
+func (*GetOwnSessionRequest) Descriptor() ([]byte, []int) {
 	return file_session_session_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *DeleteOwnUserSessionsRequest) GetInitiator() *userdata.UserData {
+func (x *GetOwnSessionRequest) GetInitiator() *userdata.UserData {
 	if x != nil {
 		return x.Initiator
 	}
 	return nil
 }
 
-type GetUserSessionsByAdminRequest struct {
+type DeleteOwnSessionsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeleteOwnSessionsRequest) Reset() {
+	*x = DeleteOwnSessionsRequest{}
+	mi := &file_session_session_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeleteOwnSessionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteOwnSessionsRequest) ProtoMessage() {}
+
+func (x *DeleteOwnSessionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_session_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteOwnSessionsRequest.ProtoReflect.Descriptor instead.
+func (*DeleteOwnSessionsRequest) Descriptor() ([]byte, []int) {
+	return file_session_session_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *DeleteOwnSessionsRequest) GetInitiator() *userdata.UserData {
+	if x != nil {
+		return x.Initiator
+	}
+	return nil
+}
+
+type GetSessionsByAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -329,21 +373,21 @@ type GetUserSessionsByAdminRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetUserSessionsByAdminRequest) Reset() {
-	*x = GetUserSessionsByAdminRequest{}
-	mi := &file_session_session_proto_msgTypes[6]
+func (x *GetSessionsByAdminRequest) Reset() {
+	*x = GetSessionsByAdminRequest{}
+	mi := &file_session_session_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetUserSessionsByAdminRequest) String() string {
+func (x *GetSessionsByAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserSessionsByAdminRequest) ProtoMessage() {}
+func (*GetSessionsByAdminRequest) ProtoMessage() {}
 
-func (x *GetUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[6]
+func (x *GetSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_session_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -354,33 +398,33 @@ func (x *GetUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserSessionsByAdminRequest.ProtoReflect.Descriptor instead.
-func (*GetUserSessionsByAdminRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{6}
+// Deprecated: Use GetSessionsByAdminRequest.ProtoReflect.Descriptor instead.
+func (*GetSessionsByAdminRequest) Descriptor() ([]byte, []int) {
+	return file_session_session_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *GetUserSessionsByAdminRequest) GetInitiator() *userdata.UserData {
+func (x *GetSessionsByAdminRequest) GetInitiator() *userdata.UserData {
 	if x != nil {
 		return x.Initiator
 	}
 	return nil
 }
 
-func (x *GetUserSessionsByAdminRequest) GetUserId() string {
+func (x *GetSessionsByAdminRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *GetUserSessionsByAdminRequest) GetPagination() *pagination.Request {
+func (x *GetSessionsByAdminRequest) GetPagination() *pagination.Request {
 	if x != nil {
 		return x.Pagination
 	}
 	return nil
 }
 
-type DeleteUserSessionsByAdminRequest struct {
+type DeleteSessionsByAdminRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -388,21 +432,21 @@ type DeleteUserSessionsByAdminRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *DeleteUserSessionsByAdminRequest) Reset() {
-	*x = DeleteUserSessionsByAdminRequest{}
-	mi := &file_session_session_proto_msgTypes[7]
+func (x *DeleteSessionsByAdminRequest) Reset() {
+	*x = DeleteSessionsByAdminRequest{}
+	mi := &file_session_session_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *DeleteUserSessionsByAdminRequest) String() string {
+func (x *DeleteSessionsByAdminRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*DeleteUserSessionsByAdminRequest) ProtoMessage() {}
+func (*DeleteSessionsByAdminRequest) ProtoMessage() {}
 
-func (x *DeleteUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[7]
+func (x *DeleteSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_session_session_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -413,19 +457,19 @@ func (x *DeleteUserSessionsByAdminRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use DeleteUserSessionsByAdminRequest.ProtoReflect.Descriptor instead.
-func (*DeleteUserSessionsByAdminRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{7}
+// Deprecated: Use DeleteSessionsByAdminRequest.ProtoReflect.Descriptor instead.
+func (*DeleteSessionsByAdminRequest) Descriptor() ([]byte, []int) {
+	return file_session_session_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *DeleteUserSessionsByAdminRequest) GetInitiator() *userdata.UserData {
+func (x *DeleteSessionsByAdminRequest) GetInitiator() *userdata.UserData {
 	if x != nil {
 		return x.Initiator
 	}
 	return nil
 }
 
-func (x *DeleteUserSessionsByAdminRequest) GetUserId() string {
+func (x *DeleteSessionsByAdminRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
@@ -442,7 +486,7 @@ type TokensPair struct {
 
 func (x *TokensPair) Reset() {
 	*x = TokensPair{}
-	mi := &file_session_session_proto_msgTypes[8]
+	mi := &file_session_session_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -454,7 +498,7 @@ func (x *TokensPair) String() string {
 func (*TokensPair) ProtoMessage() {}
 
 func (x *TokensPair) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[8]
+	mi := &file_session_session_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -467,7 +511,7 @@ func (x *TokensPair) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokensPair.ProtoReflect.Descriptor instead.
 func (*TokensPair) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{8}
+	return file_session_session_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TokensPair) GetAccessToken() string {
@@ -498,7 +542,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_session_session_proto_msgTypes[9]
+	mi := &file_session_session_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -510,7 +554,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[9]
+	mi := &file_session_session_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -523,7 +567,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{9}
+	return file_session_session_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *Session) GetId() string {
@@ -578,7 +622,7 @@ type SessionsList struct {
 
 func (x *SessionsList) Reset() {
 	*x = SessionsList{}
-	mi := &file_session_session_proto_msgTypes[10]
+	mi := &file_session_session_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -590,7 +634,7 @@ func (x *SessionsList) String() string {
 func (*SessionsList) ProtoMessage() {}
 
 func (x *SessionsList) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[10]
+	mi := &file_session_session_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -603,7 +647,7 @@ func (x *SessionsList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionsList.ProtoReflect.Descriptor instead.
 func (*SessionsList) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{10}
+	return file_session_session_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *SessionsList) GetSessions() []*Session {
@@ -628,29 +672,31 @@ const file_session_session_proto_rawDesc = "" +
 	"\x13RefreshTokenRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x14\n" +
 	"\x05agent\x18\x02 \x01(\tR\x05agent\x12#\n" +
-	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"n\n" +
-	"\x1bDeleteOwnUserSessionRequest\x120\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken\"j\n" +
+	"\x17DeleteOwnSessionRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x02 \x01(\tR\tsessionId\"+\n" +
 	"\x15GoogleCallbackRequest\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\"\x82\x01\n" +
-	"\x19GetOwnUserSessionsRequest\x120\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"A\n" +
+	"\rLogoutRequest\x120\n" +
+	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\"~\n" +
+	"\x15GetOwnSessionsRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x123\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x13.pagination.RequestR\n" +
-	"pagination\"L\n" +
-	"\x18GetOwnUserSessionRequest\x120\n" +
-	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\"P\n" +
-	"\x1cDeleteOwnUserSessionsRequest\x120\n" +
-	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\"\x9f\x01\n" +
-	"\x1dGetUserSessionsByAdminRequest\x120\n" +
+	"pagination\"H\n" +
+	"\x14GetOwnSessionRequest\x120\n" +
+	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\"L\n" +
+	"\x18DeleteOwnSessionsRequest\x120\n" +
+	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\"\x9b\x01\n" +
+	"\x19GetSessionsByAdminRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x123\n" +
 	"\n" +
 	"pagination\x18\x03 \x01(\v2\x13.pagination.RequestR\n" +
-	"pagination\"m\n" +
-	" DeleteUserSessionsByAdminRequest\x120\n" +
+	"pagination\"i\n" +
+	"\x1cDeleteSessionsByAdminRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\"T\n" +
 	"\n" +
@@ -669,17 +715,17 @@ const file_session_session_proto_rawDesc = "" +
 	"\bsessions\x18\x01 \x03(\v2\x10.session.SessionR\bsessions\x124\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x14.pagination.ResponseR\n" +
-	"pagination2\xd6\x05\n" +
+	"pagination2\xaa\x05\n" +
 	"\x0eSessionService\x12E\n" +
 	"\x0eGoogleCallback\x12\x1e.session.GoogleCallbackRequest\x1a\x13.session.TokensPair\x128\n" +
-	"\x06Logout\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\x12A\n" +
-	"\fRefreshToken\x12\x1c.session.RefreshTokenRequest\x1a\x13.session.TokensPair\x12H\n" +
-	"\x11GetOwnUserSession\x12!.session.GetOwnUserSessionRequest\x1a\x10.session.Session\x12O\n" +
-	"\x12GetOwnUserSessions\x12\".session.GetOwnUserSessionsRequest\x1a\x15.session.SessionsList\x12T\n" +
-	"\x14DeleteOwnUserSession\x12$.session.DeleteOwnUserSessionRequest\x1a\x16.google.protobuf.Empty\x12V\n" +
-	"\x15DeleteOwnUserSessions\x12%.session.DeleteOwnUserSessionsRequest\x1a\x16.google.protobuf.Empty\x12W\n" +
-	"\x16GetUserSessionsByAdmin\x12&.session.GetUserSessionsByAdminRequest\x1a\x15.session.SessionsList\x12^\n" +
-	"\x19DeleteUserSessionsByAdmin\x12).session.DeleteUserSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyB8Z6github.com/chains-lab/sso-proto/gen/go/session;sessionb\x06proto3"
+	"\x06Logout\x12\x16.session.LogoutRequest\x1a\x16.google.protobuf.Empty\x12A\n" +
+	"\fRefreshToken\x12\x1c.session.RefreshTokenRequest\x1a\x13.session.TokensPair\x12@\n" +
+	"\rGetOwnSession\x12\x1d.session.GetOwnSessionRequest\x1a\x10.session.Session\x12G\n" +
+	"\x0eGetOwnSessions\x12\x1e.session.GetOwnSessionsRequest\x1a\x15.session.SessionsList\x12L\n" +
+	"\x10DeleteOwnSession\x12 .session.DeleteOwnSessionRequest\x1a\x16.google.protobuf.Empty\x12N\n" +
+	"\x11DeleteOwnSessions\x12!.session.DeleteOwnSessionsRequest\x1a\x16.google.protobuf.Empty\x12S\n" +
+	"\x16GetUserSessionsByAdmin\x12\".session.GetSessionsByAdminRequest\x1a\x15.session.SessionsList\x12V\n" +
+	"\x15DeleteSessionsByAdmin\x12%.session.DeleteSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyB8Z6github.com/chains-lab/sso-proto/gen/go/session;sessionb\x06proto3"
 
 var (
 	file_session_session_proto_rawDescOnce sync.Once
@@ -693,59 +739,61 @@ func file_session_session_proto_rawDescGZIP() []byte {
 	return file_session_session_proto_rawDescData
 }
 
-var file_session_session_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_session_session_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_session_session_proto_goTypes = []any{
-	(*RefreshTokenRequest)(nil),              // 0: session.RefreshTokenRequest
-	(*DeleteOwnUserSessionRequest)(nil),      // 1: session.DeleteOwnUserSessionRequest
-	(*GoogleCallbackRequest)(nil),            // 2: session.GoogleCallbackRequest
-	(*GetOwnUserSessionsRequest)(nil),        // 3: session.GetOwnUserSessionsRequest
-	(*GetOwnUserSessionRequest)(nil),         // 4: session.GetOwnUserSessionRequest
-	(*DeleteOwnUserSessionsRequest)(nil),     // 5: session.DeleteOwnUserSessionsRequest
-	(*GetUserSessionsByAdminRequest)(nil),    // 6: session.GetUserSessionsByAdminRequest
-	(*DeleteUserSessionsByAdminRequest)(nil), // 7: session.DeleteUserSessionsByAdminRequest
-	(*TokensPair)(nil),                       // 8: session.TokensPair
-	(*Session)(nil),                          // 9: session.Session
-	(*SessionsList)(nil),                     // 10: session.SessionsList
-	(*userdata.UserData)(nil),                // 11: userdata.UserData
-	(*pagination.Request)(nil),               // 12: pagination.Request
-	(*pagination.Response)(nil),              // 13: pagination.Response
-	(*emptypb.Empty)(nil),                    // 14: google.protobuf.Empty
+	(*RefreshTokenRequest)(nil),          // 0: session.RefreshTokenRequest
+	(*DeleteOwnSessionRequest)(nil),      // 1: session.DeleteOwnSessionRequest
+	(*GoogleCallbackRequest)(nil),        // 2: session.GoogleCallbackRequest
+	(*LogoutRequest)(nil),                // 3: session.LogoutRequest
+	(*GetOwnSessionsRequest)(nil),        // 4: session.GetOwnSessionsRequest
+	(*GetOwnSessionRequest)(nil),         // 5: session.GetOwnSessionRequest
+	(*DeleteOwnSessionsRequest)(nil),     // 6: session.DeleteOwnSessionsRequest
+	(*GetSessionsByAdminRequest)(nil),    // 7: session.GetSessionsByAdminRequest
+	(*DeleteSessionsByAdminRequest)(nil), // 8: session.DeleteSessionsByAdminRequest
+	(*TokensPair)(nil),                   // 9: session.TokensPair
+	(*Session)(nil),                      // 10: session.Session
+	(*SessionsList)(nil),                 // 11: session.SessionsList
+	(*userdata.UserData)(nil),            // 12: userdata.UserData
+	(*pagination.Request)(nil),           // 13: pagination.Request
+	(*pagination.Response)(nil),          // 14: pagination.Response
+	(*emptypb.Empty)(nil),                // 15: google.protobuf.Empty
 }
 var file_session_session_proto_depIdxs = []int32{
-	11, // 0: session.RefreshTokenRequest.initiator:type_name -> userdata.UserData
-	11, // 1: session.DeleteOwnUserSessionRequest.initiator:type_name -> userdata.UserData
-	11, // 2: session.GetOwnUserSessionsRequest.initiator:type_name -> userdata.UserData
-	12, // 3: session.GetOwnUserSessionsRequest.pagination:type_name -> pagination.Request
-	11, // 4: session.GetOwnUserSessionRequest.initiator:type_name -> userdata.UserData
-	11, // 5: session.DeleteOwnUserSessionsRequest.initiator:type_name -> userdata.UserData
-	11, // 6: session.GetUserSessionsByAdminRequest.initiator:type_name -> userdata.UserData
-	12, // 7: session.GetUserSessionsByAdminRequest.pagination:type_name -> pagination.Request
-	11, // 8: session.DeleteUserSessionsByAdminRequest.initiator:type_name -> userdata.UserData
-	9,  // 9: session.SessionsList.sessions:type_name -> session.Session
-	13, // 10: session.SessionsList.pagination:type_name -> pagination.Response
-	2,  // 11: session.SessionService.GoogleCallback:input_type -> session.GoogleCallbackRequest
-	14, // 12: session.SessionService.Logout:input_type -> google.protobuf.Empty
-	0,  // 13: session.SessionService.RefreshToken:input_type -> session.RefreshTokenRequest
-	4,  // 14: session.SessionService.GetOwnUserSession:input_type -> session.GetOwnUserSessionRequest
-	3,  // 15: session.SessionService.GetOwnUserSessions:input_type -> session.GetOwnUserSessionsRequest
-	1,  // 16: session.SessionService.DeleteOwnUserSession:input_type -> session.DeleteOwnUserSessionRequest
-	5,  // 17: session.SessionService.DeleteOwnUserSessions:input_type -> session.DeleteOwnUserSessionsRequest
-	6,  // 18: session.SessionService.GetUserSessionsByAdmin:input_type -> session.GetUserSessionsByAdminRequest
-	7,  // 19: session.SessionService.DeleteUserSessionsByAdmin:input_type -> session.DeleteUserSessionsByAdminRequest
-	8,  // 20: session.SessionService.GoogleCallback:output_type -> session.TokensPair
-	14, // 21: session.SessionService.Logout:output_type -> google.protobuf.Empty
-	8,  // 22: session.SessionService.RefreshToken:output_type -> session.TokensPair
-	9,  // 23: session.SessionService.GetOwnUserSession:output_type -> session.Session
-	10, // 24: session.SessionService.GetOwnUserSessions:output_type -> session.SessionsList
-	14, // 25: session.SessionService.DeleteOwnUserSession:output_type -> google.protobuf.Empty
-	14, // 26: session.SessionService.DeleteOwnUserSessions:output_type -> google.protobuf.Empty
-	10, // 27: session.SessionService.GetUserSessionsByAdmin:output_type -> session.SessionsList
-	14, // 28: session.SessionService.DeleteUserSessionsByAdmin:output_type -> google.protobuf.Empty
-	20, // [20:29] is the sub-list for method output_type
-	11, // [11:20] is the sub-list for method input_type
-	11, // [11:11] is the sub-list for extension type_name
-	11, // [11:11] is the sub-list for extension extendee
-	0,  // [0:11] is the sub-list for field type_name
+	12, // 0: session.RefreshTokenRequest.initiator:type_name -> userdata.UserData
+	12, // 1: session.DeleteOwnSessionRequest.initiator:type_name -> userdata.UserData
+	12, // 2: session.LogoutRequest.initiator:type_name -> userdata.UserData
+	12, // 3: session.GetOwnSessionsRequest.initiator:type_name -> userdata.UserData
+	13, // 4: session.GetOwnSessionsRequest.pagination:type_name -> pagination.Request
+	12, // 5: session.GetOwnSessionRequest.initiator:type_name -> userdata.UserData
+	12, // 6: session.DeleteOwnSessionsRequest.initiator:type_name -> userdata.UserData
+	12, // 7: session.GetSessionsByAdminRequest.initiator:type_name -> userdata.UserData
+	13, // 8: session.GetSessionsByAdminRequest.pagination:type_name -> pagination.Request
+	12, // 9: session.DeleteSessionsByAdminRequest.initiator:type_name -> userdata.UserData
+	10, // 10: session.SessionsList.sessions:type_name -> session.Session
+	14, // 11: session.SessionsList.pagination:type_name -> pagination.Response
+	2,  // 12: session.SessionService.GoogleCallback:input_type -> session.GoogleCallbackRequest
+	3,  // 13: session.SessionService.Logout:input_type -> session.LogoutRequest
+	0,  // 14: session.SessionService.RefreshToken:input_type -> session.RefreshTokenRequest
+	5,  // 15: session.SessionService.GetOwnSession:input_type -> session.GetOwnSessionRequest
+	4,  // 16: session.SessionService.GetOwnSessions:input_type -> session.GetOwnSessionsRequest
+	1,  // 17: session.SessionService.DeleteOwnSession:input_type -> session.DeleteOwnSessionRequest
+	6,  // 18: session.SessionService.DeleteOwnSessions:input_type -> session.DeleteOwnSessionsRequest
+	7,  // 19: session.SessionService.GetUserSessionsByAdmin:input_type -> session.GetSessionsByAdminRequest
+	8,  // 20: session.SessionService.DeleteSessionsByAdmin:input_type -> session.DeleteSessionsByAdminRequest
+	9,  // 21: session.SessionService.GoogleCallback:output_type -> session.TokensPair
+	15, // 22: session.SessionService.Logout:output_type -> google.protobuf.Empty
+	9,  // 23: session.SessionService.RefreshToken:output_type -> session.TokensPair
+	10, // 24: session.SessionService.GetOwnSession:output_type -> session.Session
+	11, // 25: session.SessionService.GetOwnSessions:output_type -> session.SessionsList
+	15, // 26: session.SessionService.DeleteOwnSession:output_type -> google.protobuf.Empty
+	15, // 27: session.SessionService.DeleteOwnSessions:output_type -> google.protobuf.Empty
+	11, // 28: session.SessionService.GetUserSessionsByAdmin:output_type -> session.SessionsList
+	15, // 29: session.SessionService.DeleteSessionsByAdmin:output_type -> google.protobuf.Empty
+	21, // [21:30] is the sub-list for method output_type
+	12, // [12:21] is the sub-list for method input_type
+	12, // [12:12] is the sub-list for extension type_name
+	12, // [12:12] is the sub-list for extension extendee
+	0,  // [0:12] is the sub-list for field type_name
 }
 
 func init() { file_session_session_proto_init() }
@@ -759,7 +807,7 @@ func file_session_session_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_session_session_proto_rawDesc), len(file_session_session_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
