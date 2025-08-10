@@ -4,8 +4,8 @@ package userdata;
 option go_package = "github.com/chains-lab/sso-proto/gen/go/common/userdata;userdata";
 
 message UserData {
-  string id = 1;
+  string user_id = 1;
   string role = 2;
-  string session = 3;
+  string session_id = 3;
   bool   verified = 4;
 }

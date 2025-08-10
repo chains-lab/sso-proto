@@ -23,9 +23,9 @@ const (
 
 type UserData struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
-	Session       string                 `protobuf:"bytes,3,opt,name=session,proto3" json:"session,omitempty"`
+	SessionId     string                 `protobuf:"bytes,3,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 	Verified      bool                   `protobuf:"varint,4,opt,name=verified,proto3" json:"verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -61,9 +61,9 @@ func (*UserData) Descriptor() ([]byte, []int) {
 	return file_common_userdata_userdata_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *UserData) GetId() string {
+func (x *UserData) GetUserId() string {
 	if x != nil {
-		return x.Id
+		return x.UserId
 	}
 	return ""
 }
@@ -75,9 +75,9 @@ func (x *UserData) GetRole() string {
 	return ""
 }
 
-func (x *UserData) GetSession() string {
+func (x *UserData) GetSessionId() string {
 	if x != nil {
-		return x.Session
+		return x.SessionId
 	}
 	return ""
 }
@@ -93,11 +93,12 @@ var File_common_userdata_userdata_proto protoreflect.FileDescriptor
 
 const file_common_userdata_userdata_proto_rawDesc = "" +
 	"\n" +
-	"\x1ecommon/userdata/userdata.proto\x12\buserdata\"d\n" +
-	"\bUserData\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04role\x18\x02 \x01(\tR\x04role\x12\x18\n" +
-	"\asession\x18\x03 \x01(\tR\asession\x12\x1a\n" +
+	"\x1ecommon/userdata/userdata.proto\x12\buserdata\"r\n" +
+	"\bUserData\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04role\x18\x02 \x01(\tR\x04role\x12\x1d\n" +
+	"\n" +
+	"session_id\x18\x03 \x01(\tR\tsessionId\x12\x1a\n" +
 	"\bverified\x18\x04 \x01(\bR\bverifiedBAZ?github.com/chains-lab/sso-proto/gen/go/common/userdata;userdatab\x06proto3"
 
 var (
