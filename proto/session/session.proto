@@ -18,9 +18,6 @@ service SessionService {
 
   rpc DeleteOwnSession (DeleteOwnSessionRequest) returns (google.protobuf.Empty);
   rpc DeleteOwnSessions (DeleteOwnSessionsRequest) returns (google.protobuf.Empty);
-
-  rpc GetSessionsByAdmin (GetSessionsByAdminRequest) returns (SessionsList);
-  rpc DeleteSessionsByAdmin (DeleteSessionsByAdminRequest) returns (google.protobuf.Empty);
 }
 
 // REQUESTS
@@ -55,17 +52,6 @@ message GetOwnSessionRequest {
 
 message DeleteOwnSessionsRequest {
   userdata.UserData initiator = 1;
-}
-
-message GetSessionsByAdminRequest {
-  userdata.UserData initiator = 1;
-  string user_id = 2;
-  pagination.Request pagination = 3;
-}
-
-message DeleteSessionsByAdminRequest {
-  userdata.UserData initiator = 1;
-  string user_id = 2;
 }
 
 // RESPONSES

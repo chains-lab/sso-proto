@@ -21,11 +21,9 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	UserService_GoogleLogin_FullMethodName         = "/user.UserService/GoogleLogin"
-	UserService_CreateUserByAdmin_FullMethodName   = "/user.UserService/CreateUserByAdmin"
 	UserService_UpdateUserVerified_FullMethodName  = "/user.UserService/UpdateUserVerified"
 	UserService_UpdateUserSuspended_FullMethodName = "/user.UserService/UpdateUserSuspended"
 	UserService_GetOwnUserData_FullMethodName      = "/user.UserService/GetOwnUserData"
-	UserService_GetUserByAdmin_FullMethodName      = "/user.UserService/GetUserByAdmin"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -33,11 +31,9 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
 	GoogleLogin(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
-	CreateUserByAdmin(ctx context.Context, in *CreateUserByAdminRequest, opts ...grpc.CallOption) (*User, error)
 	UpdateUserVerified(ctx context.Context, in *UpdateUserVerifiedRequest, opts ...grpc.CallOption) (*User, error)
 	UpdateUserSuspended(ctx context.Context, in *UpdateUserSuspendedRequest, opts ...grpc.CallOption) (*User, error)
 	GetOwnUserData(ctx context.Context, in *GetOwnUserDataRequest, opts ...grpc.CallOption) (*User, error)
-	GetUserByAdmin(ctx context.Context, in *GetUserByAdminRequest, opts ...grpc.CallOption) (*User, error)
 }
 
 type userServiceClient struct {
@@ -52,16 +48,6 @@ func (c *userServiceClient) GoogleLogin(ctx context.Context, in *emptypb.Empty, 
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GoogleLoginResponse)
 	err := c.cc.Invoke(ctx, UserService_GoogleLogin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) CreateUserByAdmin(ctx context.Context, in *CreateUserByAdminRequest, opts ...grpc.CallOption) (*User, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(User)
-	err := c.cc.Invoke(ctx, UserService_CreateUserByAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -98,26 +84,14 @@ func (c *userServiceClient) GetOwnUserData(ctx context.Context, in *GetOwnUserDa
 	return out, nil
 }
 
-func (c *userServiceClient) GetUserByAdmin(ctx context.Context, in *GetUserByAdminRequest, opts ...grpc.CallOption) (*User, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(User)
-	err := c.cc.Invoke(ctx, UserService_GetUserByAdmin_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
 	GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error)
-	CreateUserByAdmin(context.Context, *CreateUserByAdminRequest) (*User, error)
 	UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*User, error)
 	UpdateUserSuspended(context.Context, *UpdateUserSuspendedRequest) (*User, error)
 	GetOwnUserData(context.Context, *GetOwnUserDataRequest) (*User, error)
-	GetUserByAdmin(context.Context, *GetUserByAdminRequest) (*User, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -131,9 +105,6 @@ type UnimplementedUserServiceServer struct{}
 func (UnimplementedUserServiceServer) GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleLogin not implemented")
 }
-func (UnimplementedUserServiceServer) CreateUserByAdmin(context.Context, *CreateUserByAdminRequest) (*User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateUserByAdmin not implemented")
-}
 func (UnimplementedUserServiceServer) UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserVerified not implemented")
 }
@@ -142,9 +113,6 @@ func (UnimplementedUserServiceServer) UpdateUserSuspended(context.Context, *Upda
 }
 func (UnimplementedUserServiceServer) GetOwnUserData(context.Context, *GetOwnUserDataRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserData not implemented")
-}
-func (UnimplementedUserServiceServer) GetUserByAdmin(context.Context, *GetUserByAdminRequest) (*User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserByAdmin not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -181,24 +149,6 @@ func _UserService_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(UserServiceServer).GoogleLogin(ctx, req.(*emptypb.Empty))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_CreateUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserByAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).CreateUserByAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_CreateUserByAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).CreateUserByAdmin(ctx, req.(*CreateUserByAdminRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -257,24 +207,6 @@ func _UserService_GetOwnUserData_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserByAdminRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).GetUserByAdmin(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_GetUserByAdmin_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetUserByAdmin(ctx, req.(*GetUserByAdminRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -287,10 +219,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_GoogleLogin_Handler,
 		},
 		{
-			MethodName: "CreateUserByAdmin",
-			Handler:    _UserService_CreateUserByAdmin_Handler,
-		},
-		{
 			MethodName: "UpdateUserVerified",
 			Handler:    _UserService_UpdateUserVerified_Handler,
 		},
@@ -301,10 +229,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOwnUserData",
 			Handler:    _UserService_GetOwnUserData_Handler,
-		},
-		{
-			MethodName: "GetUserByAdmin",
-			Handler:    _UserService_GetUserByAdmin_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

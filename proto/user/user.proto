@@ -10,31 +10,16 @@ import "common/pagination/pagination.proto";
 service UserService {
   rpc GoogleLogin (google.protobuf.Empty) returns (GoogleLoginResponse);
 
-  rpc CreateUserByAdmin (CreateUserByAdminRequest) returns (User);
-
   rpc UpdateUserVerified(UpdateUserVerifiedRequest) returns (User);
   rpc UpdateUserSuspended(UpdateUserSuspendedRequest) returns (User);
 
   rpc GetOwnUserData (GetOwnUserDataRequest) returns (User);
-  rpc GetUserByAdmin (GetUserByAdminRequest) returns (User);
 }
 
 // REQUESTS
 
 message GetOwnUserDataRequest {
   userdata.UserData initiator = 1;
-}
-
-message CreateUserByAdminRequest{
-  userdata.UserData initiator = 1;
-  string email = 2;
-  string role = 3;
-  bool verified = 4;
-}
-
-message GetUserByAdminRequest {
-  userdata.UserData initiator = 1;
-  string user_id = 2;
 }
 
 message UpdateUserVerifiedRequest {
