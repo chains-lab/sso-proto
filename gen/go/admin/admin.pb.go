@@ -318,6 +318,126 @@ func (x *DeleteSessionsByAdminRequest) GetUserId() string {
 	return ""
 }
 
+type UpdateUserVerifiedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Verified      bool                   `protobuf:"varint,3,opt,name=verified,proto3" json:"verified,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateUserVerifiedRequest) Reset() {
+	*x = UpdateUserVerifiedRequest{}
+	mi := &file_admin_admin_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateUserVerifiedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateUserVerifiedRequest) ProtoMessage() {}
+
+func (x *UpdateUserVerifiedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_admin_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateUserVerifiedRequest.ProtoReflect.Descriptor instead.
+func (*UpdateUserVerifiedRequest) Descriptor() ([]byte, []int) {
+	return file_admin_admin_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *UpdateUserVerifiedRequest) GetInitiator() *userdata.UserData {
+	if x != nil {
+		return x.Initiator
+	}
+	return nil
+}
+
+func (x *UpdateUserVerifiedRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UpdateUserVerifiedRequest) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
+}
+
+type UpdateUserSuspendedRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
+	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	Suspended     bool                   `protobuf:"varint,3,opt,name=suspended,proto3" json:"suspended,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateUserSuspendedRequest) Reset() {
+	*x = UpdateUserSuspendedRequest{}
+	mi := &file_admin_admin_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateUserSuspendedRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateUserSuspendedRequest) ProtoMessage() {}
+
+func (x *UpdateUserSuspendedRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_admin_admin_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateUserSuspendedRequest.ProtoReflect.Descriptor instead.
+func (*UpdateUserSuspendedRequest) Descriptor() ([]byte, []int) {
+	return file_admin_admin_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *UpdateUserSuspendedRequest) GetInitiator() *userdata.UserData {
+	if x != nil {
+		return x.Initiator
+	}
+	return nil
+}
+
+func (x *UpdateUserSuspendedRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *UpdateUserSuspendedRequest) GetSuspended() bool {
+	if x != nil {
+		return x.Suspended
+	}
+	return false
+}
+
 var File_admin_admin_proto protoreflect.FileDescriptor
 
 const file_admin_admin_proto_rawDesc = "" +
@@ -344,7 +464,15 @@ const file_admin_admin_proto_rawDesc = "" +
 	"pagination\"i\n" +
 	"\x1cDeleteSessionsByAdminRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
-	"\auser_id\x18\x02 \x01(\tR\x06userId2\xfe\x02\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\"\x82\x01\n" +
+	"\x19UpdateUserVerifiedRequest\x120\n" +
+	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bverified\x18\x03 \x01(\bR\bverified\"\x85\x01\n" +
+	"\x1aUpdateUserSuspendedRequest\x120\n" +
+	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
+	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1c\n" +
+	"\tsuspended\x18\x03 \x01(\bR\tsuspended2\x88\x04\n" +
 	"\x11AdminPanelService\x12@\n" +
 	"\x11CreateUserByAdmin\x12\x1f.admin.CreateUserByAdminRequest\x1a\n" +
 	".user.User\x12:\n" +
@@ -352,7 +480,11 @@ const file_admin_admin_proto_rawDesc = "" +
 	".user.User\x12F\n" +
 	"\x11GetSessionByAdmin\x12\x1f.admin.GetSessionByAdminRequest\x1a\x10.session.Session\x12M\n" +
 	"\x12GetSessionsByAdmin\x12 .admin.GetSessionsByAdminRequest\x1a\x15.session.SessionsList\x12T\n" +
-	"\x15DeleteSessionsByAdmin\x12#.admin.DeleteSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyB4Z2github.com/chains-lab/sso-proto/gen/go/admin;adminb\x06proto3"
+	"\x15DeleteSessionsByAdmin\x12#.admin.DeleteSessionsByAdminRequest\x1a\x16.google.protobuf.Empty\x12B\n" +
+	"\x12UpdateUserVerified\x12 .admin.UpdateUserVerifiedRequest\x1a\n" +
+	".user.User\x12D\n" +
+	"\x13UpdateUserSuspended\x12!.admin.UpdateUserSuspendedRequest\x1a\n" +
+	".user.UserB4Z2github.com/chains-lab/sso-proto/gen/go/admin;adminb\x06proto3"
 
 var (
 	file_admin_admin_proto_rawDescOnce sync.Once
@@ -366,42 +498,50 @@ func file_admin_admin_proto_rawDescGZIP() []byte {
 	return file_admin_admin_proto_rawDescData
 }
 
-var file_admin_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
+var file_admin_admin_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_admin_admin_proto_goTypes = []any{
 	(*CreateUserByAdminRequest)(nil),     // 0: admin.CreateUserByAdminRequest
 	(*GetUserByAdminRequest)(nil),        // 1: admin.GetUserByAdminRequest
 	(*GetSessionByAdminRequest)(nil),     // 2: admin.GetSessionByAdminRequest
 	(*GetSessionsByAdminRequest)(nil),    // 3: admin.GetSessionsByAdminRequest
 	(*DeleteSessionsByAdminRequest)(nil), // 4: admin.DeleteSessionsByAdminRequest
-	(*userdata.UserData)(nil),            // 5: userdata.UserData
-	(*pagination.Request)(nil),           // 6: pagination.Request
-	(*user.User)(nil),                    // 7: user.User
-	(*session.Session)(nil),              // 8: session.Session
-	(*session.SessionsList)(nil),         // 9: session.SessionsList
-	(*emptypb.Empty)(nil),                // 10: google.protobuf.Empty
+	(*UpdateUserVerifiedRequest)(nil),    // 5: admin.UpdateUserVerifiedRequest
+	(*UpdateUserSuspendedRequest)(nil),   // 6: admin.UpdateUserSuspendedRequest
+	(*userdata.UserData)(nil),            // 7: userdata.UserData
+	(*pagination.Request)(nil),           // 8: pagination.Request
+	(*user.User)(nil),                    // 9: user.User
+	(*session.Session)(nil),              // 10: session.Session
+	(*session.SessionsList)(nil),         // 11: session.SessionsList
+	(*emptypb.Empty)(nil),                // 12: google.protobuf.Empty
 }
 var file_admin_admin_proto_depIdxs = []int32{
-	5,  // 0: admin.CreateUserByAdminRequest.initiator:type_name -> userdata.UserData
-	5,  // 1: admin.GetUserByAdminRequest.initiator:type_name -> userdata.UserData
-	5,  // 2: admin.GetSessionByAdminRequest.initiator:type_name -> userdata.UserData
-	5,  // 3: admin.GetSessionsByAdminRequest.initiator:type_name -> userdata.UserData
-	6,  // 4: admin.GetSessionsByAdminRequest.pagination:type_name -> pagination.Request
-	5,  // 5: admin.DeleteSessionsByAdminRequest.initiator:type_name -> userdata.UserData
-	0,  // 6: admin.AdminPanelService.CreateUserByAdmin:input_type -> admin.CreateUserByAdminRequest
-	1,  // 7: admin.AdminPanelService.GetUserByAdmin:input_type -> admin.GetUserByAdminRequest
-	2,  // 8: admin.AdminPanelService.GetSessionByAdmin:input_type -> admin.GetSessionByAdminRequest
-	3,  // 9: admin.AdminPanelService.GetSessionsByAdmin:input_type -> admin.GetSessionsByAdminRequest
-	4,  // 10: admin.AdminPanelService.DeleteSessionsByAdmin:input_type -> admin.DeleteSessionsByAdminRequest
-	7,  // 11: admin.AdminPanelService.CreateUserByAdmin:output_type -> user.User
-	7,  // 12: admin.AdminPanelService.GetUserByAdmin:output_type -> user.User
-	8,  // 13: admin.AdminPanelService.GetSessionByAdmin:output_type -> session.Session
-	9,  // 14: admin.AdminPanelService.GetSessionsByAdmin:output_type -> session.SessionsList
-	10, // 15: admin.AdminPanelService.DeleteSessionsByAdmin:output_type -> google.protobuf.Empty
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	7,  // 0: admin.CreateUserByAdminRequest.initiator:type_name -> userdata.UserData
+	7,  // 1: admin.GetUserByAdminRequest.initiator:type_name -> userdata.UserData
+	7,  // 2: admin.GetSessionByAdminRequest.initiator:type_name -> userdata.UserData
+	7,  // 3: admin.GetSessionsByAdminRequest.initiator:type_name -> userdata.UserData
+	8,  // 4: admin.GetSessionsByAdminRequest.pagination:type_name -> pagination.Request
+	7,  // 5: admin.DeleteSessionsByAdminRequest.initiator:type_name -> userdata.UserData
+	7,  // 6: admin.UpdateUserVerifiedRequest.initiator:type_name -> userdata.UserData
+	7,  // 7: admin.UpdateUserSuspendedRequest.initiator:type_name -> userdata.UserData
+	0,  // 8: admin.AdminPanelService.CreateUserByAdmin:input_type -> admin.CreateUserByAdminRequest
+	1,  // 9: admin.AdminPanelService.GetUserByAdmin:input_type -> admin.GetUserByAdminRequest
+	2,  // 10: admin.AdminPanelService.GetSessionByAdmin:input_type -> admin.GetSessionByAdminRequest
+	3,  // 11: admin.AdminPanelService.GetSessionsByAdmin:input_type -> admin.GetSessionsByAdminRequest
+	4,  // 12: admin.AdminPanelService.DeleteSessionsByAdmin:input_type -> admin.DeleteSessionsByAdminRequest
+	5,  // 13: admin.AdminPanelService.UpdateUserVerified:input_type -> admin.UpdateUserVerifiedRequest
+	6,  // 14: admin.AdminPanelService.UpdateUserSuspended:input_type -> admin.UpdateUserSuspendedRequest
+	9,  // 15: admin.AdminPanelService.CreateUserByAdmin:output_type -> user.User
+	9,  // 16: admin.AdminPanelService.GetUserByAdmin:output_type -> user.User
+	10, // 17: admin.AdminPanelService.GetSessionByAdmin:output_type -> session.Session
+	11, // 18: admin.AdminPanelService.GetSessionsByAdmin:output_type -> session.SessionsList
+	12, // 19: admin.AdminPanelService.DeleteSessionsByAdmin:output_type -> google.protobuf.Empty
+	9,  // 20: admin.AdminPanelService.UpdateUserVerified:output_type -> user.User
+	9,  // 21: admin.AdminPanelService.UpdateUserSuspended:output_type -> user.User
+	15, // [15:22] is the sub-list for method output_type
+	8,  // [8:15] is the sub-list for method input_type
+	8,  // [8:8] is the sub-list for extension type_name
+	8,  // [8:8] is the sub-list for extension extendee
+	0,  // [0:8] is the sub-list for field type_name
 }
 
 func init() { file_admin_admin_proto_init() }
@@ -415,7 +555,7 @@ func file_admin_admin_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_admin_admin_proto_rawDesc), len(file_admin_admin_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   5,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

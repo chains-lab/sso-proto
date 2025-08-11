@@ -27,6 +27,8 @@ const (
 	AdminPanelService_GetSessionByAdmin_FullMethodName     = "/admin.AdminPanelService/GetSessionByAdmin"
 	AdminPanelService_GetSessionsByAdmin_FullMethodName    = "/admin.AdminPanelService/GetSessionsByAdmin"
 	AdminPanelService_DeleteSessionsByAdmin_FullMethodName = "/admin.AdminPanelService/DeleteSessionsByAdmin"
+	AdminPanelService_UpdateUserVerified_FullMethodName    = "/admin.AdminPanelService/UpdateUserVerified"
+	AdminPanelService_UpdateUserSuspended_FullMethodName   = "/admin.AdminPanelService/UpdateUserSuspended"
 )
 
 // AdminPanelServiceClient is the client API for AdminPanelService service.
@@ -38,6 +40,8 @@ type AdminPanelServiceClient interface {
 	GetSessionByAdmin(ctx context.Context, in *GetSessionByAdminRequest, opts ...grpc.CallOption) (*session.Session, error)
 	GetSessionsByAdmin(ctx context.Context, in *GetSessionsByAdminRequest, opts ...grpc.CallOption) (*session.SessionsList, error)
 	DeleteSessionsByAdmin(ctx context.Context, in *DeleteSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UpdateUserVerified(ctx context.Context, in *UpdateUserVerifiedRequest, opts ...grpc.CallOption) (*user.User, error)
+	UpdateUserSuspended(ctx context.Context, in *UpdateUserSuspendedRequest, opts ...grpc.CallOption) (*user.User, error)
 }
 
 type adminPanelServiceClient struct {
@@ -98,6 +102,26 @@ func (c *adminPanelServiceClient) DeleteSessionsByAdmin(ctx context.Context, in 
 	return out, nil
 }
 
+func (c *adminPanelServiceClient) UpdateUserVerified(ctx context.Context, in *UpdateUserVerifiedRequest, opts ...grpc.CallOption) (*user.User, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(user.User)
+	err := c.cc.Invoke(ctx, AdminPanelService_UpdateUserVerified_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *adminPanelServiceClient) UpdateUserSuspended(ctx context.Context, in *UpdateUserSuspendedRequest, opts ...grpc.CallOption) (*user.User, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(user.User)
+	err := c.cc.Invoke(ctx, AdminPanelService_UpdateUserSuspended_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AdminPanelServiceServer is the server API for AdminPanelService service.
 // All implementations must embed UnimplementedAdminPanelServiceServer
 // for forward compatibility.
@@ -107,6 +131,8 @@ type AdminPanelServiceServer interface {
 	GetSessionByAdmin(context.Context, *GetSessionByAdminRequest) (*session.Session, error)
 	GetSessionsByAdmin(context.Context, *GetSessionsByAdminRequest) (*session.SessionsList, error)
 	DeleteSessionsByAdmin(context.Context, *DeleteSessionsByAdminRequest) (*emptypb.Empty, error)
+	UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*user.User, error)
+	UpdateUserSuspended(context.Context, *UpdateUserSuspendedRequest) (*user.User, error)
 	mustEmbedUnimplementedAdminPanelServiceServer()
 }
 
@@ -131,6 +157,12 @@ func (UnimplementedAdminPanelServiceServer) GetSessionsByAdmin(context.Context, 
 }
 func (UnimplementedAdminPanelServiceServer) DeleteSessionsByAdmin(context.Context, *DeleteSessionsByAdminRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteSessionsByAdmin not implemented")
+}
+func (UnimplementedAdminPanelServiceServer) UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*user.User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserVerified not implemented")
+}
+func (UnimplementedAdminPanelServiceServer) UpdateUserSuspended(context.Context, *UpdateUserSuspendedRequest) (*user.User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserSuspended not implemented")
 }
 func (UnimplementedAdminPanelServiceServer) mustEmbedUnimplementedAdminPanelServiceServer() {}
 func (UnimplementedAdminPanelServiceServer) testEmbeddedByValue()                           {}
@@ -243,6 +275,42 @@ func _AdminPanelService_DeleteSessionsByAdmin_Handler(srv interface{}, ctx conte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AdminPanelService_UpdateUserVerified_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserVerifiedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminPanelServiceServer).UpdateUserVerified(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminPanelService_UpdateUserVerified_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminPanelServiceServer).UpdateUserVerified(ctx, req.(*UpdateUserVerifiedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AdminPanelService_UpdateUserSuspended_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateUserSuspendedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AdminPanelServiceServer).UpdateUserSuspended(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AdminPanelService_UpdateUserSuspended_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AdminPanelServiceServer).UpdateUserSuspended(ctx, req.(*UpdateUserSuspendedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AdminPanelService_ServiceDesc is the grpc.ServiceDesc for AdminPanelService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -269,6 +337,14 @@ var AdminPanelService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteSessionsByAdmin",
 			Handler:    _AdminPanelService_DeleteSessionsByAdmin_Handler,
+		},
+		{
+			MethodName: "UpdateUserVerified",
+			Handler:    _AdminPanelService_UpdateUserVerified_Handler,
+		},
+		{
+			MethodName: "UpdateUserSuspended",
+			Handler:    _AdminPanelService_UpdateUserSuspended_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -10,9 +10,6 @@ import "common/pagination/pagination.proto";
 service UserService {
   rpc GoogleLogin (google.protobuf.Empty) returns (GoogleLoginResponse);
 
-  rpc UpdateUserVerified(UpdateUserVerifiedRequest) returns (User);
-  rpc UpdateUserSuspended(UpdateUserSuspendedRequest) returns (User);
-
   rpc GetOwnUserData (GetOwnUserDataRequest) returns (User);
 }
 
@@ -20,18 +17,6 @@ service UserService {
 
 message GetOwnUserDataRequest {
   userdata.UserData initiator = 1;
-}
-
-message UpdateUserVerifiedRequest {
-  userdata.UserData initiator = 1;
-  string user_id = 2;
-  bool verified = 3;
-}
-
-message UpdateUserSuspendedRequest {
-  userdata.UserData initiator = 1;
-  string user_id = 2;
-  bool suspended = 3;
 }
 
 // RESPONSES

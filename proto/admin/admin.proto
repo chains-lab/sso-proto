@@ -18,6 +18,9 @@ service AdminPanelService {
   rpc GetSessionByAdmin (GetSessionByAdminRequest) returns (session.Session);
   rpc GetSessionsByAdmin (GetSessionsByAdminRequest) returns (session.SessionsList);
   rpc DeleteSessionsByAdmin (DeleteSessionsByAdminRequest) returns (google.protobuf.Empty);
+
+  rpc UpdateUserVerified(UpdateUserVerifiedRequest) returns (user.User);
+  rpc UpdateUserSuspended(UpdateUserSuspendedRequest) returns (user.User);
 }
 
 message CreateUserByAdminRequest{
@@ -47,4 +50,16 @@ message GetSessionsByAdminRequest {
 message DeleteSessionsByAdminRequest {
   userdata.UserData initiator = 1;
   string user_id = 2;
+}
+
+message UpdateUserVerifiedRequest {
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+  bool verified = 3;
+}
+
+message UpdateUserSuspendedRequest {
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+  bool suspended = 3;
 }

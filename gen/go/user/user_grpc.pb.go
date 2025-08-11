@@ -20,10 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_GoogleLogin_FullMethodName         = "/user.UserService/GoogleLogin"
-	UserService_UpdateUserVerified_FullMethodName  = "/user.UserService/UpdateUserVerified"
-	UserService_UpdateUserSuspended_FullMethodName = "/user.UserService/UpdateUserSuspended"
-	UserService_GetOwnUserData_FullMethodName      = "/user.UserService/GetOwnUserData"
+	UserService_GoogleLogin_FullMethodName    = "/user.UserService/GoogleLogin"
+	UserService_GetOwnUserData_FullMethodName = "/user.UserService/GetOwnUserData"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -31,8 +29,6 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
 	GoogleLogin(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
-	UpdateUserVerified(ctx context.Context, in *UpdateUserVerifiedRequest, opts ...grpc.CallOption) (*User, error)
-	UpdateUserSuspended(ctx context.Context, in *UpdateUserSuspendedRequest, opts ...grpc.CallOption) (*User, error)
 	GetOwnUserData(ctx context.Context, in *GetOwnUserDataRequest, opts ...grpc.CallOption) (*User, error)
 }
 
@@ -54,26 +50,6 @@ func (c *userServiceClient) GoogleLogin(ctx context.Context, in *emptypb.Empty, 
 	return out, nil
 }
 
-func (c *userServiceClient) UpdateUserVerified(ctx context.Context, in *UpdateUserVerifiedRequest, opts ...grpc.CallOption) (*User, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(User)
-	err := c.cc.Invoke(ctx, UserService_UpdateUserVerified_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) UpdateUserSuspended(ctx context.Context, in *UpdateUserSuspendedRequest, opts ...grpc.CallOption) (*User, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(User)
-	err := c.cc.Invoke(ctx, UserService_UpdateUserSuspended_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *userServiceClient) GetOwnUserData(ctx context.Context, in *GetOwnUserDataRequest, opts ...grpc.CallOption) (*User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(User)
@@ -89,8 +65,6 @@ func (c *userServiceClient) GetOwnUserData(ctx context.Context, in *GetOwnUserDa
 // for forward compatibility.
 type UserServiceServer interface {
 	GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error)
-	UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*User, error)
-	UpdateUserSuspended(context.Context, *UpdateUserSuspendedRequest) (*User, error)
 	GetOwnUserData(context.Context, *GetOwnUserDataRequest) (*User, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
@@ -104,12 +78,6 @@ type UnimplementedUserServiceServer struct{}
 
 func (UnimplementedUserServiceServer) GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GoogleLogin not implemented")
-}
-func (UnimplementedUserServiceServer) UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserVerified not implemented")
-}
-func (UnimplementedUserServiceServer) UpdateUserSuspended(context.Context, *UpdateUserSuspendedRequest) (*User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserSuspended not implemented")
 }
 func (UnimplementedUserServiceServer) GetOwnUserData(context.Context, *GetOwnUserDataRequest) (*User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOwnUserData not implemented")
@@ -153,42 +121,6 @@ func _UserService_GoogleLogin_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_UpdateUserVerified_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateUserVerifiedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateUserVerified(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_UpdateUserVerified_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateUserVerified(ctx, req.(*UpdateUserVerifiedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_UpdateUserSuspended_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateUserSuspendedRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).UpdateUserSuspended(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_UpdateUserSuspended_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).UpdateUserSuspended(ctx, req.(*UpdateUserSuspendedRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _UserService_GetOwnUserData_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOwnUserDataRequest)
 	if err := dec(in); err != nil {
@@ -217,14 +149,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GoogleLogin",
 			Handler:    _UserService_GoogleLogin_Handler,
-		},
-		{
-			MethodName: "UpdateUserVerified",
-			Handler:    _UserService_UpdateUserVerified_Handler,
-		},
-		{
-			MethodName: "UpdateUserSuspended",
-			Handler:    _UserService_UpdateUserSuspended_Handler,
 		},
 		{
 			MethodName: "GetOwnUserData",
