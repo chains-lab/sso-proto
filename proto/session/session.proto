@@ -4,7 +4,7 @@ package session;
 option go_package = "github.com/chains-lab/sso-proto/gen/go/session;session";
 
 import "google/protobuf/empty.proto";
-import "common/userdata/userdata.proto";;
+import "common/userdata/userdata.proto";
 import "common/pagination/pagination.proto";
 
 service SessionService {
