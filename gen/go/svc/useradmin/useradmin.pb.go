@@ -26,7 +26,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CreateUserByAdminRequest struct {
+type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
 	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
@@ -36,20 +36,20 @@ type CreateUserByAdminRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *CreateUserByAdminRequest) Reset() {
-	*x = CreateUserByAdminRequest{}
+func (x *CreateUserRequest) Reset() {
+	*x = CreateUserRequest{}
 	mi := &file_svc_useradmin_useradmin_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *CreateUserByAdminRequest) String() string {
+func (x *CreateUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*CreateUserByAdminRequest) ProtoMessage() {}
+func (*CreateUserRequest) ProtoMessage() {}
 
-func (x *CreateUserByAdminRequest) ProtoReflect() protoreflect.Message {
+func (x *CreateUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_useradmin_useradmin_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -61,40 +61,40 @@ func (x *CreateUserByAdminRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use CreateUserByAdminRequest.ProtoReflect.Descriptor instead.
-func (*CreateUserByAdminRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CreateUserRequest.ProtoReflect.Descriptor instead.
+func (*CreateUserRequest) Descriptor() ([]byte, []int) {
 	return file_svc_useradmin_useradmin_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *CreateUserByAdminRequest) GetInitiator() *userdata.UserData {
+func (x *CreateUserRequest) GetInitiator() *userdata.UserData {
 	if x != nil {
 		return x.Initiator
 	}
 	return nil
 }
 
-func (x *CreateUserByAdminRequest) GetEmail() string {
+func (x *CreateUserRequest) GetEmail() string {
 	if x != nil {
 		return x.Email
 	}
 	return ""
 }
 
-func (x *CreateUserByAdminRequest) GetRole() string {
+func (x *CreateUserRequest) GetRole() string {
 	if x != nil {
 		return x.Role
 	}
 	return ""
 }
 
-func (x *CreateUserByAdminRequest) GetVerified() bool {
+func (x *CreateUserRequest) GetVerified() bool {
 	if x != nil {
 		return x.Verified
 	}
 	return false
 }
 
-type GetUserByAdminRequest struct {
+type GetUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Initiator     *userdata.UserData     `protobuf:"bytes,1,opt,name=initiator,proto3" json:"initiator,omitempty"`
 	UserId        string                 `protobuf:"bytes,2,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -102,20 +102,20 @@ type GetUserByAdminRequest struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetUserByAdminRequest) Reset() {
-	*x = GetUserByAdminRequest{}
+func (x *GetUserRequest) Reset() {
+	*x = GetUserRequest{}
 	mi := &file_svc_useradmin_useradmin_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetUserByAdminRequest) String() string {
+func (x *GetUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetUserByAdminRequest) ProtoMessage() {}
+func (*GetUserRequest) ProtoMessage() {}
 
-func (x *GetUserByAdminRequest) ProtoReflect() protoreflect.Message {
+func (x *GetUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_svc_useradmin_useradmin_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -127,19 +127,19 @@ func (x *GetUserByAdminRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetUserByAdminRequest.ProtoReflect.Descriptor instead.
-func (*GetUserByAdminRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetUserRequest.ProtoReflect.Descriptor instead.
+func (*GetUserRequest) Descriptor() ([]byte, []int) {
 	return file_svc_useradmin_useradmin_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetUserByAdminRequest) GetInitiator() *userdata.UserData {
+func (x *GetUserRequest) GetInitiator() *userdata.UserData {
 	if x != nil {
 		return x.Initiator
 	}
 	return nil
 }
 
-func (x *GetUserByAdminRequest) GetUserId() string {
+func (x *GetUserRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
@@ -270,13 +270,13 @@ var File_svc_useradmin_useradmin_proto protoreflect.FileDescriptor
 
 const file_svc_useradmin_useradmin_proto_rawDesc = "" +
 	"\n" +
-	"\x1dsvc/useradmin/useradmin.proto\x12\tuseradmin\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1ecommon/userdata/userdata.proto\x1a\"common/pagination/pagination.proto\x1a\x13svc/user/user.proto\x1a\x19svc/session/session.proto\"\x92\x01\n" +
-	"\x18CreateUserByAdminRequest\x120\n" +
+	"\x1dsvc/useradmin/useradmin.proto\x12\tuseradmin\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1ecommon/userdata/userdata.proto\x1a\"common/pagination/pagination.proto\x1a\x13svc/user/user.proto\x1a\x19svc/session/session.proto\"\x8b\x01\n" +
+	"\x11CreateUserRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x12\n" +
 	"\x04role\x18\x03 \x01(\tR\x04role\x12\x1a\n" +
-	"\bverified\x18\x04 \x01(\bR\bverified\"b\n" +
-	"\x15GetUserByAdminRequest\x120\n" +
+	"\bverified\x18\x04 \x01(\bR\bverified\"[\n" +
+	"\x0eGetUserRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\"\x82\x01\n" +
 	"\x19UpdateUserVerifiedRequest\x120\n" +
@@ -286,11 +286,12 @@ const file_svc_useradmin_useradmin_proto_rawDesc = "" +
 	"\x1aUpdateUserSuspendedRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x1c\n" +
-	"\tsuspended\x18\x03 \x01(\bR\tsuspended2\xaa\x02\n" +
-	"\x10UserAdminService\x12D\n" +
-	"\x11CreateUserByAdmin\x12#.useradmin.CreateUserByAdminRequest\x1a\n" +
-	".user.User\x12>\n" +
-	"\x0eGetUserByAdmin\x12 .useradmin.GetUserByAdminRequest\x1a\n" +
+	"\tsuspended\x18\x03 \x01(\bR\tsuspended2\x8e\x02\n" +
+	"\x10UserAdminService\x126\n" +
+	"\n" +
+	"CreateUser\x12\x1c.useradmin.CreateUserRequest\x1a\n" +
+	".user.User\x120\n" +
+	"\aGetUser\x12\x19.useradmin.GetUserRequest\x1a\n" +
 	".user.User\x12F\n" +
 	"\x12UpdateUserVerified\x12$.useradmin.UpdateUserVerifiedRequest\x1a\n" +
 	".user.User\x12H\n" +
@@ -311,24 +312,24 @@ func file_svc_useradmin_useradmin_proto_rawDescGZIP() []byte {
 
 var file_svc_useradmin_useradmin_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_svc_useradmin_useradmin_proto_goTypes = []any{
-	(*CreateUserByAdminRequest)(nil),   // 0: useradmin.CreateUserByAdminRequest
-	(*GetUserByAdminRequest)(nil),      // 1: useradmin.GetUserByAdminRequest
+	(*CreateUserRequest)(nil),          // 0: useradmin.CreateUserRequest
+	(*GetUserRequest)(nil),             // 1: useradmin.GetUserRequest
 	(*UpdateUserVerifiedRequest)(nil),  // 2: useradmin.UpdateUserVerifiedRequest
 	(*UpdateUserSuspendedRequest)(nil), // 3: useradmin.UpdateUserSuspendedRequest
 	(*userdata.UserData)(nil),          // 4: userdata.UserData
 	(*user.User)(nil),                  // 5: user.User
 }
 var file_svc_useradmin_useradmin_proto_depIdxs = []int32{
-	4, // 0: useradmin.CreateUserByAdminRequest.initiator:type_name -> userdata.UserData
-	4, // 1: useradmin.GetUserByAdminRequest.initiator:type_name -> userdata.UserData
+	4, // 0: useradmin.CreateUserRequest.initiator:type_name -> userdata.UserData
+	4, // 1: useradmin.GetUserRequest.initiator:type_name -> userdata.UserData
 	4, // 2: useradmin.UpdateUserVerifiedRequest.initiator:type_name -> userdata.UserData
 	4, // 3: useradmin.UpdateUserSuspendedRequest.initiator:type_name -> userdata.UserData
-	0, // 4: useradmin.UserAdminService.CreateUserByAdmin:input_type -> useradmin.CreateUserByAdminRequest
-	1, // 5: useradmin.UserAdminService.GetUserByAdmin:input_type -> useradmin.GetUserByAdminRequest
+	0, // 4: useradmin.UserAdminService.CreateUser:input_type -> useradmin.CreateUserRequest
+	1, // 5: useradmin.UserAdminService.GetUser:input_type -> useradmin.GetUserRequest
 	2, // 6: useradmin.UserAdminService.UpdateUserVerified:input_type -> useradmin.UpdateUserVerifiedRequest
 	3, // 7: useradmin.UserAdminService.UpdateUserSuspended:input_type -> useradmin.UpdateUserSuspendedRequest
-	5, // 8: useradmin.UserAdminService.CreateUserByAdmin:output_type -> user.User
-	5, // 9: useradmin.UserAdminService.GetUserByAdmin:output_type -> user.User
+	5, // 8: useradmin.UserAdminService.CreateUser:output_type -> user.User
+	5, // 9: useradmin.UserAdminService.GetUser:output_type -> user.User
 	5, // 10: useradmin.UserAdminService.UpdateUserVerified:output_type -> user.User
 	5, // 11: useradmin.UserAdminService.UpdateUserSuspended:output_type -> user.User
 	8, // [8:12] is the sub-list for method output_type

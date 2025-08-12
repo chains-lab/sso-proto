@@ -20,8 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserAdminService_CreateUserByAdmin_FullMethodName   = "/useradmin.UserAdminService/CreateUserByAdmin"
-	UserAdminService_GetUserByAdmin_FullMethodName      = "/useradmin.UserAdminService/GetUserByAdmin"
+	UserAdminService_CreateUser_FullMethodName          = "/useradmin.UserAdminService/CreateUser"
+	UserAdminService_GetUser_FullMethodName             = "/useradmin.UserAdminService/GetUser"
 	UserAdminService_UpdateUserVerified_FullMethodName  = "/useradmin.UserAdminService/UpdateUserVerified"
 	UserAdminService_UpdateUserSuspended_FullMethodName = "/useradmin.UserAdminService/UpdateUserSuspended"
 )
@@ -30,8 +30,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserAdminServiceClient interface {
-	CreateUserByAdmin(ctx context.Context, in *CreateUserByAdminRequest, opts ...grpc.CallOption) (*user.User, error)
-	GetUserByAdmin(ctx context.Context, in *GetUserByAdminRequest, opts ...grpc.CallOption) (*user.User, error)
+	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*user.User, error)
+	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*user.User, error)
 	UpdateUserVerified(ctx context.Context, in *UpdateUserVerifiedRequest, opts ...grpc.CallOption) (*user.User, error)
 	UpdateUserSuspended(ctx context.Context, in *UpdateUserSuspendedRequest, opts ...grpc.CallOption) (*user.User, error)
 }
@@ -44,20 +44,20 @@ func NewUserAdminServiceClient(cc grpc.ClientConnInterface) UserAdminServiceClie
 	return &userAdminServiceClient{cc}
 }
 
-func (c *userAdminServiceClient) CreateUserByAdmin(ctx context.Context, in *CreateUserByAdminRequest, opts ...grpc.CallOption) (*user.User, error) {
+func (c *userAdminServiceClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*user.User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(user.User)
-	err := c.cc.Invoke(ctx, UserAdminService_CreateUserByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserAdminService_CreateUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *userAdminServiceClient) GetUserByAdmin(ctx context.Context, in *GetUserByAdminRequest, opts ...grpc.CallOption) (*user.User, error) {
+func (c *userAdminServiceClient) GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*user.User, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(user.User)
-	err := c.cc.Invoke(ctx, UserAdminService_GetUserByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserAdminService_GetUser_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -88,8 +88,8 @@ func (c *userAdminServiceClient) UpdateUserSuspended(ctx context.Context, in *Up
 // All implementations must embed UnimplementedUserAdminServiceServer
 // for forward compatibility.
 type UserAdminServiceServer interface {
-	CreateUserByAdmin(context.Context, *CreateUserByAdminRequest) (*user.User, error)
-	GetUserByAdmin(context.Context, *GetUserByAdminRequest) (*user.User, error)
+	CreateUser(context.Context, *CreateUserRequest) (*user.User, error)
+	GetUser(context.Context, *GetUserRequest) (*user.User, error)
 	UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*user.User, error)
 	UpdateUserSuspended(context.Context, *UpdateUserSuspendedRequest) (*user.User, error)
 	mustEmbedUnimplementedUserAdminServiceServer()
@@ -102,11 +102,11 @@ type UserAdminServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserAdminServiceServer struct{}
 
-func (UnimplementedUserAdminServiceServer) CreateUserByAdmin(context.Context, *CreateUserByAdminRequest) (*user.User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateUserByAdmin not implemented")
+func (UnimplementedUserAdminServiceServer) CreateUser(context.Context, *CreateUserRequest) (*user.User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedUserAdminServiceServer) GetUserByAdmin(context.Context, *GetUserByAdminRequest) (*user.User, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUserByAdmin not implemented")
+func (UnimplementedUserAdminServiceServer) GetUser(context.Context, *GetUserRequest) (*user.User, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
 }
 func (UnimplementedUserAdminServiceServer) UpdateUserVerified(context.Context, *UpdateUserVerifiedRequest) (*user.User, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateUserVerified not implemented")
@@ -135,38 +135,38 @@ func RegisterUserAdminServiceServer(s grpc.ServiceRegistrar, srv UserAdminServic
 	s.RegisterService(&UserAdminService_ServiceDesc, srv)
 }
 
-func _UserAdminService_CreateUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserByAdminRequest)
+func _UserAdminService_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).CreateUserByAdmin(ctx, in)
+		return srv.(UserAdminServiceServer).CreateUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserAdminService_CreateUserByAdmin_FullMethodName,
+		FullMethod: UserAdminService_CreateUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).CreateUserByAdmin(ctx, req.(*CreateUserByAdminRequest))
+		return srv.(UserAdminServiceServer).CreateUser(ctx, req.(*CreateUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserAdminService_GetUserByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUserByAdminRequest)
+func _UserAdminService_GetUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserAdminServiceServer).GetUserByAdmin(ctx, in)
+		return srv.(UserAdminServiceServer).GetUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserAdminService_GetUserByAdmin_FullMethodName,
+		FullMethod: UserAdminService_GetUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserAdminServiceServer).GetUserByAdmin(ctx, req.(*GetUserByAdminRequest))
+		return srv.(UserAdminServiceServer).GetUser(ctx, req.(*GetUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -215,12 +215,12 @@ var UserAdminService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*UserAdminServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateUserByAdmin",
-			Handler:    _UserAdminService_CreateUserByAdmin_Handler,
+			MethodName: "CreateUser",
+			Handler:    _UserAdminService_CreateUser_Handler,
 		},
 		{
-			MethodName: "GetUserByAdmin",
-			Handler:    _UserAdminService_GetUserByAdmin_Handler,
+			MethodName: "GetUser",
+			Handler:    _UserAdminService_GetUser_Handler,
 		},
 		{
 			MethodName: "UpdateUserVerified",

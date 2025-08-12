@@ -21,18 +21,18 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SessionAdminService_GetSessionByAdmin_FullMethodName     = "/sessionadmin.SessionAdminService/GetSessionByAdmin"
-	SessionAdminService_GetSessionsByAdmin_FullMethodName    = "/sessionadmin.SessionAdminService/GetSessionsByAdmin"
-	SessionAdminService_DeleteSessionsByAdmin_FullMethodName = "/sessionadmin.SessionAdminService/DeleteSessionsByAdmin"
+	SessionAdminService_GetSession_FullMethodName     = "/sessionadmin.SessionAdminService/GetSession"
+	SessionAdminService_GetSessions_FullMethodName    = "/sessionadmin.SessionAdminService/GetSessions"
+	SessionAdminService_DeleteSessions_FullMethodName = "/sessionadmin.SessionAdminService/DeleteSessions"
 )
 
 // SessionAdminServiceClient is the client API for SessionAdminService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SessionAdminServiceClient interface {
-	GetSessionByAdmin(ctx context.Context, in *GetSessionByAdminRequest, opts ...grpc.CallOption) (*session.Session, error)
-	GetSessionsByAdmin(ctx context.Context, in *GetSessionsByAdminRequest, opts ...grpc.CallOption) (*session.SessionsList, error)
-	DeleteSessionsByAdmin(ctx context.Context, in *DeleteSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*session.Session, error)
+	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*session.SessionsList, error)
+	DeleteSessions(ctx context.Context, in *DeleteSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type sessionAdminServiceClient struct {
@@ -43,30 +43,30 @@ func NewSessionAdminServiceClient(cc grpc.ClientConnInterface) SessionAdminServi
 	return &sessionAdminServiceClient{cc}
 }
 
-func (c *sessionAdminServiceClient) GetSessionByAdmin(ctx context.Context, in *GetSessionByAdminRequest, opts ...grpc.CallOption) (*session.Session, error) {
+func (c *sessionAdminServiceClient) GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*session.Session, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(session.Session)
-	err := c.cc.Invoke(ctx, SessionAdminService_GetSessionByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionAdminService_GetSession_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionAdminServiceClient) GetSessionsByAdmin(ctx context.Context, in *GetSessionsByAdminRequest, opts ...grpc.CallOption) (*session.SessionsList, error) {
+func (c *sessionAdminServiceClient) GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*session.SessionsList, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(session.SessionsList)
-	err := c.cc.Invoke(ctx, SessionAdminService_GetSessionsByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionAdminService_GetSessions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sessionAdminServiceClient) DeleteSessionsByAdmin(ctx context.Context, in *DeleteSessionsByAdminRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+func (c *sessionAdminServiceClient) DeleteSessions(ctx context.Context, in *DeleteSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, SessionAdminService_DeleteSessionsByAdmin_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, SessionAdminService_DeleteSessions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -77,9 +77,9 @@ func (c *sessionAdminServiceClient) DeleteSessionsByAdmin(ctx context.Context, i
 // All implementations must embed UnimplementedSessionAdminServiceServer
 // for forward compatibility.
 type SessionAdminServiceServer interface {
-	GetSessionByAdmin(context.Context, *GetSessionByAdminRequest) (*session.Session, error)
-	GetSessionsByAdmin(context.Context, *GetSessionsByAdminRequest) (*session.SessionsList, error)
-	DeleteSessionsByAdmin(context.Context, *DeleteSessionsByAdminRequest) (*emptypb.Empty, error)
+	GetSession(context.Context, *GetSessionRequest) (*session.Session, error)
+	GetSessions(context.Context, *GetSessionsRequest) (*session.SessionsList, error)
+	DeleteSessions(context.Context, *DeleteSessionsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedSessionAdminServiceServer()
 }
 
@@ -90,14 +90,14 @@ type SessionAdminServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedSessionAdminServiceServer struct{}
 
-func (UnimplementedSessionAdminServiceServer) GetSessionByAdmin(context.Context, *GetSessionByAdminRequest) (*session.Session, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSessionByAdmin not implemented")
+func (UnimplementedSessionAdminServiceServer) GetSession(context.Context, *GetSessionRequest) (*session.Session, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
 }
-func (UnimplementedSessionAdminServiceServer) GetSessionsByAdmin(context.Context, *GetSessionsByAdminRequest) (*session.SessionsList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSessionsByAdmin not implemented")
+func (UnimplementedSessionAdminServiceServer) GetSessions(context.Context, *GetSessionsRequest) (*session.SessionsList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSessions not implemented")
 }
-func (UnimplementedSessionAdminServiceServer) DeleteSessionsByAdmin(context.Context, *DeleteSessionsByAdminRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSessionsByAdmin not implemented")
+func (UnimplementedSessionAdminServiceServer) DeleteSessions(context.Context, *DeleteSessionsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSessions not implemented")
 }
 func (UnimplementedSessionAdminServiceServer) mustEmbedUnimplementedSessionAdminServiceServer() {}
 func (UnimplementedSessionAdminServiceServer) testEmbeddedByValue()                             {}
@@ -120,56 +120,56 @@ func RegisterSessionAdminServiceServer(s grpc.ServiceRegistrar, srv SessionAdmin
 	s.RegisterService(&SessionAdminService_ServiceDesc, srv)
 }
 
-func _SessionAdminService_GetSessionByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSessionByAdminRequest)
+func _SessionAdminService_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSessionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionAdminServiceServer).GetSessionByAdmin(ctx, in)
+		return srv.(SessionAdminServiceServer).GetSession(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionAdminService_GetSessionByAdmin_FullMethodName,
+		FullMethod: SessionAdminService_GetSession_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionAdminServiceServer).GetSessionByAdmin(ctx, req.(*GetSessionByAdminRequest))
+		return srv.(SessionAdminServiceServer).GetSession(ctx, req.(*GetSessionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionAdminService_GetSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSessionsByAdminRequest)
+func _SessionAdminService_GetSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSessionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionAdminServiceServer).GetSessionsByAdmin(ctx, in)
+		return srv.(SessionAdminServiceServer).GetSessions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionAdminService_GetSessionsByAdmin_FullMethodName,
+		FullMethod: SessionAdminService_GetSessions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionAdminServiceServer).GetSessionsByAdmin(ctx, req.(*GetSessionsByAdminRequest))
+		return srv.(SessionAdminServiceServer).GetSessions(ctx, req.(*GetSessionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SessionAdminService_DeleteSessionsByAdmin_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSessionsByAdminRequest)
+func _SessionAdminService_DeleteSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSessionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SessionAdminServiceServer).DeleteSessionsByAdmin(ctx, in)
+		return srv.(SessionAdminServiceServer).DeleteSessions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SessionAdminService_DeleteSessionsByAdmin_FullMethodName,
+		FullMethod: SessionAdminService_DeleteSessions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SessionAdminServiceServer).DeleteSessionsByAdmin(ctx, req.(*DeleteSessionsByAdminRequest))
+		return srv.(SessionAdminServiceServer).DeleteSessions(ctx, req.(*DeleteSessionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -182,16 +182,16 @@ var SessionAdminService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*SessionAdminServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetSessionByAdmin",
-			Handler:    _SessionAdminService_GetSessionByAdmin_Handler,
+			MethodName: "GetSession",
+			Handler:    _SessionAdminService_GetSession_Handler,
 		},
 		{
-			MethodName: "GetSessionsByAdmin",
-			Handler:    _SessionAdminService_GetSessionsByAdmin_Handler,
+			MethodName: "GetSessions",
+			Handler:    _SessionAdminService_GetSessions_Handler,
 		},
 		{
-			MethodName: "DeleteSessionsByAdmin",
-			Handler:    _SessionAdminService_DeleteSessionsByAdmin_Handler,
+			MethodName: "DeleteSessions",
+			Handler:    _SessionAdminService_DeleteSessions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

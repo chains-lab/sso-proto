@@ -11,22 +11,22 @@ import "svc/session/session.proto";
 
 
 service UserAdminService {
-  rpc CreateUserByAdmin (CreateUserByAdminRequest) returns (user.User);
+  rpc CreateUser (CreateUserRequest) returns (user.User);
 
-  rpc GetUserByAdmin (GetUserByAdminRequest) returns (user.User);
+  rpc GetUser (GetUserRequest) returns (user.User);
 
   rpc UpdateUserVerified(UpdateUserVerifiedRequest) returns (user.User);
   rpc UpdateUserSuspended(UpdateUserSuspendedRequest) returns (user.User);
 }
 
-message CreateUserByAdminRequest{
+message CreateUserRequest{
   userdata.UserData initiator = 1;
   string email = 2;
   string role = 3;
   bool verified = 4;
 }
 
-message GetUserByAdminRequest {
+message GetUserRequest {
   userdata.UserData initiator = 1;
   string user_id = 2;
 }
