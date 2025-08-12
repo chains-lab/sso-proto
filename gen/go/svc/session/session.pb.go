@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v3.21.12
-// source: session/session.proto
+// source: svc/session/session.proto
 
 package session
 
@@ -35,7 +35,7 @@ type RefreshTokenRequest struct {
 
 func (x *RefreshTokenRequest) Reset() {
 	*x = RefreshTokenRequest{}
-	mi := &file_session_session_proto_msgTypes[0]
+	mi := &file_svc_session_session_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -47,7 +47,7 @@ func (x *RefreshTokenRequest) String() string {
 func (*RefreshTokenRequest) ProtoMessage() {}
 
 func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[0]
+	mi := &file_svc_session_session_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -60,7 +60,7 @@ func (x *RefreshTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RefreshTokenRequest.ProtoReflect.Descriptor instead.
 func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{0}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RefreshTokenRequest) GetInitiator() *userdata.UserData {
@@ -94,7 +94,7 @@ type DeleteOwnSessionRequest struct {
 
 func (x *DeleteOwnSessionRequest) Reset() {
 	*x = DeleteOwnSessionRequest{}
-	mi := &file_session_session_proto_msgTypes[1]
+	mi := &file_svc_session_session_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -106,7 +106,7 @@ func (x *DeleteOwnSessionRequest) String() string {
 func (*DeleteOwnSessionRequest) ProtoMessage() {}
 
 func (x *DeleteOwnSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[1]
+	mi := &file_svc_session_session_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -119,7 +119,7 @@ func (x *DeleteOwnSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteOwnSessionRequest.ProtoReflect.Descriptor instead.
 func (*DeleteOwnSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{1}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *DeleteOwnSessionRequest) GetInitiator() *userdata.UserData {
@@ -145,7 +145,7 @@ type GoogleCallbackRequest struct {
 
 func (x *GoogleCallbackRequest) Reset() {
 	*x = GoogleCallbackRequest{}
-	mi := &file_session_session_proto_msgTypes[2]
+	mi := &file_svc_session_session_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -157,7 +157,7 @@ func (x *GoogleCallbackRequest) String() string {
 func (*GoogleCallbackRequest) ProtoMessage() {}
 
 func (x *GoogleCallbackRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[2]
+	mi := &file_svc_session_session_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -170,7 +170,7 @@ func (x *GoogleCallbackRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GoogleCallbackRequest.ProtoReflect.Descriptor instead.
 func (*GoogleCallbackRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{2}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GoogleCallbackRequest) GetCode() string {
@@ -189,7 +189,7 @@ type LogoutRequest struct {
 
 func (x *LogoutRequest) Reset() {
 	*x = LogoutRequest{}
-	mi := &file_session_session_proto_msgTypes[3]
+	mi := &file_svc_session_session_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -201,7 +201,7 @@ func (x *LogoutRequest) String() string {
 func (*LogoutRequest) ProtoMessage() {}
 
 func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[3]
+	mi := &file_svc_session_session_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -214,7 +214,7 @@ func (x *LogoutRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutRequest.ProtoReflect.Descriptor instead.
 func (*LogoutRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{3}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *LogoutRequest) GetInitiator() *userdata.UserData {
@@ -234,7 +234,7 @@ type GetOwnSessionsRequest struct {
 
 func (x *GetOwnSessionsRequest) Reset() {
 	*x = GetOwnSessionsRequest{}
-	mi := &file_session_session_proto_msgTypes[4]
+	mi := &file_svc_session_session_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -246,7 +246,7 @@ func (x *GetOwnSessionsRequest) String() string {
 func (*GetOwnSessionsRequest) ProtoMessage() {}
 
 func (x *GetOwnSessionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[4]
+	mi := &file_svc_session_session_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -259,7 +259,7 @@ func (x *GetOwnSessionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOwnSessionsRequest.ProtoReflect.Descriptor instead.
 func (*GetOwnSessionsRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{4}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetOwnSessionsRequest) GetInitiator() *userdata.UserData {
@@ -285,7 +285,7 @@ type GetOwnSessionRequest struct {
 
 func (x *GetOwnSessionRequest) Reset() {
 	*x = GetOwnSessionRequest{}
-	mi := &file_session_session_proto_msgTypes[5]
+	mi := &file_svc_session_session_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -297,7 +297,7 @@ func (x *GetOwnSessionRequest) String() string {
 func (*GetOwnSessionRequest) ProtoMessage() {}
 
 func (x *GetOwnSessionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[5]
+	mi := &file_svc_session_session_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -310,7 +310,7 @@ func (x *GetOwnSessionRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetOwnSessionRequest.ProtoReflect.Descriptor instead.
 func (*GetOwnSessionRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{5}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetOwnSessionRequest) GetInitiator() *userdata.UserData {
@@ -329,7 +329,7 @@ type DeleteOwnSessionsRequest struct {
 
 func (x *DeleteOwnSessionsRequest) Reset() {
 	*x = DeleteOwnSessionsRequest{}
-	mi := &file_session_session_proto_msgTypes[6]
+	mi := &file_svc_session_session_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -341,7 +341,7 @@ func (x *DeleteOwnSessionsRequest) String() string {
 func (*DeleteOwnSessionsRequest) ProtoMessage() {}
 
 func (x *DeleteOwnSessionsRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[6]
+	mi := &file_svc_session_session_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -354,7 +354,7 @@ func (x *DeleteOwnSessionsRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteOwnSessionsRequest.ProtoReflect.Descriptor instead.
 func (*DeleteOwnSessionsRequest) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{6}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteOwnSessionsRequest) GetInitiator() *userdata.UserData {
@@ -374,7 +374,7 @@ type TokensPair struct {
 
 func (x *TokensPair) Reset() {
 	*x = TokensPair{}
-	mi := &file_session_session_proto_msgTypes[7]
+	mi := &file_svc_session_session_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -386,7 +386,7 @@ func (x *TokensPair) String() string {
 func (*TokensPair) ProtoMessage() {}
 
 func (x *TokensPair) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[7]
+	mi := &file_svc_session_session_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -399,7 +399,7 @@ func (x *TokensPair) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokensPair.ProtoReflect.Descriptor instead.
 func (*TokensPair) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{7}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *TokensPair) GetAccessToken() string {
@@ -430,7 +430,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_session_session_proto_msgTypes[8]
+	mi := &file_svc_session_session_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -442,7 +442,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[8]
+	mi := &file_svc_session_session_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -455,7 +455,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{8}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *Session) GetId() string {
@@ -510,7 +510,7 @@ type SessionsList struct {
 
 func (x *SessionsList) Reset() {
 	*x = SessionsList{}
-	mi := &file_session_session_proto_msgTypes[9]
+	mi := &file_svc_session_session_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -522,7 +522,7 @@ func (x *SessionsList) String() string {
 func (*SessionsList) ProtoMessage() {}
 
 func (x *SessionsList) ProtoReflect() protoreflect.Message {
-	mi := &file_session_session_proto_msgTypes[9]
+	mi := &file_svc_session_session_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -535,7 +535,7 @@ func (x *SessionsList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SessionsList.ProtoReflect.Descriptor instead.
 func (*SessionsList) Descriptor() ([]byte, []int) {
-	return file_session_session_proto_rawDescGZIP(), []int{9}
+	return file_svc_session_session_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *SessionsList) GetSessions() []*Session {
@@ -552,11 +552,11 @@ func (x *SessionsList) GetPagination() *pagination.Response {
 	return nil
 }
 
-var File_session_session_proto protoreflect.FileDescriptor
+var File_svc_session_session_proto protoreflect.FileDescriptor
 
-const file_session_session_proto_rawDesc = "" +
+const file_svc_session_session_proto_rawDesc = "" +
 	"\n" +
-	"\x15session/session.proto\x12\asession\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1ecommon/userdata/userdata.proto\x1a\"common/pagination/pagination.proto\"\x82\x01\n" +
+	"\x19svc/session/session.proto\x12\asession\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1ecommon/userdata/userdata.proto\x1a\"common/pagination/pagination.proto\"\x82\x01\n" +
 	"\x13RefreshTokenRequest\x120\n" +
 	"\tinitiator\x18\x01 \x01(\v2\x12.userdata.UserDataR\tinitiator\x12\x14\n" +
 	"\x05agent\x18\x02 \x01(\tR\x05agent\x12#\n" +
@@ -605,19 +605,19 @@ const file_session_session_proto_rawDesc = "" +
 	"\x11DeleteOwnSessions\x12!.session.DeleteOwnSessionsRequest\x1a\x16.google.protobuf.EmptyB8Z6github.com/chains-lab/sso-proto/gen/go/session;sessionb\x06proto3"
 
 var (
-	file_session_session_proto_rawDescOnce sync.Once
-	file_session_session_proto_rawDescData []byte
+	file_svc_session_session_proto_rawDescOnce sync.Once
+	file_svc_session_session_proto_rawDescData []byte
 )
 
-func file_session_session_proto_rawDescGZIP() []byte {
-	file_session_session_proto_rawDescOnce.Do(func() {
-		file_session_session_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_session_session_proto_rawDesc), len(file_session_session_proto_rawDesc)))
+func file_svc_session_session_proto_rawDescGZIP() []byte {
+	file_svc_session_session_proto_rawDescOnce.Do(func() {
+		file_svc_session_session_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_svc_session_session_proto_rawDesc), len(file_svc_session_session_proto_rawDesc)))
 	})
-	return file_session_session_proto_rawDescData
+	return file_svc_session_session_proto_rawDescData
 }
 
-var file_session_session_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
-var file_session_session_proto_goTypes = []any{
+var file_svc_session_session_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
+var file_svc_session_session_proto_goTypes = []any{
 	(*RefreshTokenRequest)(nil),      // 0: session.RefreshTokenRequest
 	(*DeleteOwnSessionRequest)(nil),  // 1: session.DeleteOwnSessionRequest
 	(*GoogleCallbackRequest)(nil),    // 2: session.GoogleCallbackRequest
@@ -633,7 +633,7 @@ var file_session_session_proto_goTypes = []any{
 	(*pagination.Response)(nil),      // 12: pagination.Response
 	(*emptypb.Empty)(nil),            // 13: google.protobuf.Empty
 }
-var file_session_session_proto_depIdxs = []int32{
+var file_svc_session_session_proto_depIdxs = []int32{
 	10, // 0: session.RefreshTokenRequest.initiator:type_name -> userdata.UserData
 	10, // 1: session.DeleteOwnSessionRequest.initiator:type_name -> userdata.UserData
 	10, // 2: session.LogoutRequest.initiator:type_name -> userdata.UserData
@@ -664,26 +664,26 @@ var file_session_session_proto_depIdxs = []int32{
 	0,  // [0:9] is the sub-list for field type_name
 }
 
-func init() { file_session_session_proto_init() }
-func file_session_session_proto_init() {
-	if File_session_session_proto != nil {
+func init() { file_svc_session_session_proto_init() }
+func file_svc_session_session_proto_init() {
+	if File_svc_session_session_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_session_session_proto_rawDesc), len(file_session_session_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_svc_session_session_proto_rawDesc), len(file_svc_session_session_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_session_session_proto_goTypes,
-		DependencyIndexes: file_session_session_proto_depIdxs,
-		MessageInfos:      file_session_session_proto_msgTypes,
+		GoTypes:           file_svc_session_session_proto_goTypes,
+		DependencyIndexes: file_svc_session_session_proto_depIdxs,
+		MessageInfos:      file_svc_session_session_proto_msgTypes,
 	}.Build()
-	File_session_session_proto = out.File
-	file_session_session_proto_goTypes = nil
-	file_session_session_proto_depIdxs = nil
+	File_svc_session_session_proto = out.File
+	file_svc_session_session_proto_goTypes = nil
+	file_svc_session_session_proto_depIdxs = nil
 }

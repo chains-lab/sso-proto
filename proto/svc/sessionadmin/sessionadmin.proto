@@ -1,0 +1,34 @@
+syntax = "proto3";
+package sessionadmin;
+
+option go_package = "github.com/chains-lab/sso-proto/gen/go/sessionadmin;sessionadmin";
+
+import "google/protobuf/empty.proto";
+import "common/userdata/userdata.proto";
+import "common/pagination/pagination.proto";
+import "svc/user/user.proto";
+import "svc/session/session.proto";
+
+
+service SessionAdminService {
+  rpc GetSessionByAdmin (GetSessionByAdminRequest) returns (session.Session);
+  rpc GetSessionsByAdmin (GetSessionsByAdminRequest) returns (session.SessionsList);
+  rpc DeleteSessionsByAdmin (DeleteSessionsByAdminRequest) returns (google.protobuf.Empty);
+}
+
+message GetSessionByAdminRequest {
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+  string session_id = 3;
+}
+
+message GetSessionsByAdminRequest {
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+  pagination.Request pagination = 3;
+}
+
+message DeleteSessionsByAdminRequest {
+  userdata.UserData initiator = 1;
+  string user_id = 2;
+}
