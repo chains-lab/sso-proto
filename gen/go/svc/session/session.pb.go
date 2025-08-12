@@ -602,7 +602,7 @@ const file_svc_session_session_proto_rawDesc = "" +
 	"\rGetOwnSession\x12\x1d.session.GetOwnSessionRequest\x1a\x10.session.Session\x12G\n" +
 	"\x0eGetOwnSessions\x12\x1e.session.GetOwnSessionsRequest\x1a\x15.session.SessionsList\x12L\n" +
 	"\x10DeleteOwnSession\x12 .session.DeleteOwnSessionRequest\x1a\x16.google.protobuf.Empty\x12N\n" +
-	"\x11DeleteOwnSessions\x12!.session.DeleteOwnSessionsRequest\x1a\x16.google.protobuf.EmptyB8Z6github.com/chains-lab/sso-proto/gen/go/session;sessionb\x06proto3"
+	"\x11DeleteOwnSessions\x12!.session.DeleteOwnSessionsRequest\x1a\x16.google.protobuf.EmptyB<Z:github.com/chains-lab/sso-proto/gen/go/svc/session;sessionb\x06proto3"
 
 var (
 	file_svc_session_session_proto_rawDescOnce sync.Once

@@ -9,8 +9,8 @@ package sessionadmin
 import (
 	pagination "github.com/chains-lab/sso-proto/gen/go/common/pagination"
 	userdata "github.com/chains-lab/sso-proto/gen/go/common/userdata"
-	session "github.com/chains-lab/sso-proto/gen/go/session"
-	_ "github.com/chains-lab/sso-proto/gen/go/user"
+	session "github.com/chains-lab/sso-proto/gen/go/svc/session"
+	_ "github.com/chains-lab/sso-proto/gen/go/svc/user"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	emptypb "google.golang.org/protobuf/types/known/emptypb"
@@ -220,7 +220,7 @@ const file_svc_sessionadmin_sessionadmin_proto_rawDesc = "" +
 	"\x13SessionAdminService\x12M\n" +
 	"\x11GetSessionByAdmin\x12&.sessionadmin.GetSessionByAdminRequest\x1a\x10.session.Session\x12T\n" +
 	"\x12GetSessionsByAdmin\x12'.sessionadmin.GetSessionsByAdminRequest\x1a\x15.session.SessionsList\x12[\n" +
-	"\x15DeleteSessionsByAdmin\x12*.sessionadmin.DeleteSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyBBZ@github.com/chains-lab/sso-proto/gen/go/sessionadmin;sessionadminb\x06proto3"
+	"\x15DeleteSessionsByAdmin\x12*.sessionadmin.DeleteSessionsByAdminRequest\x1a\x16.google.protobuf.EmptyBFZDgithub.com/chains-lab/sso-proto/gen/go/svc/sessionadmin;sessionadminb\x06proto3"
 
 var (
 	file_svc_sessionadmin_sessionadmin_proto_rawDescOnce sync.Once

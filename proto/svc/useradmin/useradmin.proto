@@ -1,7 +1,7 @@
 syntax = "proto3";
 package useradmin;
 
-option go_package = "github.com/chains-lab/sso-proto/gen/go/useradmin;useradmin";
+option go_package = "github.com/chains-lab/sso-proto/gen/go/svc/useradmin;useradmin";
 
 import "google/protobuf/empty.proto";
 import "common/userdata/userdata.proto";

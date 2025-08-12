@@ -9,8 +9,8 @@ package useradmin
 import (
 	_ "github.com/chains-lab/sso-proto/gen/go/common/pagination"
 	userdata "github.com/chains-lab/sso-proto/gen/go/common/userdata"
-	_ "github.com/chains-lab/sso-proto/gen/go/session"
-	user "github.com/chains-lab/sso-proto/gen/go/user"
+	_ "github.com/chains-lab/sso-proto/gen/go/svc/session"
+	user "github.com/chains-lab/sso-proto/gen/go/svc/user"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	_ "google.golang.org/protobuf/types/known/emptypb"
@@ -295,7 +295,7 @@ const file_svc_useradmin_useradmin_proto_rawDesc = "" +
 	"\x12UpdateUserVerified\x12$.useradmin.UpdateUserVerifiedRequest\x1a\n" +
 	".user.User\x12H\n" +
 	"\x13UpdateUserSuspended\x12%.useradmin.UpdateUserSuspendedRequest\x1a\n" +
-	".user.UserB<Z:github.com/chains-lab/sso-proto/gen/go/useradmin;useradminb\x06proto3"
+	".user.UserB@Z>github.com/chains-lab/sso-proto/gen/go/svc/useradmin;useradminb\x06proto3"
 
 var (
 	file_svc_useradmin_useradmin_proto_rawDescOnce sync.Once

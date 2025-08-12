@@ -8,7 +8,7 @@ package useradmin
 
 import (
 	context "context"
-	user "github.com/chains-lab/sso-proto/gen/go/user"
+	user "github.com/chains-lab/sso-proto/gen/go/svc/user"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"

@@ -284,7 +284,7 @@ const file_svc_user_user_proto_rawDesc = "" +
 	"\vUserService\x12@\n" +
 	"\vGoogleLogin\x12\x16.google.protobuf.Empty\x1a\x19.user.GoogleLoginResponse\x129\n" +
 	"\x0eGetOwnUserData\x12\x1b.user.GetOwnUserDataRequest\x1a\n" +
-	".user.UserB2Z0github.com/chains-lab/sso-proto/gen/go/user;userb\x06proto3"
+	".user.UserB6Z4github.com/chains-lab/sso-proto/gen/go/svc/user;userb\x06proto3"
 
 var (
 	file_svc_user_user_proto_rawDescOnce sync.Once
