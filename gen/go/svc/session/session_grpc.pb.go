@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: svc/auth/auth.proto
+// source: svc/session/session.proto
 
-package auth
+package session
 
 import (
 	context "context"
@@ -20,23 +20,24 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_Register_FullMethodName          = "/auth.UserService/Register"
-	UserService_Login_FullMethodName             = "/auth.UserService/Login"
-	UserService_Logout_FullMethodName            = "/auth.UserService/Logout"
-	UserService_GoogleLogin_FullMethodName       = "/auth.UserService/GoogleLogin"
-	UserService_GoogleCallback_FullMethodName    = "/auth.UserService/GoogleCallback"
-	UserService_RefreshToken_FullMethodName      = "/auth.UserService/RefreshToken"
-	UserService_GetOwnSession_FullMethodName     = "/auth.UserService/GetOwnSession"
-	UserService_GetOwnSessions_FullMethodName    = "/auth.UserService/GetOwnSessions"
-	UserService_DeleteOwnSession_FullMethodName  = "/auth.UserService/DeleteOwnSession"
-	UserService_DeleteOwnSessions_FullMethodName = "/auth.UserService/DeleteOwnSessions"
+	UserService_Login_FullMethodName             = "/session.UserService/Login"
+	UserService_Logout_FullMethodName            = "/session.UserService/Logout"
+	UserService_GoogleLogin_FullMethodName       = "/session.UserService/GoogleLogin"
+	UserService_GoogleCallback_FullMethodName    = "/session.UserService/GoogleCallback"
+	UserService_RefreshToken_FullMethodName      = "/session.UserService/RefreshToken"
+	UserService_GetOwnSession_FullMethodName     = "/session.UserService/GetOwnSession"
+	UserService_GetOwnSessions_FullMethodName    = "/session.UserService/GetOwnSessions"
+	UserService_DeleteOwnSession_FullMethodName  = "/session.UserService/DeleteOwnSession"
+	UserService_DeleteOwnSessions_FullMethodName = "/session.UserService/DeleteOwnSessions"
+	UserService_GetSession_FullMethodName        = "/session.UserService/GetSession"
+	UserService_GetSessions_FullMethodName       = "/session.UserService/GetSessions"
+	UserService_DeleteSessions_FullMethodName    = "/session.UserService/DeleteSessions"
 )
 
 // UserServiceClient is the client API for UserService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
-	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	Logout(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GoogleLogin(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GoogleLoginResponse, error)
@@ -46,6 +47,10 @@ type UserServiceClient interface {
 	GetOwnSessions(ctx context.Context, in *GetOwnSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error)
 	DeleteOwnSession(ctx context.Context, in *DeleteOwnSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteOwnSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	// Admin methods
+	GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*Session, error)
+	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error)
+	DeleteSessions(ctx context.Context, in *DeleteSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type userServiceClient struct {
@@ -54,16 +59,6 @@ type userServiceClient struct {
 
 func NewUserServiceClient(cc grpc.ClientConnInterface) UserServiceClient {
 	return &userServiceClient{cc}
-}
-
-func (c *userServiceClient) Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UserService_Register_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
 }
 
 func (c *userServiceClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
@@ -156,11 +151,40 @@ func (c *userServiceClient) DeleteOwnSessions(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
+func (c *userServiceClient) GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*Session, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Session)
+	err := c.cc.Invoke(ctx, UserService_GetSession_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SessionsList)
+	err := c.cc.Invoke(ctx, UserService_GetSessions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) DeleteSessions(ctx context.Context, in *DeleteSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, UserService_DeleteSessions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
 type UserServiceServer interface {
-	Register(context.Context, *RegisterRequest) (*emptypb.Empty, error)
 	Login(context.Context, *LoginRequest) (*emptypb.Empty, error)
 	Logout(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
 	GoogleLogin(context.Context, *emptypb.Empty) (*GoogleLoginResponse, error)
@@ -170,6 +194,10 @@ type UserServiceServer interface {
 	GetOwnSessions(context.Context, *GetOwnSessionsRequest) (*SessionsList, error)
 	DeleteOwnSession(context.Context, *DeleteOwnSessionRequest) (*emptypb.Empty, error)
 	DeleteOwnSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
+	// Admin methods
+	GetSession(context.Context, *GetSessionRequest) (*Session, error)
+	GetSessions(context.Context, *GetSessionsRequest) (*SessionsList, error)
+	DeleteSessions(context.Context, *DeleteSessionsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -180,9 +208,6 @@ type UserServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedUserServiceServer struct{}
 
-func (UnimplementedUserServiceServer) Register(context.Context, *RegisterRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
-}
 func (UnimplementedUserServiceServer) Login(context.Context, *LoginRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
@@ -210,6 +235,15 @@ func (UnimplementedUserServiceServer) DeleteOwnSession(context.Context, *DeleteO
 func (UnimplementedUserServiceServer) DeleteOwnSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnSessions not implemented")
 }
+func (UnimplementedUserServiceServer) GetSession(context.Context, *GetSessionRequest) (*Session, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
+}
+func (UnimplementedUserServiceServer) GetSessions(context.Context, *GetSessionsRequest) (*SessionsList, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSessions not implemented")
+}
+func (UnimplementedUserServiceServer) DeleteSessions(context.Context, *DeleteSessionsRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSessions not implemented")
+}
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
 
@@ -229,24 +263,6 @@ func RegisterUserServiceServer(s grpc.ServiceRegistrar, srv UserServiceServer) {
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&UserService_ServiceDesc, srv)
-}
-
-func _UserService_Register_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RegisterRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).Register(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_Register_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).Register(ctx, req.(*RegisterRequest))
-	}
-	return interceptor(ctx, in, info, handler)
 }
 
 func _UserService_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -411,17 +427,67 @@ func _UserService_DeleteOwnSessions_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSessionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetSession(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetSession_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetSession(ctx, req.(*GetSessionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_GetSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSessionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetSessions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_GetSessions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetSessions(ctx, req.(*GetSessionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_DeleteSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSessionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).DeleteSessions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_DeleteSessions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).DeleteSessions(ctx, req.(*DeleteSessionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.UserService",
+	ServiceName: "session.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "Register",
-			Handler:    _UserService_Register_Handler,
-		},
 		{
 			MethodName: "Login",
 			Handler:    _UserService_Login_Handler,
@@ -458,7 +524,19 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "DeleteOwnSessions",
 			Handler:    _UserService_DeleteOwnSessions_Handler,
 		},
+		{
+			MethodName: "GetSession",
+			Handler:    _UserService_GetSession_Handler,
+		},
+		{
+			MethodName: "GetSessions",
+			Handler:    _UserService_GetSessions_Handler,
+		},
+		{
+			MethodName: "DeleteSessions",
+			Handler:    _UserService_DeleteSessions_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "svc/auth/auth.proto",
+	Metadata: "svc/session/session.proto",
 }

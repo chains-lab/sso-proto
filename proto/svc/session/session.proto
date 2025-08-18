@@ -1,15 +1,12 @@
 syntax = "proto3";
-package auth;
+package session;
 
-option go_package = "github.com/chains-lab/sso-proto/gen/go/svc/auth;auth";
+option go_package = "github.com/chains-lab/sso-proto/gen/go/svc/session;session";
 
 import "google/protobuf/empty.proto";
-import "common/userdata/userdata.proto";;
 import "common/pagination/pagination.proto";
 
 service UserService {
-  rpc Register (RegisterRequest) returns (google.protobuf.Empty);
-
   rpc Login  (LoginRequest)          returns (google.protobuf.Empty);
   rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
 
@@ -23,19 +20,24 @@ service UserService {
 
   rpc DeleteOwnSession  (DeleteOwnSessionRequest)  returns (google.protobuf.Empty);
   rpc DeleteOwnSessions (google.protobuf.Empty)    returns (google.protobuf.Empty);
+
+  // Admin methods
+  rpc GetSession     (GetSessionRequest)     returns (Session);
+  rpc GetSessions    (GetSessionsRequest)    returns (SessionsList);
+  rpc DeleteSessions (DeleteSessionsRequest) returns (google.protobuf.Empty);
 }
 
 // REQUESTS
 
-message RegisterRequest {
-  string email = 1;
-  string password = 2;
-  string password_confirm = 3;
-}
-
 message LoginRequest {
   string email = 1;
   string password = 2;
+  string client = 3;
+  string ip = 4;
+}
+
+message GoogleCallbackRequest {
+  string code = 1;
 }
 
 message RefreshTokenRequest {
@@ -47,28 +49,29 @@ message DeleteOwnSessionRequest {
   string session_id = 1;
 }
 
-message GoogleCallbackRequest {
-  string code = 1;
-}
-
 message GetOwnSessionsRequest {
   pagination.Request pagination = 1;
 }
+
+message GetSessionRequest {
+  string user_id    = 1;
+  string session_id = 2;
+}
+
+message GetSessionsRequest {
+  string user_id = 1;
+  pagination.Request pagination = 2;
+}
+
+message DeleteSessionsRequest {
+  string user_id = 1;
+}
+
 
 // RESPONSES
 
 message GoogleLoginResponse {
   string url = 1;
-}
-
-message User {
-  string id = 1;
-  string role = 2;
-  string email = 3;
-  bool   email_verified = 4;
-  bool   suspended = 5;
-  string created_at = 6;
-  string updated_at = 7;
 }
 
 message TokensPair {
@@ -89,3 +92,4 @@ message SessionsList {
   repeated Session sessions = 1;
   pagination.Response pagination = 2;
 }
+
