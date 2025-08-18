@@ -94,6 +94,8 @@ func (x *LoginRequest) GetIp() string {
 type GoogleCallbackRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	Client        string                 `protobuf:"bytes,2,opt,name=client,proto3" json:"client,omitempty"`
+	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -135,10 +137,25 @@ func (x *GoogleCallbackRequest) GetCode() string {
 	return ""
 }
 
+func (x *GoogleCallbackRequest) GetClient() string {
+	if x != nil {
+		return x.Client
+	}
+	return ""
+}
+
+func (x *GoogleCallbackRequest) GetIp() string {
+	if x != nil {
+		return x.Ip
+	}
+	return ""
+}
+
 type RefreshTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Agent         string                 `protobuf:"bytes,1,opt,name=agent,proto3" json:"agent,omitempty"`
-	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,1,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
+	Client        string                 `protobuf:"bytes,2,opt,name=client,proto3" json:"client,omitempty"`
+	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -173,16 +190,23 @@ func (*RefreshTokenRequest) Descriptor() ([]byte, []int) {
 	return file_svc_session_session_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *RefreshTokenRequest) GetAgent() string {
+func (x *RefreshTokenRequest) GetRefreshToken() string {
 	if x != nil {
-		return x.Agent
+		return x.RefreshToken
 	}
 	return ""
 }
 
-func (x *RefreshTokenRequest) GetRefreshToken() string {
+func (x *RefreshTokenRequest) GetClient() string {
 	if x != nil {
-		return x.RefreshToken
+		return x.Client
+	}
+	return ""
+}
+
+func (x *RefreshTokenRequest) GetIp() string {
+	if x != nil {
+		return x.Ip
 	}
 	return ""
 }
@@ -516,12 +540,15 @@ const file_svc_session_session_proto_rawDesc = "" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x16\n" +
 	"\x06client\x18\x03 \x01(\tR\x06client\x12\x0e\n" +
-	"\x02ip\x18\x04 \x01(\tR\x02ip\"+\n" +
+	"\x02ip\x18\x04 \x01(\tR\x02ip\"S\n" +
 	"\x15GoogleCallbackRequest\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\"P\n" +
-	"\x13RefreshTokenRequest\x12\x14\n" +
-	"\x05agent\x18\x01 \x01(\tR\x05agent\x12#\n" +
-	"\rrefresh_token\x18\x02 \x01(\tR\frefreshToken\"8\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\x12\x16\n" +
+	"\x06client\x18\x02 \x01(\tR\x06client\x12\x0e\n" +
+	"\x02ip\x18\x03 \x01(\tR\x02ip\"b\n" +
+	"\x13RefreshTokenRequest\x12#\n" +
+	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12\x16\n" +
+	"\x06client\x18\x02 \x01(\tR\x06client\x12\x0e\n" +
+	"\x02ip\x18\x03 \x01(\tR\x02ip\"8\n" +
 	"\x17DeleteOwnSessionRequest\x12\x1d\n" +
 	"\n" +
 	"session_id\x18\x01 \x01(\tR\tsessionId\"L\n" +
@@ -547,9 +574,9 @@ const file_svc_session_session_proto_rawDesc = "" +
 	"\bsessions\x18\x01 \x03(\v2\x10.session.SessionR\bsessions\x124\n" +
 	"\n" +
 	"pagination\x18\x02 \x01(\v2\x14.pagination.ResponseR\n" +
-	"pagination2\xe5\x04\n" +
-	"\vUserService\x126\n" +
-	"\x05Login\x12\x15.session.LoginRequest\x1a\x16.google.protobuf.Empty\x128\n" +
+	"pagination2\xe2\x04\n" +
+	"\vUserService\x123\n" +
+	"\x05Login\x12\x15.session.LoginRequest\x1a\x13.session.TokensPair\x128\n" +
 	"\x06Logout\x12\x16.google.protobuf.Empty\x1a\x16.google.protobuf.Empty\x12C\n" +
 	"\vGoogleLogin\x12\x16.google.protobuf.Empty\x1a\x1c.session.GoogleLoginResponse\x12E\n" +
 	"\x0eGoogleCallback\x12\x1e.session.GoogleCallbackRequest\x1a\x13.session.TokensPair\x12A\n" +
@@ -599,7 +626,7 @@ var file_svc_session_session_proto_depIdxs = []int32{
 	4,  // 9: session.UserService.GetOwnSessions:input_type -> session.GetOwnSessionsRequest
 	3,  // 10: session.UserService.DeleteOwnSession:input_type -> session.DeleteOwnSessionRequest
 	11, // 11: session.UserService.DeleteOwnSessions:input_type -> google.protobuf.Empty
-	11, // 12: session.UserService.Login:output_type -> google.protobuf.Empty
+	6,  // 12: session.UserService.Login:output_type -> session.TokensPair
 	11, // 13: session.UserService.Logout:output_type -> google.protobuf.Empty
 	5,  // 14: session.UserService.GoogleLogin:output_type -> session.GoogleLoginResponse
 	6,  // 15: session.UserService.GoogleCallback:output_type -> session.TokensPair

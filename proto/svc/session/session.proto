@@ -7,7 +7,7 @@ import "google/protobuf/empty.proto";
 import "common/pagination/pagination.proto";
 
 service UserService {
-  rpc Login  (LoginRequest)          returns (google.protobuf.Empty);
+  rpc Login  (LoginRequest)          returns (TokensPair);
   rpc Logout (google.protobuf.Empty) returns (google.protobuf.Empty);
 
   rpc GoogleLogin    (google.protobuf.Empty) returns (GoogleLoginResponse);
@@ -33,11 +33,14 @@ message LoginRequest {
 
 message GoogleCallbackRequest {
   string code = 1;
+  string client = 2;
+  string ip = 3;
 }
 
 message RefreshTokenRequest {
-  string agent = 1;
-  string refresh_token = 2;
+  string refresh_token = 1;
+  string client = 2;
+  string ip = 3;
 }
 
 message DeleteOwnSessionRequest {
