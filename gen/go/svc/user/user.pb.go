@@ -89,7 +89,6 @@ type User struct {
 	Role          string                 `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
 	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	EmailVerified bool                   `protobuf:"varint,4,opt,name=email_verified,json=emailVerified,proto3" json:"email_verified,omitempty"`
-	Suspended     bool                   `protobuf:"varint,5,opt,name=suspended,proto3" json:"suspended,omitempty"`
 	CreatedAt     string                 `protobuf:"bytes,6,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     string                 `protobuf:"bytes,7,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -154,13 +153,6 @@ func (x *User) GetEmailVerified() bool {
 	return false
 }
 
-func (x *User) GetSuspended() bool {
-	if x != nil {
-		return x.Suspended
-	}
-	return false
-}
-
 func (x *User) GetCreatedAt() string {
 	if x != nil {
 		return x.CreatedAt
@@ -183,13 +175,12 @@ const file_svc_user_user_proto_rawDesc = "" +
 	"\x0fRegisterRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12)\n" +
-	"\x10password_confirm\x18\x03 \x01(\tR\x0fpasswordConfirm\"\xc3\x01\n" +
+	"\x10password_confirm\x18\x03 \x01(\tR\x0fpasswordConfirm\"\xa5\x01\n" +
 	"\x04User\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04role\x18\x02 \x01(\tR\x04role\x12\x14\n" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12%\n" +
-	"\x0eemail_verified\x18\x04 \x01(\bR\remailVerified\x12\x1c\n" +
-	"\tsuspended\x18\x05 \x01(\bR\tsuspended\x12\x1d\n" +
+	"\x0eemail_verified\x18\x04 \x01(\bR\remailVerified\x12\x1d\n" +
 	"\n" +
 	"created_at\x18\x06 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +

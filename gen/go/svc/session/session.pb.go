@@ -94,8 +94,6 @@ func (x *LoginRequest) GetIp() string {
 type GoogleCallbackRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	Client        string                 `protobuf:"bytes,2,opt,name=client,proto3" json:"client,omitempty"`
-	Ip            string                 `protobuf:"bytes,3,opt,name=ip,proto3" json:"ip,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -133,20 +131,6 @@ func (*GoogleCallbackRequest) Descriptor() ([]byte, []int) {
 func (x *GoogleCallbackRequest) GetCode() string {
 	if x != nil {
 		return x.Code
-	}
-	return ""
-}
-
-func (x *GoogleCallbackRequest) GetClient() string {
-	if x != nil {
-		return x.Client
-	}
-	return ""
-}
-
-func (x *GoogleCallbackRequest) GetIp() string {
-	if x != nil {
-		return x.Ip
 	}
 	return ""
 }
@@ -540,11 +524,9 @@ const file_svc_session_session_proto_rawDesc = "" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
 	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x16\n" +
 	"\x06client\x18\x03 \x01(\tR\x06client\x12\x0e\n" +
-	"\x02ip\x18\x04 \x01(\tR\x02ip\"S\n" +
+	"\x02ip\x18\x04 \x01(\tR\x02ip\"+\n" +
 	"\x15GoogleCallbackRequest\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\x12\x16\n" +
-	"\x06client\x18\x02 \x01(\tR\x06client\x12\x0e\n" +
-	"\x02ip\x18\x03 \x01(\tR\x02ip\"b\n" +
+	"\x04code\x18\x01 \x01(\tR\x04code\"b\n" +
 	"\x13RefreshTokenRequest\x12#\n" +
 	"\rrefresh_token\x18\x01 \x01(\tR\frefreshToken\x12\x16\n" +
 	"\x06client\x18\x02 \x01(\tR\x06client\x12\x0e\n" +

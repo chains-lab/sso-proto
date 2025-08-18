@@ -33,8 +33,6 @@ message LoginRequest {
 
 message GoogleCallbackRequest {
   string code = 1;
-  string client = 2;
-  string ip = 3;
 }
 
 message RefreshTokenRequest {
