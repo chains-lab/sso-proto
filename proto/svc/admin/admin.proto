@@ -1,0 +1,43 @@
+syntax = "proto3";
+package admin;
+
+option go_package = "github.com/chains-lab/sso-proto/gen/go/svc/admin;admin";
+
+import "google/protobuf/empty.proto";
+import "common/pagination/pagination.proto";
+import "svc/session/session.proto";
+import "svc/user/user.proto";
+
+service AdminService {
+  rpc GetUser (GetUserRequest) returns (user.User);
+  rpc CreateUser (CreateUserRequest) returns (user.User);
+
+  rpc GetSession     (GetSessionRequest)     returns (session.Session);
+  rpc GetSessions    (GetSessionsRequest)    returns (session.SessionsList);
+  rpc DeleteSessions (DeleteSessionsRequest) returns (google.protobuf.Empty);
+}
+
+message CreateUserRequest{
+  string email = 1;
+  string role  = 2;
+  string password = 3;
+  bool   verified = 4;
+}
+
+message GetUserRequest {
+  string user_id = 1;
+}
+
+message GetSessionRequest {
+  string user_id    = 1;
+  string session_id = 2;
+}
+
+message GetSessionsRequest {
+  string user_id = 1;
+  pagination.Request pagination = 2;
+}
+
+message DeleteSessionsRequest {
+  string user_id = 1;
+}

@@ -29,9 +29,6 @@ const (
 	UserService_GetOwnSessions_FullMethodName    = "/session.UserService/GetOwnSessions"
 	UserService_DeleteOwnSession_FullMethodName  = "/session.UserService/DeleteOwnSession"
 	UserService_DeleteOwnSessions_FullMethodName = "/session.UserService/DeleteOwnSessions"
-	UserService_GetSession_FullMethodName        = "/session.UserService/GetSession"
-	UserService_GetSessions_FullMethodName       = "/session.UserService/GetSessions"
-	UserService_DeleteSessions_FullMethodName    = "/session.UserService/DeleteSessions"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -47,10 +44,6 @@ type UserServiceClient interface {
 	GetOwnSessions(ctx context.Context, in *GetOwnSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error)
 	DeleteOwnSession(ctx context.Context, in *DeleteOwnSessionRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DeleteOwnSessions(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	// Admin methods
-	GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*Session, error)
-	GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error)
-	DeleteSessions(ctx context.Context, in *DeleteSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type userServiceClient struct {
@@ -151,36 +144,6 @@ func (c *userServiceClient) DeleteOwnSessions(ctx context.Context, in *emptypb.E
 	return out, nil
 }
 
-func (c *userServiceClient) GetSession(ctx context.Context, in *GetSessionRequest, opts ...grpc.CallOption) (*Session, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Session)
-	err := c.cc.Invoke(ctx, UserService_GetSession_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) GetSessions(ctx context.Context, in *GetSessionsRequest, opts ...grpc.CallOption) (*SessionsList, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SessionsList)
-	err := c.cc.Invoke(ctx, UserService_GetSessions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *userServiceClient) DeleteSessions(ctx context.Context, in *DeleteSessionsRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, UserService_DeleteSessions_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -194,10 +157,6 @@ type UserServiceServer interface {
 	GetOwnSessions(context.Context, *GetOwnSessionsRequest) (*SessionsList, error)
 	DeleteOwnSession(context.Context, *DeleteOwnSessionRequest) (*emptypb.Empty, error)
 	DeleteOwnSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error)
-	// Admin methods
-	GetSession(context.Context, *GetSessionRequest) (*Session, error)
-	GetSessions(context.Context, *GetSessionsRequest) (*SessionsList, error)
-	DeleteSessions(context.Context, *DeleteSessionsRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -234,15 +193,6 @@ func (UnimplementedUserServiceServer) DeleteOwnSession(context.Context, *DeleteO
 }
 func (UnimplementedUserServiceServer) DeleteOwnSessions(context.Context, *emptypb.Empty) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteOwnSessions not implemented")
-}
-func (UnimplementedUserServiceServer) GetSession(context.Context, *GetSessionRequest) (*Session, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSession not implemented")
-}
-func (UnimplementedUserServiceServer) GetSessions(context.Context, *GetSessionsRequest) (*SessionsList, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetSessions not implemented")
-}
-func (UnimplementedUserServiceServer) DeleteSessions(context.Context, *DeleteSessionsRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteSessions not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -427,60 +377,6 @@ func _UserService_DeleteOwnSessions_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_GetSession_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSessionRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).GetSession(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_GetSession_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetSession(ctx, req.(*GetSessionRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_GetSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetSessionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).GetSessions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_GetSessions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).GetSessions(ctx, req.(*GetSessionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _UserService_DeleteSessions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteSessionsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(UserServiceServer).DeleteSessions(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: UserService_DeleteSessions_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).DeleteSessions(ctx, req.(*DeleteSessionsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -523,18 +419,6 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteOwnSessions",
 			Handler:    _UserService_DeleteOwnSessions_Handler,
-		},
-		{
-			MethodName: "GetSession",
-			Handler:    _UserService_GetSession_Handler,
-		},
-		{
-			MethodName: "GetSessions",
-			Handler:    _UserService_GetSessions_Handler,
-		},
-		{
-			MethodName: "DeleteSessions",
-			Handler:    _UserService_DeleteSessions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
